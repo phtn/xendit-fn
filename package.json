@@ -1,0 +1,43 @@
+{
+  "name": "xendit-fn",
+  "description": "Xendit Functional SDK",
+  "keywords": [
+    "xendit",
+    "sdk",
+    "trpc",
+    "typescript"
+  ],
+  "author": "xpriori",
+  "module": "index.ts",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "build": "bunchee -o ./lib/index.js",
+    "dev": "bunchee -w --no-clean",
+    "start": "bun run ./src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.11.1",
+    "@types/bun": "latest",
+    "@types/eslint": "^9.6.1",
+    "@typescript-eslint/eslint-plugin": "^8.7.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "bunchee": "^5.5.0",
+    "eslint": "^9.11.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@trpc/server": "^10.45.2",
+    "axios": "^1.7.7",
+    "zod": "^3.23.8"
+  },
+  "license": "MIT"
+}
