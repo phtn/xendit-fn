@@ -1,0 +1,43 @@
+# Source files
+src/
+tsconfig.json
+eslint.config.js
+.prettierrc
+.prettierignore
+
+# Development files
+.vscode/
+.github/
+*.log
+.DS_Store
+
+# Build artifacts (keep only lib/)
+dist/
+coverage/
+
+# Development dependencies
+node_modules/
+bun.lockb
+yarn.lock
+package-lock.json
+
+# Tests
+**/*.test.ts
+**/*.spec.ts
+__tests__/
+test/
+
+# Development configuration
+.env*
+.editorconfig
+nodemon.json
+
+# Git
+.git/
+.gitignore
+
+# Documentation development
+docs/
+examples/
+*.md
+!README.md

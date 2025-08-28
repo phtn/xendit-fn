@@ -166,12 +166,8 @@ export const KYCDocumentSchema = z.object({
 export type KYCDocument = z.infer<typeof KYCDocumentSchema>;
 
 const CommonCustomerResourceSchema = z.object({
-  individual_detail: CustomerTypeSchema.safeParse("INDIVIDUAL").success
-    ? IndividualDetailSchema
-    : z.undefined().nullable(),
-  business_detail: CustomerTypeSchema.safeParse("BUSINESS").success
-    ? BusinessDetailSchema
-    : z.undefined().nullable(),
+  individual_detail: IndividualDetailSchema.optional(),
+  business_detail: BusinessDetailSchema.optional(),
   email: z.string().email().optional(),
   mobile_number: PhoneSchema.optional(),
   phone_number: PhoneSchema.optional(),
@@ -189,12 +185,43 @@ export type CommonCustomerResource = z.infer<
   typeof CommonCustomerResourceSchema
 >;
 
-export const CustomerSchema = CommonCustomerResourceSchema.merge(
+// Create a discriminated union for customer types
+export const CustomerSchema = z.discriminatedUnion("type", [
   z.object({
+    type: z.literal("INDIVIDUAL"),
     reference_id: z.string(),
-    type: CustomerTypeSchema,
+    individual_detail: IndividualDetailSchema,
+    business_detail: z.undefined().optional(),
+    email: z.string().email().optional(),
+    mobile_number: PhoneSchema.optional(),
+    phone_number: PhoneSchema.optional(),
+    hashed_phone_number: z.string().nullable().optional(),
+    addresses: z.array(AddressSchema).optional(),
+    identity_accounts: z.array(IdentityAccountSchema).optional(),
+    kyc_documents: z.array(KYCDocumentSchema).optional(),
+    description: z.string().nullable().optional(),
+    date_of_registration: z.string().nullable().optional(),
+    domicile_of_registration: z.string().nullable().optional(),
+    metadata: z.object({}).nullable().optional(),
   }),
-);
+  z.object({
+    type: z.literal("BUSINESS"),
+    reference_id: z.string(),
+    individual_detail: z.undefined().optional(),
+    business_detail: BusinessDetailSchema,
+    email: z.string().email().optional(),
+    mobile_number: PhoneSchema.optional(),
+    phone_number: PhoneSchema.optional(),
+    hashed_phone_number: z.string().nullable().optional(),
+    addresses: z.array(AddressSchema).optional(),
+    identity_accounts: z.array(IdentityAccountSchema).optional(),
+    kyc_documents: z.array(KYCDocumentSchema).optional(),
+    description: z.string().nullable().optional(),
+    date_of_registration: z.string().nullable().optional(),
+    domicile_of_registration: z.string().nullable().optional(),
+    metadata: z.object({}).nullable().optional(),
+  }),
+]);
 export type Customer = z.infer<typeof CustomerSchema>;
 
 export const GetCustomerSchema = z.object({
@@ -202,13 +229,49 @@ export const GetCustomerSchema = z.object({
 });
 export type GetCustomer = z.infer<typeof GetCustomerSchema>;
 
-export const CustomerResourceSchema = CustomerSchema.merge(
+// Create CustomerResourceSchema by extending both discriminated union options
+export const CustomerResourceSchema = z.discriminatedUnion("type", [
   z.object({
+    type: z.literal("INDIVIDUAL"),
     id: z.string(),
+    reference_id: z.string(),
+    individual_detail: IndividualDetailSchema,
+    business_detail: z.undefined().optional(),
+    email: z.string().email().optional(),
+    mobile_number: PhoneSchema.optional(),
+    phone_number: PhoneSchema.optional(),
+    hashed_phone_number: z.string().nullable().optional(),
+    addresses: z.array(AddressSchema).optional(),
+    identity_accounts: z.array(IdentityAccountSchema).optional(),
+    kyc_documents: z.array(KYCDocumentSchema).optional(),
+    description: z.string().nullable().optional(),
+    date_of_registration: z.string().nullable().optional(),
+    domicile_of_registration: z.string().nullable().optional(),
+    metadata: z.object({}).nullable().optional(),
     created: z.string().datetime(),
     updated: z.string().datetime(),
   }),
-);
+  z.object({
+    type: z.literal("BUSINESS"),
+    id: z.string(),
+    reference_id: z.string(),
+    individual_detail: z.undefined().optional(),
+    business_detail: BusinessDetailSchema,
+    email: z.string().email().optional(),
+    mobile_number: PhoneSchema.optional(),
+    phone_number: PhoneSchema.optional(),
+    hashed_phone_number: z.string().nullable().optional(),
+    addresses: z.array(AddressSchema).optional(),
+    identity_accounts: z.array(IdentityAccountSchema).optional(),
+    kyc_documents: z.array(KYCDocumentSchema).optional(),
+    description: z.string().nullable().optional(),
+    date_of_registration: z.string().nullable().optional(),
+    domicile_of_registration: z.string().nullable().optional(),
+    metadata: z.object({}).nullable().optional(),
+    created: z.string().datetime(),
+    updated: z.string().datetime(),
+  }),
+]);
 export type CustomerResource = z.infer<typeof CustomerResourceSchema>;
 
 export const GetCustomerByRefIdSchema = z.object({

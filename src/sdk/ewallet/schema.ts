@@ -136,22 +136,33 @@ export const LineItemSchema = z.object({
 });
 export type LineItem = z.infer<typeof LineItemSchema>;
 
-export const EWalletChargeSchema = z.object({
-  reference_id: z.string(),
-  currency: CurrencySchema,
-  amount: z.number(),
-  checkout_method: CheckoutMethodSchema,
-  channel_code: CheckoutMethodSchema.safeParse("ONE_TIME_PAYMENT").success
-    ? ChannelCodeSchema
-    : ChannelCodeSchema.optional(),
-  channel_properties: ChannelsSchema,
-  payment_method_id: CheckoutMethodSchema.safeParse("TOKENIZED_PAYMENT").success
-    ? z.string()
-    : z.string().optional(),
-  customer_id: z.string().optional(),
-  basket: z.array(LineItemSchema).optional(),
-  metadata: z.object({}).optional(),
-});
+// Create a discriminated union based on checkout method
+export const EWalletChargeSchema = z.discriminatedUnion("checkout_method", [
+  z.object({
+    reference_id: z.string(),
+    currency: CurrencySchema,
+    amount: z.number(),
+    checkout_method: z.literal("ONE_TIME_PAYMENT"),
+    channel_code: ChannelCodeSchema,
+    channel_properties: ChannelsSchema,
+    payment_method_id: z.undefined().optional(),
+    customer_id: z.string().optional(),
+    basket: z.array(LineItemSchema).optional(),
+    metadata: z.object({}).optional(),
+  }),
+  z.object({
+    reference_id: z.string(),
+    currency: CurrencySchema,
+    amount: z.number(),
+    checkout_method: z.literal("TOKENIZED_PAYMENT"),
+    channel_code: ChannelCodeSchema.optional(),
+    channel_properties: ChannelsSchema,
+    payment_method_id: z.string(),
+    customer_id: z.string().optional(),
+    basket: z.array(LineItemSchema).optional(),
+    metadata: z.object({}).optional(),
+  }),
+]);
 
 export type EWalletChargeParams = z.infer<typeof EWalletChargeSchema>;
 

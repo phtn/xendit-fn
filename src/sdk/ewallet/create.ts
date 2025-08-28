@@ -8,24 +8,24 @@ import type {
 export const createEwalletCharge = async (
   params: EWalletChargeParams,
   axiosInstance: AxiosInstance,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ) =>
   (
     await axiosInstance.post<EWalletChargeResource>(
       config?.url ?? "/ewallets/charges",
       params,
-      config,
+      config
     )
   ).data;
 
 export const getEwalletCharge = async (
   params: GetEWalletChargeParams,
   axiosInstance: AxiosInstance,
-  config?: AxiosRequestConfig,
+  config?: AxiosRequestConfig
 ) =>
   (
     await axiosInstance.get<EWalletChargeResource>(
       config?.url ?? `/ewallets/charges/${params.id}`,
-      config,
+      config
     )
   ).data;

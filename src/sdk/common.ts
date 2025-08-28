@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { AddressSchema } from "./customer/schema";
 
 export const PhoneSchema = z
   .string()
@@ -32,7 +31,6 @@ export const BillingDetailSchema = z.object({
   email: z.string().email().optional(),
   mobile_number: PhoneSchema.optional(),
   phone_number: PhoneSchema.optional(),
-  address: AddressSchema.optional(),
 });
 
 export type BillingDetail = z.infer<typeof BillingDetailSchema>;

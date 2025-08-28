@@ -17,7 +17,7 @@ const CardDataSchema = z.object({
   card_holder_phone_number: PhoneSchema,
 });
 
-const TokenParamsSchema = z.object({
+export const TokenParamsSchema = z.object({
   amount: z.string().optional(),
   card_data: CardDataSchema.optional(),
   external_id: z.string().optional(),
@@ -41,7 +41,7 @@ const TokenStatusSchema = z.union([
 ]);
 const CardTypeSchema = z.union([
   z.literal("CREDIT"),
-  z.literal("DEDIT"),
+  z.literal("DEBIT"),
   z.literal("PREPAID"),
   z.literal("UNKNOWN"),
 ]);
@@ -56,7 +56,7 @@ const TokenFailureReasonSchema = z.union([
   z.literal("REVERSE_AUTHORIZATION_REJECTED_BY_BANK"),
   z.literal("PROCESSOR_ERROR"),
 ]);
-const TokenErrorCode = z.union([
+export const TokenErrorCodeSchema = z.union([
   z.literal("API_VALIDATION_ERROR"),
   z.literal("INVALID_JSON_FORMAT"),
   z.literal("ACCOUNT_NUMBER_INVALID_ERROR"),
@@ -68,6 +68,7 @@ const TokenErrorCode = z.union([
   z.literal("TEMPORARY_SERVICE_ERROR"),
   z.literal("CONNECTION_ERROR"),
 ]);
+export type TokenErrorCode = z.infer<typeof TokenErrorCodeSchema>;
 
 export const CardInfoSchema = z.object({
   bank: z.string().optional(),
@@ -116,9 +117,7 @@ export const TokenAuthenticationResourceSchema = z.object({
   id: z.string(),
   status: TokenStatusSchema,
   external_id: z.string().optional(),
-  payer_authentication_url: TokenStatusSchema.safeParse("IN_REVIEW").success
-    ? z.string().url()
-    : z.string().optional(),
+  payer_authentication_url: z.string().url().optional(),
   mid_label: z.string().optional(),
   failure_reason: TokenFailureReasonSchema.optional(),
 });
