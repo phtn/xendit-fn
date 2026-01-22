@@ -4,7 +4,7 @@ export const PhoneSchema = z
   .string()
   .min(7)
   .max(15)
-  .refine((value) => value.startsWith("+"));
+  .refine((value: string) => value.startsWith("+"));
 export type Phone = z.infer<typeof PhoneSchema>;
 
 export const CountrySchema = z.union([

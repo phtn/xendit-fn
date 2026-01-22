@@ -120,7 +120,7 @@ export interface SearchPaginationOptions extends PaginationOptions {
     /**
      * Filter parameters
      */
-    filters?: Record<string, any>;
+    filters?: Record<string, unknown>;
     /**
      * Sort field
      */
@@ -128,7 +128,7 @@ export interface SearchPaginationOptions extends PaginationOptions {
     /**
      * Sort direction
      */
-    sort_direction?: 'asc' | 'desc';
+    sort_direction?: "asc" | "desc";
 }
 export declare function buildSearchParams(options: SearchPaginationOptions): Record<string, string>;
 //# sourceMappingURL=pagination.d.ts.map

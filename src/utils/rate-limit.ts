@@ -47,7 +47,7 @@ export interface RateLimitConfig {
 export class RateLimiter {
   private tokens: number;
   private lastRefill: number;
-  private readonly config: Required<RateLimitConfig>;
+  public readonly config: Required<RateLimitConfig>;
 
   constructor(config: RateLimitConfig = {}) {
     this.config = {
@@ -121,7 +121,7 @@ export class RateLimiter {
   /**
    * Sleep for specified milliseconds
    */
-  private sleep(ms: number): Promise<void> {
+  sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
@@ -139,9 +139,9 @@ export function createRateLimitInterceptor(rateLimiter: RateLimiter) {
       rateLimiter.consumeToken();
 
       // Apply request delay if configured
-      const delay = (rateLimiter as any).config.requestDelayMs;
+      const delay = rateLimiter.config.requestDelayMs;
       if (delay > 0) {
-        await (rateLimiter as any).sleep(delay);
+        await rateLimiter.sleep(delay);
       }
 
       return config;
@@ -167,10 +167,10 @@ export function createRateLimitInterceptor(rateLimiter: RateLimiter) {
         const retryAfter = error.response.headers["retry-after"];
         const delay = retryAfter
           ? Number(retryAfter) * 1000
-          : (rateLimiter as any).config.baseRetryDelayMs;
+          : rateLimiter.config.baseRetryDelayMs;
 
         console.warn(`Rate limited, retrying after ${delay}ms`);
-        await (rateLimiter as any).sleep(delay);
+        await rateLimiter.sleep(delay);
 
         // Don't automatically retry here, let the retry interceptor handle it
         return Promise.reject(error);
@@ -185,7 +185,7 @@ export function createRateLimitInterceptor(rateLimiter: RateLimiter) {
  * Basic retry interceptor - simplified for compatibility
  */
 export function createRetryInterceptor(_config: RateLimitConfig = {}) {
-  return async (error: AxiosError): Promise<any> => {
+  return async (error: AxiosError): Promise<AxiosResponse> => {
     // For now, just log retryable errors and reject
     // This can be enhanced in the future with proper retry logic
     if (isRetryableError(error)) {
@@ -224,7 +224,7 @@ export function setupRateLimit(
   // Add request interceptor for rate limiting
   axiosInstance.interceptors.request.use(
     rateLimitInterceptor.request,
-    (error) => Promise.reject(error)
+    (error: AxiosError) => Promise.reject(error)
   );
 
   // Add response interceptors
@@ -235,7 +235,7 @@ export function setupRateLimit(
 
   // Add retry interceptor (should be last)
   axiosInstance.interceptors.response.use(
-    (response) => response,
+    (response: AxiosResponse) => response,
     retryInterceptor
   );
 }

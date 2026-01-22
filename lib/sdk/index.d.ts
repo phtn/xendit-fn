@@ -1,8 +1,19 @@
 import { type RateLimitConfig } from "../utils/rate-limit";
+import type { ListPaymentMethods } from "./payment-method/schema";
+import type { ListInvoices } from "./invoice/schema";
+import type { ListPaymentRequests } from "./payment-request/schema";
+import type { ListRefunds } from "./refund/schema";
+import type { ListPayouts } from "./payout/schema";
+import type { ListTransactions } from "./balance/schema";
 export type { Customer, CustomerResource, GetCustomer, GetCustomerByRefId, GetCustomerByRefIdResource, UpdateParams, } from "./customer/schema";
 export type { EWalletChargeParams, EWalletChargeResource, GetEWalletChargeParams, } from "./ewallet/schema";
 export type { CreatePaymentMethod, GetPaymentMethod, ListPaymentMethods, UpdatePaymentMethod, PaymentMethodResource, } from "./payment-method/schema";
 export type { CreateInvoice, GetInvoice, ListInvoices, UpdateInvoice, ExpireInvoice, InvoiceResource, } from "./invoice/schema";
+export type { CreatePaymentRequest, GetPaymentRequest, ListPaymentRequests, PaymentRequestResource, PaymentRequestType, PaymentRequestStatus, } from "./payment-request/schema";
+export type { CreateRefund, GetRefund, ListRefunds, RefundResource, RefundReason, RefundStatus, } from "./refund/schema";
+export type { CreatePayout, GetPayout, ListPayouts, CancelPayout, PayoutResource, PayoutStatus, PayoutChannelCode, } from "./payout/schema";
+export type { BalanceResource, ListTransactions, TransactionResource, TransactionType, TransactionStatus, } from "./balance/schema";
+export type { TokenParams, TokenResource, TokenAuthentication, TokenAuthenticationResource, TokenAuthorization, ZeroAuthorization, ReverseAuthorizationParams, CreateCharge, ChargeResource, CardInfo, TokenStatus, CardType, CardBrand, } from "./card/schema";
 export type { RateLimitConfig };
 interface XenditOptions {
     /**
@@ -1460,7 +1471,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
             } | undefined;
         }>;
-        list: (params?: any) => Promise<{
+        list: (params?: ListPaymentMethods) => Promise<{
             data: {
                 status: "PENDING" | "FAILED" | "ACTIVE" | "INACTIVE" | "EXPIRED";
                 type: "BANK_ACCOUNT" | "EWALLET" | "QR_CODE" | "CARD" | "OVER_THE_COUNTER" | "VIRTUAL_ACCOUNT";
@@ -1843,7 +1854,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 direct_debit_type: string;
             }[] | undefined;
         }>;
-        list: (params?: any) => Promise<{
+        list: (params?: ListInvoices) => Promise<{
             data: {
                 status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
                 currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
@@ -2194,6 +2205,865 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             available_direct_debits?: {
                 direct_debit_type: string;
             }[] | undefined;
+        }>;
+    };
+    paymentRequest: {
+        create: (data: {
+            type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
+            country: "PH" | "ID" | "MY" | "TH" | "VN";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            payment_method: {
+                type: string;
+                ewallet?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                card_information?: {
+                    token_id: string;
+                } | undefined;
+                direct_debit?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                over_the_counter?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                qr_code?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                virtual_account?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+            };
+            request_amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            success_redirect_url?: string | undefined;
+            failure_redirect_url?: string | undefined;
+            customer_id?: string | undefined;
+            customer?: {
+                given_names: string;
+                surname?: string | undefined;
+                email?: string | undefined;
+                mobile_number?: string | undefined;
+            } | undefined;
+            items?: {
+                name: string;
+                price: number;
+                quantity: number;
+                url?: string | undefined;
+                category?: string | undefined;
+                reference_id?: string | undefined;
+            }[] | undefined;
+            shipping_information?: {
+                name: string;
+                phone_number?: string | undefined;
+                city?: string | undefined;
+                postal_code?: string | undefined;
+                address?: string | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                province?: string | undefined;
+            } | undefined;
+            capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+        }) => Promise<{
+            status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
+            type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
+            country: "PH" | "ID" | "MY" | "TH" | "VN";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            id: string;
+            created: string;
+            updated: string;
+            payment_method: {
+                type: string;
+                ewallet?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                card_information?: {
+                    token_id: string;
+                } | undefined;
+                direct_debit?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                over_the_counter?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                qr_code?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                virtual_account?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+            };
+            request_amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            customer_id?: string | undefined;
+            actions?: {
+                desktop_web_checkout_url?: string | undefined;
+                mobile_web_checkout_url?: string | undefined;
+                mobile_deeplink_checkout_url?: string | undefined;
+                qr_checkout_string?: string | undefined;
+            } | undefined;
+            customer?: {
+                given_names: string;
+                surname?: string | undefined;
+                email?: string | undefined;
+                mobile_number?: string | undefined;
+            } | undefined;
+            items?: {
+                name: string;
+                price: number;
+                quantity: number;
+                url?: string | undefined;
+                category?: string | undefined;
+                reference_id?: string | undefined;
+            }[] | undefined;
+            paid_amount?: number | undefined;
+            shipping_information?: {
+                name: string;
+                phone_number?: string | undefined;
+                city?: string | undefined;
+                postal_code?: string | undefined;
+                address?: string | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                province?: string | undefined;
+            } | undefined;
+            failure_reason?: string | undefined;
+            payment_request_id?: string | undefined;
+        }>;
+        get: (data: {
+            id: string;
+        }) => Promise<{
+            status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
+            type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
+            country: "PH" | "ID" | "MY" | "TH" | "VN";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            id: string;
+            created: string;
+            updated: string;
+            payment_method: {
+                type: string;
+                ewallet?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                card_information?: {
+                    token_id: string;
+                } | undefined;
+                direct_debit?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                over_the_counter?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                qr_code?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+                virtual_account?: {
+                    channel_code: string;
+                    channel_properties?: Record<string, unknown> | undefined;
+                } | undefined;
+            };
+            request_amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            customer_id?: string | undefined;
+            actions?: {
+                desktop_web_checkout_url?: string | undefined;
+                mobile_web_checkout_url?: string | undefined;
+                mobile_deeplink_checkout_url?: string | undefined;
+                qr_checkout_string?: string | undefined;
+            } | undefined;
+            customer?: {
+                given_names: string;
+                surname?: string | undefined;
+                email?: string | undefined;
+                mobile_number?: string | undefined;
+            } | undefined;
+            items?: {
+                name: string;
+                price: number;
+                quantity: number;
+                url?: string | undefined;
+                category?: string | undefined;
+                reference_id?: string | undefined;
+            }[] | undefined;
+            paid_amount?: number | undefined;
+            shipping_information?: {
+                name: string;
+                phone_number?: string | undefined;
+                city?: string | undefined;
+                postal_code?: string | undefined;
+                address?: string | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                province?: string | undefined;
+            } | undefined;
+            failure_reason?: string | undefined;
+            payment_request_id?: string | undefined;
+        }>;
+        list: (params?: ListPaymentRequests) => Promise<{
+            data: {
+                status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
+                type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
+                country: "PH" | "ID" | "MY" | "TH" | "VN";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                reference_id: string;
+                id: string;
+                created: string;
+                updated: string;
+                payment_method: {
+                    type: string;
+                    ewallet?: {
+                        channel_code: string;
+                        channel_properties?: Record<string, unknown> | undefined;
+                    } | undefined;
+                    card_information?: {
+                        token_id: string;
+                    } | undefined;
+                    direct_debit?: {
+                        channel_code: string;
+                        channel_properties?: Record<string, unknown> | undefined;
+                    } | undefined;
+                    over_the_counter?: {
+                        channel_code: string;
+                        channel_properties?: Record<string, unknown> | undefined;
+                    } | undefined;
+                    qr_code?: {
+                        channel_code: string;
+                        channel_properties?: Record<string, unknown> | undefined;
+                    } | undefined;
+                    virtual_account?: {
+                        channel_code: string;
+                        channel_properties?: Record<string, unknown> | undefined;
+                    } | undefined;
+                };
+                request_amount: number;
+                description?: string | undefined;
+                metadata?: Record<string, unknown> | undefined;
+                customer_id?: string | undefined;
+                actions?: {
+                    desktop_web_checkout_url?: string | undefined;
+                    mobile_web_checkout_url?: string | undefined;
+                    mobile_deeplink_checkout_url?: string | undefined;
+                    qr_checkout_string?: string | undefined;
+                } | undefined;
+                customer?: {
+                    given_names: string;
+                    surname?: string | undefined;
+                    email?: string | undefined;
+                    mobile_number?: string | undefined;
+                } | undefined;
+                items?: {
+                    name: string;
+                    price: number;
+                    quantity: number;
+                    url?: string | undefined;
+                    category?: string | undefined;
+                    reference_id?: string | undefined;
+                }[] | undefined;
+                paid_amount?: number | undefined;
+                shipping_information?: {
+                    name: string;
+                    phone_number?: string | undefined;
+                    city?: string | undefined;
+                    postal_code?: string | undefined;
+                    address?: string | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    province?: string | undefined;
+                } | undefined;
+                failure_reason?: string | undefined;
+                payment_request_id?: string | undefined;
+            }[];
+            has_more: boolean;
+            links?: {
+                method: string;
+                href: string;
+                rel: string;
+            }[] | undefined;
+        }>;
+    };
+    refund: {
+        create: (data: {
+            payment_request_id: string;
+            reason: "REQUESTED_BY_CUSTOMER" | "FRAUDULENT" | "DUPLICATE" | "CANCELLATION" | "OTHERS";
+            metadata?: Record<string, unknown> | undefined;
+            amount?: number | undefined;
+        }) => Promise<{
+            status: "SUCCEEDED" | "PENDING" | "FAILED";
+            currency: string;
+            id: string;
+            created: string;
+            updated: string;
+            amount: number;
+            payment_request_id: string;
+            reason: "REQUESTED_BY_CUSTOMER" | "FRAUDULENT" | "DUPLICATE" | "CANCELLATION" | "OTHERS";
+            metadata?: Record<string, unknown> | undefined;
+            failure_reason?: string | undefined;
+        }>;
+        get: (data: {
+            id: string;
+        }) => Promise<{
+            status: "SUCCEEDED" | "PENDING" | "FAILED";
+            currency: string;
+            id: string;
+            created: string;
+            updated: string;
+            amount: number;
+            payment_request_id: string;
+            reason: "REQUESTED_BY_CUSTOMER" | "FRAUDULENT" | "DUPLICATE" | "CANCELLATION" | "OTHERS";
+            metadata?: Record<string, unknown> | undefined;
+            failure_reason?: string | undefined;
+        }>;
+        list: (params?: ListRefunds) => Promise<{
+            data: {
+                status: "SUCCEEDED" | "PENDING" | "FAILED";
+                currency: string;
+                id: string;
+                created: string;
+                updated: string;
+                amount: number;
+                payment_request_id: string;
+                reason: "REQUESTED_BY_CUSTOMER" | "FRAUDULENT" | "DUPLICATE" | "CANCELLATION" | "OTHERS";
+                metadata?: Record<string, unknown> | undefined;
+                failure_reason?: string | undefined;
+            }[];
+            has_more: boolean;
+            links?: {
+                method: string;
+                href: string;
+                rel: string;
+            }[] | undefined;
+        }>;
+    };
+    payout: {
+        create: (data: {
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            channel_code: "EWALLET" | "BANK" | "CASH";
+            channel_properties: {
+                channel_code: "BANK";
+                bank_account: {
+                    account_number: string;
+                    account_holder_name: string;
+                    bank_code: string;
+                    account_type?: string | undefined;
+                };
+            } | {
+                channel_code: "EWALLET";
+                ewallet: {
+                    account_number: string;
+                    account_holder_name: string;
+                    ewallet_type: string;
+                };
+            } | {
+                channel_code: "CASH";
+                cash: {
+                    account_number: string;
+                    account_holder_name: string;
+                };
+            };
+            amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            receipt_notification?: {
+                email_to?: string[] | undefined;
+                email_cc?: string[] | undefined;
+                email_bcc?: string[] | undefined;
+            } | undefined;
+        }) => Promise<{
+            status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            id: string;
+            created: string;
+            updated: string;
+            channel_code: "EWALLET" | "BANK" | "CASH";
+            channel_properties: {
+                channel_code: "BANK";
+                bank_account: {
+                    account_number: string;
+                    account_holder_name: string;
+                    bank_code: string;
+                    account_type?: string | undefined;
+                };
+            } | {
+                channel_code: "EWALLET";
+                ewallet: {
+                    account_number: string;
+                    account_holder_name: string;
+                    ewallet_type: string;
+                };
+            } | {
+                channel_code: "CASH";
+                cash: {
+                    account_number: string;
+                    account_holder_name: string;
+                };
+            };
+            amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            failure_reason?: string | undefined;
+            receipt_notification?: {
+                email_to?: string[] | undefined;
+                email_cc?: string[] | undefined;
+                email_bcc?: string[] | undefined;
+            } | undefined;
+            estimated_arrival_time?: string | undefined;
+        }>;
+        get: (data: {
+            id: string;
+        }) => Promise<{
+            status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            id: string;
+            created: string;
+            updated: string;
+            channel_code: "EWALLET" | "BANK" | "CASH";
+            channel_properties: {
+                channel_code: "BANK";
+                bank_account: {
+                    account_number: string;
+                    account_holder_name: string;
+                    bank_code: string;
+                    account_type?: string | undefined;
+                };
+            } | {
+                channel_code: "EWALLET";
+                ewallet: {
+                    account_number: string;
+                    account_holder_name: string;
+                    ewallet_type: string;
+                };
+            } | {
+                channel_code: "CASH";
+                cash: {
+                    account_number: string;
+                    account_holder_name: string;
+                };
+            };
+            amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            failure_reason?: string | undefined;
+            receipt_notification?: {
+                email_to?: string[] | undefined;
+                email_cc?: string[] | undefined;
+                email_bcc?: string[] | undefined;
+            } | undefined;
+            estimated_arrival_time?: string | undefined;
+        }>;
+        list: (params?: ListPayouts) => Promise<{
+            data: {
+                status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                reference_id: string;
+                id: string;
+                created: string;
+                updated: string;
+                channel_code: "EWALLET" | "BANK" | "CASH";
+                channel_properties: {
+                    channel_code: "BANK";
+                    bank_account: {
+                        account_number: string;
+                        account_holder_name: string;
+                        bank_code: string;
+                        account_type?: string | undefined;
+                    };
+                } | {
+                    channel_code: "EWALLET";
+                    ewallet: {
+                        account_number: string;
+                        account_holder_name: string;
+                        ewallet_type: string;
+                    };
+                } | {
+                    channel_code: "CASH";
+                    cash: {
+                        account_number: string;
+                        account_holder_name: string;
+                    };
+                };
+                amount: number;
+                description?: string | undefined;
+                metadata?: Record<string, unknown> | undefined;
+                failure_reason?: string | undefined;
+                receipt_notification?: {
+                    email_to?: string[] | undefined;
+                    email_cc?: string[] | undefined;
+                    email_bcc?: string[] | undefined;
+                } | undefined;
+                estimated_arrival_time?: string | undefined;
+            }[];
+            has_more: boolean;
+            links?: {
+                method: string;
+                href: string;
+                rel: string;
+            }[] | undefined;
+        }>;
+        cancel: (data: {
+            id: string;
+        }) => Promise<{
+            status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            reference_id: string;
+            id: string;
+            created: string;
+            updated: string;
+            channel_code: "EWALLET" | "BANK" | "CASH";
+            channel_properties: {
+                channel_code: "BANK";
+                bank_account: {
+                    account_number: string;
+                    account_holder_name: string;
+                    bank_code: string;
+                    account_type?: string | undefined;
+                };
+            } | {
+                channel_code: "EWALLET";
+                ewallet: {
+                    account_number: string;
+                    account_holder_name: string;
+                    ewallet_type: string;
+                };
+            } | {
+                channel_code: "CASH";
+                cash: {
+                    account_number: string;
+                    account_holder_name: string;
+                };
+            };
+            amount: number;
+            description?: string | undefined;
+            metadata?: Record<string, unknown> | undefined;
+            failure_reason?: string | undefined;
+            receipt_notification?: {
+                email_to?: string[] | undefined;
+                email_cc?: string[] | undefined;
+                email_bcc?: string[] | undefined;
+            } | undefined;
+            estimated_arrival_time?: string | undefined;
+        }>;
+    };
+    balance: {
+        get: () => Promise<{
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            balance: number;
+            account_type?: string | undefined;
+        }>;
+        listTransactions: (params?: ListTransactions) => Promise<{
+            data: {
+                status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
+                type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                id: string;
+                created: string;
+                updated: string;
+                amount: number;
+                description?: string | undefined;
+                metadata?: Record<string, unknown> | undefined;
+                reference_id?: string | undefined;
+            }[];
+            has_more: boolean;
+            links?: {
+                method: string;
+                href: string;
+                rel: string;
+            }[] | undefined;
+        }>;
+    };
+    card: {
+        createToken: (data: {
+            mid_label: string;
+            is_multiple_use: boolean;
+            should_authenticate: boolean;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            amount?: string | undefined;
+            external_id?: string | undefined;
+            card_data?: {
+                account_number: string;
+                exp_month: string;
+                exp_year: string;
+                card_holder_first_name: string;
+                card_holder_last_name: string;
+                card_holder_email: string;
+                card_holder_phone_number: string;
+            } | undefined;
+            card_cvn?: string | undefined;
+            billing_details?: {
+                country: string;
+                street_line1?: string | null | undefined;
+                street_line2?: string | null | undefined;
+                city?: string | null | undefined;
+                province_state?: string | null | undefined;
+                postal_code?: string | null | undefined;
+                category?: string | null | undefined;
+                is_primary?: boolean | null | undefined;
+            } | undefined;
+        }) => Promise<{
+            status: string;
+            id: string;
+            created: string;
+            external_id: string;
+            authentication_id: string;
+            masked_card_number: string;
+            business_id?: string | undefined;
+            failure_reason?: string | undefined;
+            payer_authentication_url?: string | undefined;
+            card_info?: {
+                type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                bank?: string | undefined;
+                brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
+                fingerprint?: string | undefined;
+                card_art_url?: string | undefined;
+            } | undefined;
+        }>;
+        getToken: (data: {
+            credit_card_token_id: string;
+        }) => Promise<{
+            status: string;
+            id: string;
+            created: string;
+            external_id: string;
+            authentication_id: string;
+            masked_card_number: string;
+            business_id?: string | undefined;
+            failure_reason?: string | undefined;
+            payer_authentication_url?: string | undefined;
+            card_info?: {
+                type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                bank?: string | undefined;
+                brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
+                fingerprint?: string | undefined;
+                card_art_url?: string | undefined;
+            } | undefined;
+        }>;
+        authenticateToken: (data: {
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            token_id?: string | undefined;
+            amount?: string | undefined;
+            external_id?: string | undefined;
+            mid_label?: string | undefined;
+            card_data?: {
+                account_number: string;
+                exp_month: string;
+                exp_year: string;
+                card_holder_first_name: string;
+                card_holder_last_name: string;
+                card_holder_email: string;
+                card_holder_phone_number: string;
+            } | undefined;
+        }) => Promise<{
+            status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
+            id: string;
+            external_id?: string | undefined;
+            mid_label?: string | undefined;
+            failure_reason?: "AUTHENTICATION_FAILED" | "REVERSE_AUTHORIZATION_REJECTED_BY_BANK" | "PROCESSOR_ERROR" | undefined;
+            payer_authentication_url?: string | undefined;
+        }>;
+        authorizeToken: (data: {
+            capture: boolean;
+            token_id?: string | undefined;
+            amount?: string | undefined;
+            external_id?: string | undefined;
+            authentication_id?: string | undefined;
+        }) => Promise<{
+            status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
+            id: string;
+            created: string;
+            business_id: string;
+            external_id: string;
+            masked_card_number: string;
+            authorized_amount: number;
+            merchant_id: string;
+            merchant_reference_code: string;
+            card_type: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN";
+            charge_type: "SINGLE_USE_TOKEN" | "MULTIPLE_USE_TOKEN" | "RECURRING";
+            card_brand: "VISA" | "MASTERCARD" | "JCB" | "AMEX";
+            bank_reconciliation_id: string;
+            capture_amount?: number | undefined;
+            mid_label?: string | undefined;
+            failure_reason?: "AUTHENTICATION_FAILED" | "PROCESSOR_ERROR" | "DECLINED_BY_ISSUER" | "DECLINED_BY_PROCESSOR" | "EXPIRED_CARD" | "ISSUER_SUSPECT_FRAUD" | "INACTIVE_OR_UNAUTHORIZED_CARD" | "INSUFFICIENT_BALANCE" | "INVALID_CARD" | "INVALID_CVV" | "ISSUER_UNAVAILABLE" | "STOLEN_CARD" | "PROCESSOR_TIMEOUT" | "FRAUD_RISK_BLOCKED" | undefined;
+            descriptor?: string | undefined;
+            promotion?: {
+                reference_id: string;
+                original_amount: number;
+            } | undefined;
+            installment?: {
+                count?: number | undefined;
+                interval?: "month" | undefined;
+            } | undefined;
+            eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
+            cvn_code?: "M" | "N" | "P" | undefined;
+        }>;
+        zeroAuthorization: (data: {
+            amount: string;
+            capture: boolean;
+            token_id?: string | undefined;
+            external_id?: string | undefined;
+            authentication_id?: string | undefined;
+        }) => Promise<{
+            status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
+            id: string;
+            created: string;
+            business_id: string;
+            external_id: string;
+            masked_card_number: string;
+            authorized_amount: number;
+            merchant_id: string;
+            merchant_reference_code: string;
+            card_type: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN";
+            charge_type: "SINGLE_USE_TOKEN" | "MULTIPLE_USE_TOKEN" | "RECURRING";
+            card_brand: "VISA" | "MASTERCARD" | "JCB" | "AMEX";
+            bank_reconciliation_id: string;
+            capture_amount?: number | undefined;
+            mid_label?: string | undefined;
+            failure_reason?: "AUTHENTICATION_FAILED" | "PROCESSOR_ERROR" | "DECLINED_BY_ISSUER" | "DECLINED_BY_PROCESSOR" | "EXPIRED_CARD" | "ISSUER_SUSPECT_FRAUD" | "INACTIVE_OR_UNAUTHORIZED_CARD" | "INSUFFICIENT_BALANCE" | "INVALID_CARD" | "INVALID_CVV" | "ISSUER_UNAVAILABLE" | "STOLEN_CARD" | "PROCESSOR_TIMEOUT" | "FRAUD_RISK_BLOCKED" | undefined;
+            descriptor?: string | undefined;
+            promotion?: {
+                reference_id: string;
+                original_amount: number;
+            } | undefined;
+            installment?: {
+                count?: number | undefined;
+                interval?: "month" | undefined;
+            } | undefined;
+            eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
+            cvn_code?: "M" | "N" | "P" | undefined;
+        }>;
+        reverseAuthorization: (data: {
+            external_id: string;
+        }) => Promise<{
+            status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
+            id: string;
+            created: string;
+            business_id: string;
+            external_id: string;
+            masked_card_number: string;
+            authorized_amount: number;
+            merchant_id: string;
+            merchant_reference_code: string;
+            card_type: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN";
+            charge_type: "SINGLE_USE_TOKEN" | "MULTIPLE_USE_TOKEN" | "RECURRING";
+            card_brand: "VISA" | "MASTERCARD" | "JCB" | "AMEX";
+            bank_reconciliation_id: string;
+            capture_amount?: number | undefined;
+            mid_label?: string | undefined;
+            failure_reason?: "AUTHENTICATION_FAILED" | "PROCESSOR_ERROR" | "DECLINED_BY_ISSUER" | "DECLINED_BY_PROCESSOR" | "EXPIRED_CARD" | "ISSUER_SUSPECT_FRAUD" | "INACTIVE_OR_UNAUTHORIZED_CARD" | "INSUFFICIENT_BALANCE" | "INVALID_CARD" | "INVALID_CVV" | "ISSUER_UNAVAILABLE" | "STOLEN_CARD" | "PROCESSOR_TIMEOUT" | "FRAUD_RISK_BLOCKED" | undefined;
+            descriptor?: string | undefined;
+            promotion?: {
+                reference_id: string;
+                original_amount: number;
+            } | undefined;
+            installment?: {
+                count?: number | undefined;
+                interval?: "month" | undefined;
+            } | undefined;
+            eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
+            cvn_code?: "M" | "N" | "P" | undefined;
+        }>;
+        createCharge: (data: {
+            token_id: string;
+            amount: number;
+            external_id: string;
+            capture: boolean;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            metadata?: {} | undefined;
+            mid_label?: string | undefined;
+            billing_details?: {
+                given_names: string;
+                surname?: string | undefined;
+                email?: string | undefined;
+                mobile_number?: string | undefined;
+                phone_number?: string | undefined;
+            } | undefined;
+            authentication_id?: string | undefined;
+            descriptor?: string | undefined;
+            promotion?: {
+                reference_id: string;
+                original_amount: number;
+            } | undefined;
+            installment?: {
+                count?: number | undefined;
+                interval?: "month" | undefined;
+            } | undefined;
+        }) => Promise<{
+            status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
+            id: string;
+            created: string;
+            business_id: string;
+            external_id: string;
+            masked_card_number: string;
+            authorized_amount: number;
+            merchant_id: string;
+            merchant_reference_code: string;
+            card_type: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN";
+            charge_type: "SINGLE_USE_TOKEN" | "MULTIPLE_USE_TOKEN" | "RECURRING";
+            card_brand: "VISA" | "MASTERCARD" | "JCB" | "AMEX";
+            bank_reconciliation_id: string;
+            capture_amount?: number | undefined;
+            mid_label?: string | undefined;
+            failure_reason?: "AUTHENTICATION_FAILED" | "PROCESSOR_ERROR" | "DECLINED_BY_ISSUER" | "DECLINED_BY_PROCESSOR" | "EXPIRED_CARD" | "ISSUER_SUSPECT_FRAUD" | "INACTIVE_OR_UNAUTHORIZED_CARD" | "INSUFFICIENT_BALANCE" | "INVALID_CARD" | "INVALID_CVV" | "ISSUER_UNAVAILABLE" | "STOLEN_CARD" | "PROCESSOR_TIMEOUT" | "FRAUD_RISK_BLOCKED" | undefined;
+            descriptor?: string | undefined;
+            promotion?: {
+                reference_id: string;
+                original_amount: number;
+            } | undefined;
+            installment?: {
+                count?: number | undefined;
+                interval?: "month" | undefined;
+            } | undefined;
+            eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
+            cvn_code?: "M" | "N" | "P" | undefined;
+        }>;
+        getCharge: (data: {
+            id: string;
+        }) => Promise<{
+            status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
+            id: string;
+            created: string;
+            business_id: string;
+            external_id: string;
+            masked_card_number: string;
+            authorized_amount: number;
+            merchant_id: string;
+            merchant_reference_code: string;
+            card_type: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN";
+            charge_type: "SINGLE_USE_TOKEN" | "MULTIPLE_USE_TOKEN" | "RECURRING";
+            card_brand: "VISA" | "MASTERCARD" | "JCB" | "AMEX";
+            bank_reconciliation_id: string;
+            capture_amount?: number | undefined;
+            mid_label?: string | undefined;
+            failure_reason?: "AUTHENTICATION_FAILED" | "PROCESSOR_ERROR" | "DECLINED_BY_ISSUER" | "DECLINED_BY_PROCESSOR" | "EXPIRED_CARD" | "ISSUER_SUSPECT_FRAUD" | "INACTIVE_OR_UNAUTHORIZED_CARD" | "INSUFFICIENT_BALANCE" | "INVALID_CARD" | "INVALID_CVV" | "ISSUER_UNAVAILABLE" | "STOLEN_CARD" | "PROCESSOR_TIMEOUT" | "FRAUD_RISK_BLOCKED" | undefined;
+            descriptor?: string | undefined;
+            promotion?: {
+                reference_id: string;
+                original_amount: number;
+            } | undefined;
+            installment?: {
+                count?: number | undefined;
+                interval?: "month" | undefined;
+            } | undefined;
+            eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
+            cvn_code?: "M" | "N" | "P" | undefined;
         }>;
     };
 };

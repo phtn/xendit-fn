@@ -189,8 +189,8 @@ export declare const TokenResourceSchema: z.ZodObject<{
     authentication_id: string;
     masked_card_number: string;
     business_id?: string | undefined;
-    payer_authentication_url?: string | undefined;
     failure_reason?: string | undefined;
+    payer_authentication_url?: string | undefined;
     card_info?: {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
         country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
@@ -207,8 +207,8 @@ export declare const TokenResourceSchema: z.ZodObject<{
     authentication_id: string;
     masked_card_number: string;
     business_id?: string | undefined;
-    payer_authentication_url?: string | undefined;
     failure_reason?: string | undefined;
+    payer_authentication_url?: string | undefined;
     card_info?: {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
         country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
@@ -297,19 +297,19 @@ export declare const TokenAuthenticationResourceSchema: z.ZodObject<{
     mid_label: z.ZodOptional<z.ZodString>;
     failure_reason: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"AUTHENTICATION_FAILED">, z.ZodLiteral<"REVERSE_AUTHORIZATION_REJECTED_BY_BANK">, z.ZodLiteral<"PROCESSOR_ERROR">]>>;
 }, "strip", z.ZodTypeAny, {
-    status: "SUCCEEDED" | "FAILED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "REVERSED" | "AUTHORISED";
+    status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
     id: string;
     external_id?: string | undefined;
     mid_label?: string | undefined;
-    payer_authentication_url?: string | undefined;
     failure_reason?: "AUTHENTICATION_FAILED" | "REVERSE_AUTHORIZATION_REJECTED_BY_BANK" | "PROCESSOR_ERROR" | undefined;
+    payer_authentication_url?: string | undefined;
 }, {
-    status: "SUCCEEDED" | "FAILED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "REVERSED" | "AUTHORISED";
+    status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
     id: string;
     external_id?: string | undefined;
     mid_label?: string | undefined;
-    payer_authentication_url?: string | undefined;
     failure_reason?: "AUTHENTICATION_FAILED" | "REVERSE_AUTHORIZATION_REJECTED_BY_BANK" | "PROCESSOR_ERROR" | undefined;
+    payer_authentication_url?: string | undefined;
 }>;
 export type TokenAuthenticationResource = z.infer<typeof TokenAuthenticationResourceSchema>;
 export declare const TokenAuthorizationSchema: z.ZodObject<{
@@ -484,6 +484,7 @@ export declare const CreateChargeSchema: z.ZodObject<{
     } | undefined;
 }>;
 export declare const ChargeTypeSchema: z.ZodUnion<[z.ZodLiteral<"SINGLE_USE_TOKEN">, z.ZodLiteral<"MULTIPLE_USE_TOKEN">, z.ZodLiteral<"RECURRING">]>;
+export type CreateCharge = z.infer<typeof CreateChargeSchema>;
 export declare const ChargeResourceSchema: z.ZodObject<{
     created: z.ZodString;
     status: z.ZodUnion<[z.ZodLiteral<"IN_REVIEW">, z.ZodLiteral<"VERIFIED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"CAPTURED">, z.ZodLiteral<"REVERSED">, z.ZodLiteral<"AUTHORISED">]>;
@@ -525,7 +526,7 @@ export declare const ChargeResourceSchema: z.ZodObject<{
         interval?: "month" | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
-    status: "SUCCEEDED" | "FAILED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "REVERSED" | "AUTHORISED";
+    status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
     id: string;
     created: string;
     business_id: string;
@@ -553,7 +554,7 @@ export declare const ChargeResourceSchema: z.ZodObject<{
     eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
     cvn_code?: "M" | "N" | "P" | undefined;
 }, {
-    status: "SUCCEEDED" | "FAILED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "REVERSED" | "AUTHORISED";
+    status: "SUCCEEDED" | "FAILED" | "REVERSED" | "IN_REVIEW" | "VERIFIED" | "CAPTURED" | "AUTHORISED";
     id: string;
     created: string;
     business_id: string;

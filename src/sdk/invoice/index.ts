@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig } from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   CreateInvoice,
@@ -36,7 +36,7 @@ export const createInvoice = async (
     return response.data as InvoiceResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -60,7 +60,7 @@ export const getInvoice = async (
     return response.data as InvoiceResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -72,9 +72,9 @@ export const listInvoices = async (
   config?: AxiosRequestConfig
 ): Promise<ListInvoicesResponse> => {
   try {
-    const validatedParams = params
+    const validatedParams: ListInvoices = params
       ? validateInput(ListInvoicesSchema, params, "list invoices params")
-      : {};
+      : ({} as ListInvoices);
 
     const queryParams = new URLSearchParams();
 
@@ -137,7 +137,7 @@ export const listInvoices = async (
     return response.data as ListInvoicesResponse;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -162,7 +162,7 @@ export const updateInvoice = async (
     return response.data as InvoiceResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -187,7 +187,7 @@ export const expireInvoice = async (
     return response.data as InvoiceResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }

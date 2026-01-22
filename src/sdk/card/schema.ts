@@ -211,6 +211,8 @@ export const ChargeTypeSchema = z.union([
   z.literal("RECURRING"),
 ]);
 
+export type CreateCharge = z.infer<typeof CreateChargeSchema>;
+
 export const ChargeResourceSchema = z.object({
   created: z.string().datetime(),
   status: TokenStatusSchema,

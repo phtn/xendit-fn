@@ -264,7 +264,7 @@ export interface SearchPaginationOptions extends PaginationOptions {
   /**
    * Filter parameters
    */
-  filters?: Record<string, any>;
+  filters?: Record<string, unknown>;
   /**
    * Sort field
    */

@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig } from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   CreatePaymentMethod,
@@ -35,7 +35,7 @@ export const createPaymentMethod = async (
     return response.data as PaymentMethodResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -59,7 +59,7 @@ export const getPaymentMethod = async (
     return response.data as PaymentMethodResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -71,13 +71,13 @@ export const listPaymentMethods = async (
   config?: AxiosRequestConfig
 ): Promise<ListPaymentMethodsResponse> => {
   try {
-    const validatedParams = params
+    const validatedParams: ListPaymentMethods = params
       ? validateInput(
           ListPaymentMethodsSchema,
           params,
           "list payment methods params"
         )
-      : {};
+      : ({} as ListPaymentMethods);
 
     const queryParams = new URLSearchParams();
     if (validatedParams.id) {
@@ -124,7 +124,7 @@ export const listPaymentMethods = async (
     return response.data as ListPaymentMethodsResponse;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -149,7 +149,7 @@ export const updatePaymentMethod = async (
     return response.data as PaymentMethodResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }

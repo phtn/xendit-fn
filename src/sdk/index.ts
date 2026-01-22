@@ -21,6 +21,35 @@ import {
   updateInvoice,
   expireInvoice,
 } from "./invoice/index";
+import {
+  createPaymentRequest,
+  getPaymentRequest,
+  listPaymentRequests,
+} from "./payment-request/index";
+import { createRefund, getRefund, listRefunds } from "./refund/index";
+import {
+  createPayout,
+  getPayout,
+  listPayouts,
+  cancelPayout,
+} from "./payout/index";
+import { getBalance, listTransactions } from "./balance/index";
+import {
+  createToken,
+  getToken,
+  authenticateToken,
+  authorizeToken,
+  zeroAuthorization,
+  reverseAuthorization,
+  createCharge,
+  getCharge,
+} from "./card/index";
+import type { ListPaymentMethods } from "./payment-method/schema";
+import type { ListInvoices } from "./invoice/schema";
+import type { ListPaymentRequests } from "./payment-request/schema";
+import type { ListRefunds } from "./refund/schema";
+import type { ListPayouts } from "./payout/schema";
+import type { ListTransactions } from "./balance/schema";
 
 // Re-export all types for library consumers
 export type {
@@ -58,6 +87,63 @@ export type {
   ExpireInvoice,
   InvoiceResource,
 } from "./invoice/schema";
+
+export type {
+  // Payment Request types
+  CreatePaymentRequest,
+  GetPaymentRequest,
+  ListPaymentRequests,
+  PaymentRequestResource,
+  PaymentRequestType,
+  PaymentRequestStatus,
+} from "./payment-request/schema";
+
+export type {
+  // Refund types
+  CreateRefund,
+  GetRefund,
+  ListRefunds,
+  RefundResource,
+  RefundReason,
+  RefundStatus,
+} from "./refund/schema";
+
+export type {
+  // Payout types
+  CreatePayout,
+  GetPayout,
+  ListPayouts,
+  CancelPayout,
+  PayoutResource,
+  PayoutStatus,
+  PayoutChannelCode,
+} from "./payout/schema";
+
+export type {
+  // Balance & Transaction types
+  BalanceResource,
+  ListTransactions,
+  TransactionResource,
+  TransactionType,
+  TransactionStatus,
+} from "./balance/schema";
+
+export type {
+  // Card types
+  TokenParams,
+  TokenResource,
+  TokenAuthentication,
+  TokenAuthenticationResource,
+  TokenAuthorization,
+  ZeroAuthorization,
+  ReverseAuthorizationParams,
+  CreateCharge,
+  ChargeResource,
+  CardInfo,
+  TokenStatus,
+  CardType,
+  CardBrand,
+} from "./card/schema";
 
 export type { RateLimitConfig };
 
@@ -118,15 +204,48 @@ const Xendit = (key: string, options: XenditOptions = {}) => {
     paymentMethod: {
       create: createFn(createPaymentMethod, axiosInstance),
       get: createFn(getPaymentMethod, axiosInstance),
-      list: (params?: any) => listPaymentMethods(params, axiosInstance),
+      list: (params?: ListPaymentMethods) =>
+        listPaymentMethods(params, axiosInstance),
       update: createFn(updatePaymentMethod, axiosInstance),
     },
     invoice: {
       create: createFn(createInvoice, axiosInstance),
       get: createFn(getInvoice, axiosInstance),
-      list: (params?: any) => listInvoices(params, axiosInstance),
+      list: (params?: ListInvoices) => listInvoices(params, axiosInstance),
       update: createFn(updateInvoice, axiosInstance),
       expire: createFn(expireInvoice, axiosInstance),
+    },
+    paymentRequest: {
+      create: createFn(createPaymentRequest, axiosInstance),
+      get: createFn(getPaymentRequest, axiosInstance),
+      list: (params?: ListPaymentRequests) =>
+        listPaymentRequests(params, axiosInstance),
+    },
+    refund: {
+      create: createFn(createRefund, axiosInstance),
+      get: createFn(getRefund, axiosInstance),
+      list: (params?: ListRefunds) => listRefunds(params, axiosInstance),
+    },
+    payout: {
+      create: createFn(createPayout, axiosInstance),
+      get: createFn(getPayout, axiosInstance),
+      list: (params?: ListPayouts) => listPayouts(params, axiosInstance),
+      cancel: createFn(cancelPayout, axiosInstance),
+    },
+    balance: {
+      get: () => getBalance(axiosInstance),
+      listTransactions: (params?: ListTransactions) =>
+        listTransactions(params, axiosInstance),
+    },
+    card: {
+      createToken: createFn(createToken, axiosInstance),
+      getToken: createFn(getToken, axiosInstance),
+      authenticateToken: createFn(authenticateToken, axiosInstance),
+      authorizeToken: createFn(authorizeToken, axiosInstance),
+      zeroAuthorization: createFn(zeroAuthorization, axiosInstance),
+      reverseAuthorization: createFn(reverseAuthorization, axiosInstance),
+      createCharge: createFn(createCharge, axiosInstance),
+      getCharge: createFn(getCharge, axiosInstance),
     },
   };
 };

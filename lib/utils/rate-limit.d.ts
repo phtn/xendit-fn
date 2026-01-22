@@ -40,7 +40,7 @@ export interface RateLimitConfig {
 export declare class RateLimiter {
     private tokens;
     private lastRefill;
-    private readonly config;
+    readonly config: Required<RateLimitConfig>;
     constructor(config?: RateLimitConfig);
     /**
      * Refill tokens based on elapsed time
@@ -65,7 +65,7 @@ export declare class RateLimiter {
     /**
      * Sleep for specified milliseconds
      */
-    private sleep;
+    sleep(ms: number): Promise<void>;
 }
 /**
  * Axios interceptor for rate limiting
@@ -78,7 +78,7 @@ export declare function createRateLimitInterceptor(rateLimiter: RateLimiter): {
 /**
  * Basic retry interceptor - simplified for compatibility
  */
-export declare function createRetryInterceptor(_config?: RateLimitConfig): (error: AxiosError) => Promise<any>;
+export declare function createRetryInterceptor(_config?: RateLimitConfig): (error: AxiosError) => Promise<AxiosResponse>;
 /**
  * Setup rate limiting and retry logic for an Axios instance
  */

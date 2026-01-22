@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig } from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   Customer,
@@ -36,7 +36,7 @@ export const createCustomer = async (
     return response.data as CustomerResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -61,7 +61,7 @@ export const getCustomerId = async (
     return response.data as CustomerResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -86,7 +86,7 @@ export const getCustomerRefId = async (
     return response.data as GetCustomerByRefIdResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }
@@ -112,7 +112,7 @@ export const updateCustomer = async (
     return response.data as CustomerResource;
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
-      handleAxiosError(error as any);
+      handleAxiosError(error as AxiosError);
     }
     throw error;
   }

@@ -40,7 +40,7 @@ const OVOChannelSchema = z.object({
 const ChannelsSchema = z.object({
   cashtag: z
     .string()
-    .refine((value) => value.startsWith("$"))
+    .refine((value: string) => value.startsWith("$"))
     .optional(),
   mobile_number: PhoneSchema.optional(),
   success_redirect_url: z.string().url().optional(),
@@ -63,7 +63,7 @@ const ChannelPropertiesSchema = z.discriminatedUnion("channel_code", [
       z.object({
         method: z.literal("ONE_TIME_PAYMENT"),
         properties: z.object({
-          cashtag: z.string().refine((value) => value.startsWith("$")),
+          cashtag: z.string().refine((value: string) => value.startsWith("$")),
         }),
       }),
       z.object({

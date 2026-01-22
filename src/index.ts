@@ -29,6 +29,48 @@ export type {
   UpdateInvoice,
   ExpireInvoice,
   InvoiceResource,
+  // Payment Request types
+  CreatePaymentRequest,
+  GetPaymentRequest,
+  ListPaymentRequests,
+  PaymentRequestResource,
+  PaymentRequestType,
+  PaymentRequestStatus,
+  // Refund types
+  CreateRefund,
+  GetRefund,
+  ListRefunds,
+  RefundResource,
+  RefundReason,
+  RefundStatus,
+  // Payout types
+  CreatePayout,
+  GetPayout,
+  ListPayouts,
+  CancelPayout,
+  PayoutResource,
+  PayoutStatus,
+  PayoutChannelCode,
+  // Balance & Transaction types
+  BalanceResource,
+  ListTransactions,
+  TransactionResource,
+  TransactionType,
+  TransactionStatus,
+  // Card types
+  TokenParams,
+  TokenResource,
+  TokenAuthentication,
+  TokenAuthenticationResource,
+  TokenAuthorization,
+  ZeroAuthorization,
+  ReverseAuthorizationParams,
+  CreateCharge,
+  ChargeResource,
+  CardInfo,
+  TokenStatus,
+  CardType,
+  CardBrand,
 } from "./sdk";
 
 // Utility exports for advanced usage

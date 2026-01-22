@@ -64,17 +64,17 @@ export declare function parseWebhookEvent(rawEvent: unknown): WebhookEvent;
  * Type-safe webhook event handler
  */
 export interface WebhookHandlers {
-    'invoice.paid'?: (event: WebhookEvent) => void | Promise<void>;
-    'invoice.expired'?: (event: WebhookEvent) => void | Promise<void>;
-    'payment.succeeded'?: (event: WebhookEvent) => void | Promise<void>;
-    'payment.failed'?: (event: WebhookEvent) => void | Promise<void>;
-    'ewallet.charge.succeeded'?: (event: WebhookEvent) => void | Promise<void>;
-    'ewallet.charge.pending'?: (event: WebhookEvent) => void | Promise<void>;
-    'ewallet.charge.failed'?: (event: WebhookEvent) => void | Promise<void>;
-    'payment_method.activate'?: (event: WebhookEvent) => void | Promise<void>;
-    'payment_method.expire'?: (event: WebhookEvent) => void | Promise<void>;
-    'customer.created'?: (event: WebhookEvent) => void | Promise<void>;
-    'customer.updated'?: (event: WebhookEvent) => void | Promise<void>;
+    "invoice.paid"?: (event: WebhookEvent) => void | Promise<void>;
+    "invoice.expired"?: (event: WebhookEvent) => void | Promise<void>;
+    "payment.succeeded"?: (event: WebhookEvent) => void | Promise<void>;
+    "payment.failed"?: (event: WebhookEvent) => void | Promise<void>;
+    "ewallet.charge.succeeded"?: (event: WebhookEvent) => void | Promise<void>;
+    "ewallet.charge.pending"?: (event: WebhookEvent) => void | Promise<void>;
+    "ewallet.charge.failed"?: (event: WebhookEvent) => void | Promise<void>;
+    "payment_method.activate"?: (event: WebhookEvent) => void | Promise<void>;
+    "payment_method.expire"?: (event: WebhookEvent) => void | Promise<void>;
+    "customer.created"?: (event: WebhookEvent) => void | Promise<void>;
+    "customer.updated"?: (event: WebhookEvent) => void | Promise<void>;
     [key: string]: ((event: WebhookEvent) => void | Promise<void>) | undefined;
 }
 /**

@@ -25,6 +25,11 @@ A modern, production-ready TypeScript SDK for the Xendit payment gateway. Framew
 - E-wallet Payments
 - Payment Methods
 - Invoice Management
+- **Payment Request API** (v3) - Unified payment processing
+- **Refund API** - Process refunds
+- **Payout API** - Disbursements and payouts
+- **Balance & Transaction API** - Account balance and transaction history
+- **Card Operations** - Tokenization, charges, and authorizations
 
 ## Installation
 
@@ -59,21 +64,328 @@ const customer = await xendit.customer.create({
   mobile_number: '+639171234567',
 });
 
-// Create an e-wallet charge
-const charge = await xendit.ewallet.charge({
-  reference_id: 'charge_001',
+// Create a payment request (recommended for new integrations)
+const payment = await xendit.paymentRequest.create({
+  reference_id: 'payment_001',
+  type: 'PAY',
+  country: 'PH',
   currency: 'PHP',
-  amount: 10000, // 100.00 PHP
-  checkout_method: 'ONE_TIME_PAYMENT',
-  channel_code: 'PH_GCASH',
-  channel_properties: {
-    success_redirect_url: 'https://yourapp.com/success',
-    failure_redirect_url: 'https://yourapp.com/failure',
+  request_amount: 10000, // 100.00 PHP
+  payment_method: {
+    type: 'EWALLET',
+    ewallet: {
+      channel_code: 'PH_GCASH',
+      channel_properties: {
+        success_redirect_url: 'https://yourapp.com/success',
+        failure_redirect_url: 'https://yourapp.com/failure',
+      },
+    },
   },
+  customer_id: customer.id,
 });
 ```
 
 ## API Reference
+
+### Payment Request API (v3) - Recommended
+
+The Payment Request API is the unified way to process payments across all payment channels.
+
+#### Create Payment Request
+
+```typescript
+// E-wallet payment
+const payment = await xendit.paymentRequest.create({
+  reference_id: 'payment_001',
+  type: 'PAY',
+  country: 'PH',
+  currency: 'PHP',
+  request_amount: 10000,
+  payment_method: {
+    type: 'EWALLET',
+    ewallet: {
+      channel_code: 'PH_GCASH',
+      channel_properties: {
+        success_redirect_url: 'https://yourapp.com/success',
+        failure_redirect_url: 'https://yourapp.com/failure',
+      },
+    },
+  },
+  description: 'Payment for order #123',
+  customer_id: 'cust-12345',
+});
+
+// Card payment
+const cardPayment = await xendit.paymentRequest.create({
+  reference_id: 'payment_002',
+  type: 'PAY',
+  country: 'PH',
+  currency: 'PHP',
+  request_amount: 50000,
+  payment_method: {
+    type: 'CARD',
+    card_information: {
+      token_id: 'token-from-xendit-js',
+    },
+  },
+  capture_method: 'AUTOMATIC',
+});
+
+// Direct debit payment
+const directDebitPayment = await xendit.paymentRequest.create({
+  reference_id: 'payment_003',
+  type: 'PAY',
+  country: 'ID',
+  currency: 'IDR',
+  request_amount: 100000,
+  payment_method: {
+    type: 'DIRECT_DEBIT',
+    direct_debit: {
+      channel_code: 'BCA_ONEKLIK',
+      channel_properties: {
+        account_mobile_number: '+6281234567890',
+      },
+    },
+  },
+});
+
+// Virtual account payment
+const vaPayment = await xendit.paymentRequest.create({
+  reference_id: 'payment_004',
+  type: 'PAY',
+  country: 'ID',
+  currency: 'IDR',
+  request_amount: 200000,
+  payment_method: {
+    type: 'VIRTUAL_ACCOUNT',
+    virtual_account: {
+      channel_code: 'BCA',
+      channel_properties: {
+        customer_name: 'John Doe',
+      },
+    },
+  },
+});
+```
+
+#### Get Payment Request
+
+```typescript
+const payment = await xendit.paymentRequest.get({
+  id: 'pr-12345',
+});
+```
+
+#### List Payment Requests
+
+```typescript
+const payments = await xendit.paymentRequest.list({
+  status: ['SUCCEEDED', 'PENDING'],
+  limit: 50,
+  created_after: '2024-01-01T00:00:00Z',
+});
+```
+
+### Refund API
+
+Process refunds for successful payment requests.
+
+#### Create Refund
+
+```typescript
+// Full refund
+const refund = await xendit.refund.create({
+  payment_request_id: 'pr-12345',
+  reason: 'REQUESTED_BY_CUSTOMER',
+  metadata: {
+    order_id: 'order_123',
+  },
+});
+
+// Partial refund
+const partialRefund = await xendit.refund.create({
+  payment_request_id: 'pr-12345',
+  amount: 5000, // Partial amount
+  reason: 'CANCELLATION',
+});
+```
+
+#### Get Refund
+
+```typescript
+const refund = await xendit.refund.get({
+  id: 'refund-12345',
+});
+```
+
+#### List Refunds
+
+```typescript
+const refunds = await xendit.refund.list({
+  payment_request_id: 'pr-12345',
+  limit: 20,
+});
+```
+
+### Payout API
+
+Create and manage payouts/disbursements.
+
+#### Create Payout
+
+```typescript
+// Bank payout
+const payout = await xendit.payout.create({
+  reference_id: 'payout_001',
+  channel_code: 'BANK',
+  channel_properties: {
+    channel_code: 'BANK',
+    bank_account: {
+      account_holder_name: 'John Doe',
+      account_number: '1234567890',
+      bank_code: 'BCA',
+      account_type: 'CHECKING',
+    },
+  },
+  amount: 100000,
+  currency: 'IDR',
+  description: 'Payout for order #123',
+});
+
+// E-wallet payout
+const ewalletPayout = await xendit.payout.create({
+  reference_id: 'payout_002',
+  channel_code: 'EWALLET',
+  channel_properties: {
+    channel_code: 'EWALLET',
+    ewallet: {
+      account_holder_name: 'Jane Doe',
+      account_number: '+6281234567890',
+      ewallet_type: 'OVO',
+    },
+  },
+  amount: 50000,
+  currency: 'IDR',
+});
+```
+
+#### Get Payout
+
+```typescript
+const payout = await xendit.payout.get({
+  id: 'payout-12345',
+});
+```
+
+#### List Payouts
+
+```typescript
+const payouts = await xendit.payout.list({
+  status: ['COMPLETED', 'PENDING'],
+  channel_code: ['BANK'],
+  limit: 50,
+});
+```
+
+#### Cancel Payout
+
+```typescript
+const cancelledPayout = await xendit.payout.cancel({
+  id: 'payout-12345',
+});
+```
+
+### Balance & Transaction API
+
+#### Get Balance
+
+```typescript
+const balance = await xendit.balance.get();
+// Returns: { balance: 1000000, currency: 'IDR' }
+```
+
+#### List Transactions
+
+```typescript
+const transactions = await xendit.balance.listTransactions({
+  types: ['PAYMENT', 'PAYOUT'],
+  statuses: ['SUCCEEDED'],
+  limit: 100,
+  created_after: '2024-01-01T00:00:00Z',
+});
+```
+
+### Card Operations
+
+#### Create Token
+
+```typescript
+const token = await xendit.card.createToken({
+  mid_label: 'merchant_label',
+  card_data: {
+    account_number: '4111111111111111',
+    exp_month: '12',
+    exp_year: '2025',
+    card_holder_first_name: 'John',
+    card_holder_last_name: 'Doe',
+    card_holder_email: 'john@example.com',
+    card_holder_phone_number: '+639171234567',
+  },
+  is_multiple_use: true,
+  currency: 'PHP',
+});
+```
+
+#### Get Token
+
+```typescript
+const token = await xendit.card.getToken({
+  credit_card_token_id: 'token-12345',
+});
+```
+
+#### Authenticate Token
+
+```typescript
+const auth = await xendit.card.authenticateToken({
+  token_id: 'token-12345',
+  amount: '10000',
+  currency: 'PHP',
+  external_id: 'auth_001',
+});
+```
+
+#### Authorize Token
+
+```typescript
+const charge = await xendit.card.authorizeToken({
+  token_id: 'token-12345',
+  amount: '10000',
+  external_id: 'charge_001',
+  capture: true,
+});
+```
+
+#### Create Charge
+
+```typescript
+const charge = await xendit.card.createCharge({
+  token_id: 'token-12345',
+  external_id: 'charge_001',
+  amount: 10000,
+  currency: 'PHP',
+  capture: true,
+  authentication_id: 'auth-12345',
+});
+```
+
+#### Get Charge
+
+```typescript
+const charge = await xendit.card.getCharge({
+  id: 'charge-12345',
+});
+```
 
 ### Customer Management
 
@@ -178,7 +490,122 @@ const charge = await xendit.ewallet.get({
 });
 ```
 
-### Supported Countries and Currencies
+### Payment Methods
+
+#### Create Payment Method
+
+```typescript
+const paymentMethod = await xendit.paymentMethod.create({
+  type: 'CARD',
+  country: 'PH',
+  reusability: 'MULTIPLE_USE',
+  card: {
+    currency: 'PHP',
+    channel_properties: {
+      success_return_url: 'https://yourapp.com/success',
+      failure_return_url: 'https://yourapp.com/failure',
+    },
+  },
+});
+```
+
+#### Get Payment Method
+
+```typescript
+const paymentMethod = await xendit.paymentMethod.get({
+  id: 'pm-12345',
+});
+```
+
+#### List Payment Methods
+
+```typescript
+const paymentMethods = await xendit.paymentMethod.list({
+  customer_id: 'cust-12345',
+  type: ['CARD', 'EWALLET'],
+  status: ['ACTIVE'],
+  limit: 50,
+});
+```
+
+#### Update Payment Method
+
+```typescript
+const updated = await xendit.paymentMethod.update({
+  id: 'pm-12345',
+  payload: {
+    status: 'INACTIVE',
+    description: 'Card expired',
+  },
+});
+```
+
+### Invoice Management
+
+#### Create Invoice
+
+```typescript
+const invoice = await xendit.invoice.create({
+  external_id: 'invoice-001',
+  payer_email: 'customer@example.com',
+  amount: 100000,
+  description: 'Payment for services',
+  invoice_duration: 3600,
+  customer: {
+    customer_name: 'John Doe',
+    customer_email: 'customer@example.com',
+    customer_phone: '+639171234567',
+  },
+  success_redirect_url: 'https://yoursite.com/success',
+  failure_redirect_url: 'https://yoursite.com/failure',
+});
+```
+
+#### Get Invoice
+
+```typescript
+const invoice = await xendit.invoice.get({
+  invoice_id: 'invoice-12345',
+});
+```
+
+#### List Invoices
+
+```typescript
+const invoices = await xendit.invoice.list({
+  statuses: ['PAID', 'PENDING'],
+  limit: 50,
+  created_after: '2024-01-01T00:00:00Z',
+});
+```
+
+#### Update Invoice
+
+```typescript
+const updated = await xendit.invoice.update({
+  invoice_id: 'invoice-12345',
+  payload: {
+    customer_email: 'newemail@example.com',
+    items: [
+      {
+        name: 'Updated Item',
+        quantity: 2,
+        price: 50000,
+      },
+    ],
+  },
+});
+```
+
+#### Expire Invoice
+
+```typescript
+const expired = await xendit.invoice.expire({
+  invoice_id: 'invoice-12345',
+});
+```
+
+## Supported Countries and Currencies
 
 - **Philippines (PH)**: PHP
 - **Indonesia (ID)**: IDR
@@ -186,23 +613,33 @@ const charge = await xendit.ewallet.get({
 - **Thailand (TH)**: THB
 - **Vietnam (VN)**: VND
 
-### Supported E-Wallet Channels
+## Supported Payment Channels
 
+### E-Wallets
 - **Indonesia**: OVO, DANA, LinkAja, ShopeePay, AstraPay, JENIUSPAY, SakuKu
 - **Philippines**: PayMaya, GCash, GrabPay, ShopeePay
 - **Vietnam**: Appota, MoMo, ShopeePay, VNPTWallet, ViettelPay, ZaloPay
 - **Thailand**: WeChat Pay, LINE Pay, TrueMoney, ShopeePay
 - **Malaysia**: Touch 'n Go, ShopeePay, GrabPay
 
+### Cards
+- Visa, Mastercard, JCB, AMEX
+
+### Direct Debit
+- BCA OneKlik, Mandiri ClickPay, BRI AutoDebit
+
+### Virtual Accounts
+- BCA, BNI, Mandiri, Permata, and more
+
 ## Error Handling
 
 The SDK provides comprehensive error handling with custom error types:
 
 ```typescript
-import { XenditApiError, ValidationError } from 'xendit-fn/errors';
+import { XenditApiError, ValidationError } from 'xendit-fn';
 
 try {
-  const customer = await xendit.customer.create(invalidData);
+  const payment = await xendit.paymentRequest.create(invalidData);
 } catch (error) {
   if (error instanceof ValidationError) {
     console.error('Validation failed:', error.validationErrors);
@@ -225,16 +662,113 @@ The SDK is built with TypeScript and provides full type definitions:
 
 ```typescript
 import type {
-  Customer,
-  CustomerResource,
-  EWalletChargeParams,
-  EWalletChargeResource
+  CreatePaymentRequest,
+  PaymentRequestResource,
+  CreateRefund,
+  RefundResource,
+  CreatePayout,
+  PayoutResource,
 } from 'xendit-fn';
 
 // All parameters and responses are fully typed
-const createCustomer = async (data: Customer): Promise<CustomerResource> => {
-  return await xendit.customer.create(data);
+const createPayment = async (
+  data: CreatePaymentRequest
+): Promise<PaymentRequestResource> => {
+  return await xendit.paymentRequest.create(data);
 };
+```
+
+## Production-Ready Features
+
+### Rate Limiting
+
+The SDK includes built-in rate limiting to respect API limits:
+
+```typescript
+import { Xendit } from 'xendit-fn';
+
+const xendit = Xendit('your-api-key', {
+  rateLimit: {
+    maxRequests: 100,      // Max requests per window
+    windowMs: 60000,       // Time window (1 minute)
+    maxRetries: 3,         // Retry attempts
+    baseRetryDelayMs: 1000 // Base delay for retries
+  }
+});
+```
+
+### Webhook Handling
+
+Secure webhook processing with signature verification:
+
+```typescript
+import {
+  createWebhookProcessor,
+  WebhookHandlers,
+} from 'xendit-fn';
+
+// Create webhook processor
+const webhookProcessor = createWebhookProcessor({
+  callbackToken: 'your-webhook-token',
+  // OR use HMAC verification
+  // hmacSecret: 'your-hmac-secret'
+});
+
+// Define event handlers
+const handlers: WebhookHandlers = {
+  'payment_request.succeeded': async (event) => {
+    console.log('Payment succeeded:', event.data);
+    // Process payment success
+  },
+  'payment_request.failed': async (event) => {
+    console.log('Payment failed:', event.data);
+    // Handle payment failure
+  },
+  'refund.succeeded': async (event) => {
+    console.log('Refund processed:', event.data);
+    // Handle refund
+  },
+};
+
+// Process webhook in your endpoint
+app.post('/webhook', async (req, res) => {
+  const result = await webhookProcessor.processWebhook(
+    req.body,
+    req.headers,
+    handlers
+  );
+
+  if (result.success) {
+    res.status(200).send('OK');
+  } else {
+    res.status(400).send(result.error);
+  }
+});
+```
+
+### Pagination Utilities
+
+For endpoints that return paginated data:
+
+```typescript
+import { fetchAllPages, iterateItems } from 'xendit-fn';
+
+// Get all invoices across all pages
+const allInvoices = await fetchAllPages(
+  axiosInstance,
+  '/invoices',
+  InvoiceSchema,
+  { limit: 100, maxItems: 1000 }
+);
+
+// Stream through items
+for await (const invoice of iterateItems(
+  axiosInstance,
+  '/invoices',
+  InvoiceSchema
+)) {
+  console.log('Processing invoice:', invoice.id);
+}
 ```
 
 ## Development
@@ -292,146 +826,13 @@ MIT License - see [LICENSE](LICENSE) file for details.
 - [TypeScript](https://typescriptlang.org/)
 - [Zod](https://zod.dev/)
 
-## Production-Ready Features
-
-### Rate Limiting
-
-The SDK includes built-in rate limiting to respect API limits:
-
-```typescript
-import { Xendit } from 'xendit-fn';
-
-const xendit = Xendit('your-api-key', {
-  rateLimit: {
-    maxRequests: 100,      // Max requests per window
-    windowMs: 60000,       // Time window (1 minute)
-    maxRetries: 3,         // Retry attempts
-    baseRetryDelayMs: 1000 // Base delay for retries
-  }
-});
-```
-
-### Webhook Handling
-
-Secure webhook processing with signature verification:
-
-```typescript
-import {
-  createWebhookProcessor,
-  WebhookHandlers,
-  parseWebhookEvent
-} from 'xendit-fn';
-
-// Create webhook processor
-const webhookProcessor = createWebhookProcessor({
-  callbackToken: 'your-webhook-token',
-  // OR use HMAC verification
-  // hmacSecret: 'your-hmac-secret'
-});
-
-// Define event handlers
-const handlers: WebhookHandlers = {
-  'invoice.paid': async (event) => {
-    console.log('Invoice paid:', event.data);
-    // Process payment success
-  },
-  'payment.failed': async (event) => {
-    console.log('Payment failed:', event.data);
-    // Handle payment failure
-  }
-};
-
-// Process webhook in your endpoint
-app.post('/webhook', async (req, res) => {
-  const result = await webhookProcessor.processWebhook(
-    req.body,
-    req.headers,
-    handlers
-  );
-
-  if (result.success) {
-    res.status(200).send('OK');
-  } else {
-    res.status(400).send(result.error);
-  }
-});
-```
-
-### Pagination Utilities
-
-For endpoints that return paginated data:
-
-```typescript
-import { fetchAllPages, iterateItems } from 'xendit-fn';
-
-// Get all invoices across all pages
-const allInvoices = await fetchAllPages(
-  axiosInstance,
-  '/invoices',
-  InvoiceSchema,
-  { limit: 100, maxItems: 1000 }
-);
-
-// Stream through items
-for await (const invoice of iterateItems(
-  axiosInstance,
-  '/invoices',
-  InvoiceSchema
-)) {
-  console.log('Processing invoice:', invoice.id);
-}
-```
-
-### Complete API Coverage
-
-#### Payment Methods
-
-```typescript
-// Create payment method
-const paymentMethod = await xendit.paymentMethod.create({
-  customer_id: 'customer-id',
-  type: 'DEBIT_CARD',
-  properties: {
-    id: 'card-token-from-xendit-js',
-  },
-});
-
-// List payment methods
-const paymentMethods = await xendit.paymentMethod.list({
-  customer_id: 'customer-id',
-});
-```
-
-#### Invoice Management
-
-```typescript
-// Create invoice
-const invoice = await xendit.invoice.create({
-  external_id: 'invoice-001',
-  amount: 100000,
-  description: 'Payment for services',
-  invoice_duration: 3600,
-  customer: {
-    given_names: 'John',
-    email: 'customer@example.com',
-  },
-  success_redirect_url: 'https://yoursite.com/success',
-  failure_redirect_url: 'https://yoursite.com/failure',
-});
-
-// Expire invoice
-const expiredInvoice = await xendit.invoice.expire({ id: 'invoice-id' });
-```
-
-### Environment Configuration
+## Environment Configuration
 
 The SDK automatically detects test mode:
 
 ```typescript
 // Test mode (automatically detected)
 const xendit = Xendit('xnd_development_...');
-//
-
 
 // Production mode
 const xendit = Xendit('xnd_production_...');
