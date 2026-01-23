@@ -1,18 +1,11 @@
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosError,
-} from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   BalanceResource,
   ListTransactions,
   ListTransactionsResponse,
 } from "./schema";
-import {
-  BalanceResourceSchema,
-  ListTransactionsSchema,
-} from "./schema";
+import { BalanceResourceSchema, ListTransactionsSchema } from "./schema";
 
 export const getBalance = async (
   axiosInstance: AxiosInstance,
@@ -78,12 +71,10 @@ export const listTransactions = async (
     }
 
     const queryString = queryParams.toString();
-    const url = queryString
-      ? `/transactions?${queryString}`
-      : "/transactions";
+    const url = queryString ? `/transactions?${queryString}` : "/transactions";
 
     if (!axiosInstance) {
-      throw new Error('axiosInstance is required');
+      throw new Error("axiosInstance is required");
     }
     const response = await axiosInstance.get<ListTransactionsResponse>(
       config?.url ?? url,

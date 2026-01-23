@@ -5,9 +5,7 @@ import {
   getPaymentRequest,
   listPaymentRequests,
 } from "../sdk/payment-request/index";
-import type {
-  CreatePaymentRequest,
-} from "../sdk/payment-request/schema";
+import type { CreatePaymentRequest } from "../sdk/payment-request/schema";
 
 describe("Payment Request API", () => {
   let mockAxiosInstance: AxiosInstance;
@@ -97,10 +95,7 @@ describe("Payment Request API", () => {
         },
       };
 
-      const result = await createPaymentRequest(
-        params,
-        mockAxiosInstance
-      );
+      const result = await createPaymentRequest(params, mockAxiosInstance);
 
       expect(mockPost).toHaveBeenCalledTimes(1);
       expect(mockPost).toHaveBeenCalledWith(

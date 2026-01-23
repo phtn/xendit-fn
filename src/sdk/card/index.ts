@@ -1,8 +1,4 @@
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosError,
-} from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   TokenParams,
@@ -44,11 +40,7 @@ export const createToken = async (
       validatedParams,
       config
     );
-    return validateInput(
-      TokenResourceSchema,
-      response.data,
-      "token response"
-    );
+    return validateInput(TokenResourceSchema, response.data, "token response");
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
       handleAxiosError(error as AxiosError);
@@ -73,11 +65,7 @@ export const getToken = async (
         `/credit_card_tokens/${validatedParams.credit_card_token_id}`,
       config
     );
-    return validateInput(
-      TokenResourceSchema,
-      response.data,
-      "token response"
-    );
+    return validateInput(TokenResourceSchema, response.data, "token response");
   } catch (error) {
     if (error instanceof Error && error.name === "AxiosError") {
       handleAxiosError(error as AxiosError);

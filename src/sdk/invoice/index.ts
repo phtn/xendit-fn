@@ -131,7 +131,7 @@ export const listInvoices = async (
     const url = queryString ? `/v2/invoices?${queryString}` : "/v2/invoices";
 
     if (!axiosInstance) {
-      throw new Error('axiosInstance is required');
+      throw new Error("axiosInstance is required");
     }
     const response = await axiosInstance.get<ListInvoicesResponse>(
       config?.url ?? url,

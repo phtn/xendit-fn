@@ -1,8 +1,4 @@
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosError,
-} from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   CreatePaymentRequest,
@@ -135,7 +131,7 @@ export const listPaymentRequests = async (
       : "/v3/payment_requests";
 
     if (!axiosInstance) {
-      throw new Error('axiosInstance is required');
+      throw new Error("axiosInstance is required");
     }
     const response = await axiosInstance.get<ListPaymentRequestsResponse>(
       config?.url ?? url,

@@ -1,8 +1,4 @@
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosError,
-} from "axios";
+import type { AxiosInstance, AxiosRequestConfig, AxiosError } from "axios";
 import { handleAxiosError, validateInput } from "../../utils/errors";
 import type {
   CreatePayout,
@@ -121,7 +117,7 @@ export const listPayouts = async (
     const url = queryString ? `/v2/payouts?${queryString}` : "/v2/payouts";
 
     if (!axiosInstance) {
-      throw new Error('axiosInstance is required');
+      throw new Error("axiosInstance is required");
     }
     const response = await axiosInstance.get<ListPayoutsResponse>(
       config?.url ?? url,

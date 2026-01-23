@@ -1,9 +1,7 @@
 import { describe, it, expect, beforeEach, mock } from "bun:test";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import { createRefund, getRefund, listRefunds } from "../sdk/refund/index";
-import type {
-  CreateRefund,
-} from "../sdk/refund/schema";
+import type { CreateRefund } from "../sdk/refund/schema";
 
 describe("Refund API", () => {
   let mockAxiosInstance: AxiosInstance;

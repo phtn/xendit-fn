@@ -6,9 +6,7 @@ import {
   listPayouts,
   cancelPayout,
 } from "../sdk/payout/index";
-import type {
-  CreatePayout,
-} from "../sdk/payout/schema";
+import type { CreatePayout } from "../sdk/payout/schema";
 
 describe("Payout API", () => {
   let mockAxiosInstance: AxiosInstance;

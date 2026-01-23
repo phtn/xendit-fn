@@ -118,7 +118,7 @@ export const listPaymentMethods = async (
       : "/v2/payment_methods";
 
     if (!axiosInstance) {
-      throw new Error('axiosInstance is required');
+      throw new Error("axiosInstance is required");
     }
     const response = await axiosInstance.get<ListPaymentMethodsResponse>(
       config?.url ?? url,
