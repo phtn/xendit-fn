@@ -8,8 +8,6 @@ import {
 } from "../sdk/payout/index";
 import type {
   CreatePayout,
-  PayoutResource,
-  ListPayoutsResponse,
 } from "../sdk/payout/schema";
 
 describe("Payout API", () => {

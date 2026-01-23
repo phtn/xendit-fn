@@ -7,8 +7,6 @@ import {
 } from "../sdk/payment-request/index";
 import type {
   CreatePaymentRequest,
-  PaymentRequestResource,
-  ListPaymentRequestsResponse,
 } from "../sdk/payment-request/schema";
 
 describe("Payment Request API", () => {

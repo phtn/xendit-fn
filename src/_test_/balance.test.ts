@@ -1,10 +1,6 @@
 import { describe, it, expect, beforeEach, mock } from "bun:test";
 import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import { getBalance, listTransactions } from "../sdk/balance/index";
-import type {
-  BalanceResource,
-  ListTransactionsResponse,
-} from "../sdk/balance/schema";
 
 describe("Balance & Transaction API", () => {
   let mockAxiosInstance: AxiosInstance;

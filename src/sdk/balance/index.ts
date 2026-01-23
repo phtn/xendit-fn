@@ -82,7 +82,10 @@ export const listTransactions = async (
       ? `/transactions?${queryString}`
       : "/transactions";
 
-    const response = await axiosInstance!.get<ListTransactionsResponse>(
+    if (!axiosInstance) {
+      throw new Error('axiosInstance is required');
+    }
+    const response = await axiosInstance.get<ListTransactionsResponse>(
       config?.url ?? url,
       config
     );

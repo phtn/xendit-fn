@@ -3,8 +3,6 @@ import type { AxiosInstance, AxiosRequestConfig } from "axios";
 import { createRefund, getRefund, listRefunds } from "../sdk/refund/index";
 import type {
   CreateRefund,
-  RefundResource,
-  ListRefundsResponse,
 } from "../sdk/refund/schema";
 
 describe("Refund API", () => {

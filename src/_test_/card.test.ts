@@ -12,11 +12,9 @@ import {
 } from "../sdk/card/index";
 import type {
   TokenParams,
-  TokenResource,
   TokenAuthentication,
   TokenAuthorization,
   CreateCharge,
-  ChargeResource,
 } from "../sdk/card/schema";
 
 describe("Card Operations API", () => {

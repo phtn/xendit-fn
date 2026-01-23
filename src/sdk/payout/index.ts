@@ -120,7 +120,10 @@ export const listPayouts = async (
     const queryString = queryParams.toString();
     const url = queryString ? `/v2/payouts?${queryString}` : "/v2/payouts";
 
-    const response = await axiosInstance!.get<ListPayoutsResponse>(
+    if (!axiosInstance) {
+      throw new Error('axiosInstance is required');
+    }
+    const response = await axiosInstance.get<ListPayoutsResponse>(
       config?.url ?? url,
       config
     );

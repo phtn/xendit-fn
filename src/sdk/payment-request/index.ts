@@ -134,7 +134,10 @@ export const listPaymentRequests = async (
       ? `/v3/payment_requests?${queryString}`
       : "/v3/payment_requests";
 
-    const response = await axiosInstance!.get<ListPaymentRequestsResponse>(
+    if (!axiosInstance) {
+      throw new Error('axiosInstance is required');
+    }
+    const response = await axiosInstance.get<ListPaymentRequestsResponse>(
       config?.url ?? url,
       {
         ...config,

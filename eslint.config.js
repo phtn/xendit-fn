@@ -6,6 +6,7 @@ export default [
   js.configs.recommended,
   {
     files: ['**/*.ts', '**/*.tsx'],
+    ignores: ['**/*.test.ts'],
     languageOptions: {
       parser: tsparser,
       parserOptions: {
@@ -43,6 +44,13 @@ export default [
   },
   {
     files: ['**/*.test.ts'],
+    languageOptions: {
+      parser: tsparser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
     rules: {
       '@typescript-eslint/no-non-null-assertion': 'off',
       'no-console': 'off',

@@ -123,7 +123,10 @@ export const listRefunds = async (
     const queryString = queryParams.toString();
     const url = queryString ? `/v3/refunds?${queryString}` : "/v3/refunds";
 
-    const response = await axiosInstance!.get<ListRefundsResponse>(
+    if (!axiosInstance) {
+      throw new Error('axiosInstance is required');
+    }
+    const response = await axiosInstance.get<ListRefundsResponse>(
       config?.url ?? url,
       {
         ...config,
