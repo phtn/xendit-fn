@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { CurrencySchema, CountrySchema } from "../common";
+import { CountrySchema, CurrencySchema } from "../common";
 
 // Payment Request Types
 export const PaymentRequestTypeSchema = z.union([
@@ -28,11 +28,20 @@ export const PaymentRequestStatusSchema = z.union([
 export type PaymentRequestStatus = z.infer<typeof PaymentRequestStatusSchema>;
 
 // Channel Code (simplified - can be expanded)
-export const ChannelCodeSchema = z.string();
+export const ChannelCodeSchema = z.union([
+  z.literal("GCASH"),
+  z.literal("GRABPAY"),
+  z.literal("PAYMAYA"),
+  z.literal("SHOPEEPAY"),
+]);
 export type ChannelCode = z.infer<typeof ChannelCodeSchema>;
 
 // Channel Properties
-export const ChannelPropertiesSchema = z.record(z.unknown());
+export const ChannelPropertiesSchema = z.object({
+  failure_return_url: z.string().url().min(8).max(2000),
+  success_return_url: z.string().url().min(8).max(2000),
+  enable_otp: z.boolean().optional(),
+});
 export type ChannelProperties = z.infer<typeof ChannelPropertiesSchema>;
 
 // Payment Method

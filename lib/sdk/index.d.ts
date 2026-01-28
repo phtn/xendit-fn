@@ -2217,26 +2217,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 type: string;
                 ewallet?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 card_information?: {
                     token_id: string;
                 } | undefined;
                 direct_debit?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 over_the_counter?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 qr_code?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 virtual_account?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
             };
             request_amount: number;
@@ -2282,26 +2302,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 type: string;
                 ewallet?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 card_information?: {
                     token_id: string;
                 } | undefined;
                 direct_debit?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 over_the_counter?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 qr_code?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 virtual_account?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
             };
             request_amount: number;
@@ -2356,26 +2396,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 type: string;
                 ewallet?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 card_information?: {
                     token_id: string;
                 } | undefined;
                 direct_debit?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 over_the_counter?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 qr_code?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 virtual_account?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
             };
             request_amount: number;
@@ -2429,26 +2489,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     type: string;
                     ewallet?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     card_information?: {
                         token_id: string;
                     } | undefined;
                     direct_debit?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     over_the_counter?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     qr_code?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     virtual_account?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                 };
                 request_amount: number;

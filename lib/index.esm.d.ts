@@ -1573,103 +1573,243 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         }>>;
         ewallet: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         direct_debit: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         over_the_counter: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         qr_code: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         virtual_account: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     }, {
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     }>;
     description: z.ZodOptional<z.ZodString>;
@@ -1750,26 +1890,46 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     };
     request_amount: number;
@@ -1811,26 +1971,46 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     };
     request_amount: number;
@@ -1885,103 +2065,243 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         }>>;
         ewallet: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         direct_debit: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         over_the_counter: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         qr_code: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
         virtual_account: z.ZodOptional<z.ZodObject<{
             channel_code: z.ZodString;
-            channel_properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
+            channel_properties: z.ZodOptional<z.ZodObject<{
+                failure_return_url: z.ZodString;
+                success_return_url: z.ZodString;
+                enable_otp: z.ZodOptional<z.ZodBoolean>;
+            }, "strip", z.ZodTypeAny, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }, {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }, {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     }, {
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     }>;
     description: z.ZodOptional<z.ZodString>;
@@ -2083,26 +2403,46 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     };
     request_amount: number;
@@ -2154,26 +2494,46 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         type: string;
         ewallet?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         card_information?: {
             token_id: string;
         } | undefined;
         direct_debit?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         over_the_counter?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         qr_code?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
         virtual_account?: {
             channel_code: string;
-            channel_properties?: Record<string, unknown> | undefined;
+            channel_properties?: {
+                success_return_url: string;
+                failure_return_url: string;
+                enable_otp?: boolean | undefined;
+            } | undefined;
         } | undefined;
     };
     request_amount: number;
@@ -11116,26 +11476,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 type: string;
                 ewallet?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 card_information?: {
                     token_id: string;
                 } | undefined;
                 direct_debit?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 over_the_counter?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 qr_code?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 virtual_account?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
             };
             request_amount: number;
@@ -11181,26 +11561,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 type: string;
                 ewallet?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 card_information?: {
                     token_id: string;
                 } | undefined;
                 direct_debit?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 over_the_counter?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 qr_code?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 virtual_account?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
             };
             request_amount: number;
@@ -11255,26 +11655,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 type: string;
                 ewallet?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 card_information?: {
                     token_id: string;
                 } | undefined;
                 direct_debit?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 over_the_counter?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 qr_code?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
                 virtual_account?: {
                     channel_code: string;
-                    channel_properties?: Record<string, unknown> | undefined;
+                    channel_properties?: {
+                        success_return_url: string;
+                        failure_return_url: string;
+                        enable_otp?: boolean | undefined;
+                    } | undefined;
                 } | undefined;
             };
             request_amount: number;
@@ -11328,26 +11748,46 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     type: string;
                     ewallet?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     card_information?: {
                         token_id: string;
                     } | undefined;
                     direct_debit?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     over_the_counter?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     qr_code?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                     virtual_account?: {
                         channel_code: string;
-                        channel_properties?: Record<string, unknown> | undefined;
+                        channel_properties?: {
+                            success_return_url: string;
+                            failure_return_url: string;
+                            enable_otp?: boolean | undefined;
+                        } | undefined;
                     } | undefined;
                 };
                 request_amount: number;
