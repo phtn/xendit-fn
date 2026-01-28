@@ -29,7 +29,7 @@ export declare const TokenParamsSchema: z.ZodObject<{
     external_id: z.ZodOptional<z.ZodString>;
     card_cvn: z.ZodOptional<z.ZodString>;
     is_multiple_use: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     should_authenticate: z.ZodDefault<z.ZodBoolean>;
     billing_details: z.ZodOptional<z.ZodObject<{
         street_line1: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -64,7 +64,7 @@ export declare const TokenParamsSchema: z.ZodObject<{
     mid_label: string;
     is_multiple_use: boolean;
     should_authenticate: boolean;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
     card_data?: {
@@ -89,7 +89,7 @@ export declare const TokenParamsSchema: z.ZodObject<{
     } | undefined;
 }, {
     mid_label: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
     card_data?: {
@@ -124,21 +124,21 @@ export declare const TokenErrorCodeSchema: z.ZodUnion<[z.ZodLiteral<"API_VALIDAT
 export type TokenErrorCode = z.infer<typeof TokenErrorCodeSchema>;
 export declare const CardInfoSchema: z.ZodObject<{
     bank: z.ZodOptional<z.ZodString>;
-    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"CREDIT">, z.ZodLiteral<"DEBIT">, z.ZodLiteral<"PREPAID">, z.ZodLiteral<"UNKNOWN">]>>;
     brand: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"VISA">, z.ZodLiteral<"MASTERCARD">, z.ZodLiteral<"JCB">, z.ZodLiteral<"AMEX">]>>;
     fingerprint: z.ZodOptional<z.ZodString>;
     card_art_url: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     bank?: string | undefined;
     brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
     fingerprint?: string | undefined;
     card_art_url?: string | undefined;
 }, {
     type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     bank?: string | undefined;
     brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
     fingerprint?: string | undefined;
@@ -161,21 +161,21 @@ export declare const TokenResourceSchema: z.ZodObject<{
     failure_reason: z.ZodOptional<z.ZodString>;
     card_info: z.ZodOptional<z.ZodObject<{
         bank: z.ZodOptional<z.ZodString>;
-        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"CREDIT">, z.ZodLiteral<"DEBIT">, z.ZodLiteral<"PREPAID">, z.ZodLiteral<"UNKNOWN">]>>;
         brand: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"VISA">, z.ZodLiteral<"MASTERCARD">, z.ZodLiteral<"JCB">, z.ZodLiteral<"AMEX">]>>;
         fingerprint: z.ZodOptional<z.ZodString>;
         card_art_url: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
         card_art_url?: string | undefined;
     }, {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
@@ -193,7 +193,7 @@ export declare const TokenResourceSchema: z.ZodObject<{
     payer_authentication_url?: string | undefined;
     card_info?: {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
@@ -211,7 +211,7 @@ export declare const TokenResourceSchema: z.ZodObject<{
     payer_authentication_url?: string | undefined;
     card_info?: {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
@@ -255,10 +255,10 @@ export declare const TokenAuthenticationSchema: z.ZodObject<{
         card_holder_phone_number: string;
     }>>;
     external_id: z.ZodOptional<z.ZodString>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     mid_label: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     token_id?: string | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
@@ -273,7 +273,7 @@ export declare const TokenAuthenticationSchema: z.ZodObject<{
         card_holder_phone_number: string;
     } | undefined;
 }, {
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     token_id?: string | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
@@ -390,7 +390,7 @@ export declare const CreateChargeSchema: z.ZodObject<{
     authentication_id: z.ZodOptional<z.ZodString>;
     capture: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     descriptor: z.ZodOptional<z.ZodString>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     mid_label: z.ZodOptional<z.ZodString>;
     billing_details: z.ZodOptional<z.ZodObject<{
         given_names: z.ZodString;
@@ -437,7 +437,7 @@ export declare const CreateChargeSchema: z.ZodObject<{
     amount: number;
     external_id: string;
     capture: boolean;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: {} | undefined;
     mid_label?: string | undefined;
     billing_details?: {
@@ -461,7 +461,7 @@ export declare const CreateChargeSchema: z.ZodObject<{
     token_id: string;
     amount: number;
     external_id: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: {} | undefined;
     mid_label?: string | undefined;
     billing_details?: {

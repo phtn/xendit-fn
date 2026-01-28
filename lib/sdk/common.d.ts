@@ -1,9 +1,9 @@
 import { z } from "zod";
 export declare const PhoneSchema: z.ZodEffects<z.ZodString, string, string>;
 export type Phone = z.infer<typeof PhoneSchema>;
-export declare const CountrySchema: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
+export declare const CountrySchema: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
 export type Country = z.infer<typeof CountrySchema>;
-export declare const CurrencySchema: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+export declare const CurrencySchema: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
 export type Currency = z.infer<typeof CurrencySchema>;
 export declare const BillingDetailSchema: z.ZodObject<{
     given_names: z.ZodString;

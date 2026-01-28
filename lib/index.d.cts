@@ -92,13 +92,13 @@ declare function createRateLimitedAxios(baseURL: string, apiKey: string, config?
 
 declare const CreatePaymentMethodSchema: z.ZodObject<{
     type: z.ZodUnion<[z.ZodLiteral<"CARD">, z.ZodLiteral<"BANK_ACCOUNT">, z.ZodLiteral<"EWALLET">, z.ZodLiteral<"OVER_THE_COUNTER">, z.ZodLiteral<"VIRTUAL_ACCOUNT">, z.ZodLiteral<"QR_CODE">]>;
-    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     reusability: z.ZodUnion<[z.ZodLiteral<"ONE_TIME_USE">, z.ZodLiteral<"MULTIPLE_USE">]>;
     description: z.ZodOptional<z.ZodString>;
     reference_id: z.ZodOptional<z.ZodString>;
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
     card: z.ZodOptional<z.ZodObject<{
-        currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+        currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
         channel_properties: z.ZodOptional<z.ZodObject<{
             success_return_url: z.ZodOptional<z.ZodString>;
             failure_return_url: z.ZodOptional<z.ZodString>;
@@ -110,20 +110,20 @@ declare const CreatePaymentMethodSchema: z.ZodObject<{
             failure_return_url?: string | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         channel_properties?: {
             success_return_url?: string | undefined;
             failure_return_url?: string | undefined;
         } | undefined;
     }, {
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         channel_properties?: {
             success_return_url?: string | undefined;
             failure_return_url?: string | undefined;
         } | undefined;
     }>>;
     bank_account: z.ZodOptional<z.ZodObject<{
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         channel_properties: z.ZodOptional<z.ZodObject<{
             account_mobile_number: z.ZodOptional<z.ZodString>;
             card_last_four: z.ZodOptional<z.ZodString>;
@@ -144,7 +144,7 @@ declare const CreatePaymentMethodSchema: z.ZodObject<{
             account_email?: string | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         channel_properties?: {
             card_last_four?: string | undefined;
             card_expiry_month?: string | undefined;
@@ -153,7 +153,7 @@ declare const CreatePaymentMethodSchema: z.ZodObject<{
             account_email?: string | undefined;
         } | undefined;
     }, {
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         channel_properties?: {
             card_last_four?: string | undefined;
             card_expiry_month?: string | undefined;
@@ -195,19 +195,19 @@ declare const CreatePaymentMethodSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "BANK_ACCOUNT" | "EWALLET" | "QR_CODE" | "CARD" | "OVER_THE_COUNTER" | "VIRTUAL_ACCOUNT";
     reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     description?: string | undefined;
     metadata?: Record<string, unknown> | undefined;
     reference_id?: string | undefined;
     card?: {
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         channel_properties?: {
             success_return_url?: string | undefined;
             failure_return_url?: string | undefined;
         } | undefined;
     } | undefined;
     bank_account?: {
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         channel_properties?: {
             card_last_four?: string | undefined;
             card_expiry_month?: string | undefined;
@@ -227,19 +227,19 @@ declare const CreatePaymentMethodSchema: z.ZodObject<{
 }, {
     type: "BANK_ACCOUNT" | "EWALLET" | "QR_CODE" | "CARD" | "OVER_THE_COUNTER" | "VIRTUAL_ACCOUNT";
     reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     description?: string | undefined;
     metadata?: Record<string, unknown> | undefined;
     reference_id?: string | undefined;
     card?: {
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         channel_properties?: {
             success_return_url?: string | undefined;
             failure_return_url?: string | undefined;
         } | undefined;
     } | undefined;
     bank_account?: {
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         channel_properties?: {
             card_last_four?: string | undefined;
             card_expiry_month?: string | undefined;
@@ -278,7 +278,7 @@ type UpdatePaymentMethod = z.infer<typeof UpdatePaymentMethodSchema>;
 declare const PaymentMethodResourceSchema: z.ZodObject<{
     id: z.ZodString;
     type: z.ZodUnion<[z.ZodLiteral<"CARD">, z.ZodLiteral<"BANK_ACCOUNT">, z.ZodLiteral<"EWALLET">, z.ZodLiteral<"OVER_THE_COUNTER">, z.ZodLiteral<"VIRTUAL_ACCOUNT">, z.ZodLiteral<"QR_CODE">]>;
-    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     business_id: z.ZodString;
     customer_id: z.ZodOptional<z.ZodString>;
     reference_id: z.ZodOptional<z.ZodString>;
@@ -303,7 +303,7 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
     }>, "many">>;
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
     billing_information: z.ZodOptional<z.ZodObject<{
-        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         street_line1: z.ZodOptional<z.ZodString>;
         street_line2: z.ZodOptional<z.ZodString>;
         city: z.ZodOptional<z.ZodString>;
@@ -315,14 +315,14 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         city?: string | undefined;
         province_state?: string | undefined;
         postal_code?: string | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     }, {
         street_line1?: string | undefined;
         street_line2?: string | undefined;
         city?: string | undefined;
         province_state?: string | undefined;
         postal_code?: string | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     }>>;
     failure_code: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     created: z.ZodString;
@@ -332,18 +332,18 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         card_expiry_month: z.ZodString;
         card_expiry_year: z.ZodString;
         network: z.ZodString;
-        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         issuer: z.ZodOptional<z.ZodString>;
         type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"CREDIT">, z.ZodLiteral<"DEBIT">]>>;
-        currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+        currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     }, "strip", z.ZodTypeAny, {
         card_last_four: string;
         card_expiry_month: string;
         card_expiry_year: string;
         network: string;
         type?: "CREDIT" | "DEBIT" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         issuer?: string | undefined;
     }, {
         card_last_four: string;
@@ -351,8 +351,8 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         card_expiry_year: string;
         network: string;
         type?: "CREDIT" | "DEBIT" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         issuer?: string | undefined;
     }>>;
     bank_account: z.ZodOptional<z.ZodObject<{
@@ -360,29 +360,29 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         account_holder_name: z.ZodString;
         bank_code: z.ZodString;
         account_type: z.ZodOptional<z.ZodString>;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     }, "strip", z.ZodTypeAny, {
         account_number: string;
         account_holder_name: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         bank_code: string;
         account_type?: string | undefined;
     }, {
         account_number: string;
         account_holder_name: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         bank_code: string;
         account_type?: string | undefined;
     }>>;
     ewallet: z.ZodOptional<z.ZodObject<{
         account_details: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     }, "strip", z.ZodTypeAny, {
         account_details: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     }, {
         account_details: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     }>>;
 }, "strip", z.ZodTypeAny, {
     status: "PENDING" | "FAILED" | "ACTIVE" | "INACTIVE" | "EXPIRED";
@@ -392,7 +392,7 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
     updated: string;
     business_id: string;
     reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     description?: string | undefined;
     metadata?: Record<string, unknown> | undefined;
     reference_id?: string | undefined;
@@ -410,20 +410,20 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         card_expiry_year: string;
         network: string;
         type?: "CREDIT" | "DEBIT" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         issuer?: string | undefined;
     } | undefined;
     bank_account?: {
         account_number: string;
         account_holder_name: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         bank_code: string;
         account_type?: string | undefined;
     } | undefined;
     ewallet?: {
         account_details: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     } | undefined;
     billing_information?: {
         street_line1?: string | undefined;
@@ -431,7 +431,7 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         city?: string | undefined;
         province_state?: string | undefined;
         postal_code?: string | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     } | undefined;
 }, {
     status: "PENDING" | "FAILED" | "ACTIVE" | "INACTIVE" | "EXPIRED";
@@ -441,7 +441,7 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
     updated: string;
     business_id: string;
     reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     description?: string | undefined;
     metadata?: Record<string, unknown> | undefined;
     reference_id?: string | undefined;
@@ -459,20 +459,20 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         card_expiry_year: string;
         network: string;
         type?: "CREDIT" | "DEBIT" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         issuer?: string | undefined;
     } | undefined;
     bank_account?: {
         account_number: string;
         account_holder_name: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         bank_code: string;
         account_type?: string | undefined;
     } | undefined;
     ewallet?: {
         account_details: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     } | undefined;
     billing_information?: {
         street_line1?: string | undefined;
@@ -480,7 +480,7 @@ declare const PaymentMethodResourceSchema: z.ZodObject<{
         city?: string | undefined;
         province_state?: string | undefined;
         postal_code?: string | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     } | undefined;
 }>;
 type PaymentMethodResource = z.infer<typeof PaymentMethodResourceSchema>;
@@ -548,7 +548,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -556,7 +556,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -564,7 +564,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
         shipping_address: z.ZodOptional<z.ZodObject<{
             first_name: z.ZodOptional<z.ZodString>;
@@ -573,7 +573,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -581,7 +581,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -589,7 +589,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         customer_name?: string | undefined;
@@ -602,7 +602,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -611,7 +611,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }, {
         customer_name?: string | undefined;
@@ -624,7 +624,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -633,7 +633,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }>>;
     customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -657,7 +657,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
     payment_methods: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     mid_label: z.ZodOptional<z.ZodString>;
     should_authenticate_credit_card: z.ZodOptional<z.ZodBoolean>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     items: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         quantity: z.ZodNumber;
@@ -697,7 +697,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
     amount: number;
     external_id: string;
     payer_email: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: Record<string, unknown> | undefined;
     success_redirect_url?: string | undefined;
     failure_redirect_url?: string | undefined;
@@ -719,7 +719,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -728,7 +728,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -760,7 +760,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
     amount: number;
     external_id: string;
     payer_email: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: Record<string, unknown> | undefined;
     success_redirect_url?: string | undefined;
     failure_redirect_url?: string | undefined;
@@ -782,7 +782,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -791,7 +791,7 @@ declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -836,7 +836,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -844,7 +844,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -852,7 +852,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
         shipping_address: z.ZodOptional<z.ZodObject<{
             first_name: z.ZodOptional<z.ZodString>;
@@ -861,7 +861,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -869,7 +869,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -877,7 +877,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         customer_name?: string | undefined;
@@ -890,7 +890,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -899,7 +899,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }, {
         customer_name?: string | undefined;
@@ -912,7 +912,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -921,7 +921,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }>>;
     customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -981,7 +981,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -990,7 +990,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -1025,7 +1025,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1034,7 +1034,7 @@ declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -1068,7 +1068,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
     should_send_email: z.ZodBoolean;
     created: z.ZodString;
     updated: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     paid_amount: z.ZodOptional<z.ZodNumber>;
     credit_card_charge_id: z.ZodOptional<z.ZodString>;
     payment_method: z.ZodOptional<z.ZodString>;
@@ -1094,7 +1094,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -1102,7 +1102,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -1110,7 +1110,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
         shipping_address: z.ZodOptional<z.ZodObject<{
             first_name: z.ZodOptional<z.ZodString>;
@@ -1119,7 +1119,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -1127,7 +1127,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -1135,7 +1135,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         customer_name?: string | undefined;
@@ -1148,7 +1148,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1157,7 +1157,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }, {
         customer_name?: string | undefined;
@@ -1170,7 +1170,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1179,7 +1179,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }>>;
     customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -1293,7 +1293,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
 }, "strip", z.ZodTypeAny, {
     status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     description: string;
     id: string;
     created: string;
@@ -1327,7 +1327,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1336,7 +1336,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -1392,7 +1392,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
     }[] | undefined;
 }, {
     status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     description: string;
     id: string;
     created: string;
@@ -1426,7 +1426,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1435,7 +1435,7 @@ declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -1559,8 +1559,8 @@ type PaymentRequestStatus = z.infer<typeof PaymentRequestStatusSchema>;
 declare const CreatePaymentRequestSchema: z.ZodObject<{
     reference_id: z.ZodString;
     type: z.ZodUnion<[z.ZodLiteral<"PAY">, z.ZodLiteral<"PAY_AND_SAVE">, z.ZodLiteral<"REUSABLE_PAYMENT_CODE">]>;
-    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     request_amount: z.ZodNumber;
     payment_method: z.ZodObject<{
         type: z.ZodString;
@@ -1838,14 +1838,14 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         city: z.ZodOptional<z.ZodString>;
         province: z.ZodOptional<z.ZodString>;
         postal_code: z.ZodOptional<z.ZodString>;
-        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         phone_number?: string | undefined;
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }, {
         name: string;
@@ -1853,7 +1853,7 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }>>;
     items: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -1883,8 +1883,8 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
     failure_redirect_url: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     payment_method: {
         type: string;
@@ -1958,14 +1958,14 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
 }, {
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     payment_method: {
         type: string;
@@ -2039,7 +2039,7 @@ declare const CreatePaymentRequestSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
@@ -2049,8 +2049,8 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
     id: z.ZodString;
     reference_id: z.ZodString;
     type: z.ZodUnion<[z.ZodLiteral<"PAY">, z.ZodLiteral<"PAY_AND_SAVE">, z.ZodLiteral<"REUSABLE_PAYMENT_CODE">]>;
-    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     request_amount: z.ZodNumber;
     paid_amount: z.ZodOptional<z.ZodNumber>;
     status: z.ZodUnion<[z.ZodLiteral<"PENDING">, z.ZodLiteral<"REQUIRES_ACTION">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"VOIDED">, z.ZodLiteral<"CANCELED">]>;
@@ -2330,14 +2330,14 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         city: z.ZodOptional<z.ZodString>;
         province: z.ZodOptional<z.ZodString>;
         postal_code: z.ZodOptional<z.ZodString>;
-        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         phone_number?: string | undefined;
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }, {
         name: string;
@@ -2345,7 +2345,7 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }>>;
     items: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -2393,8 +2393,8 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -2476,7 +2476,7 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     failure_reason?: string | undefined;
@@ -2484,8 +2484,8 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
 }, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -2567,7 +2567,7 @@ declare const PaymentRequestResourceSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     failure_reason?: string | undefined;
@@ -2796,7 +2796,7 @@ declare const CreatePayoutSchema: z.ZodObject<{
         };
     }>]>;
     amount: z.ZodNumber;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     description: z.ZodOptional<z.ZodString>;
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
     receipt_notification: z.ZodOptional<z.ZodObject<{
@@ -2813,7 +2813,7 @@ declare const CreatePayoutSchema: z.ZodObject<{
         email_bcc?: string[] | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_code: "EWALLET" | "BANK" | "CASH";
     channel_properties: {
@@ -2847,7 +2847,7 @@ declare const CreatePayoutSchema: z.ZodObject<{
         email_bcc?: string[] | undefined;
     } | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_code: "EWALLET" | "BANK" | "CASH";
     channel_properties: {
@@ -2975,7 +2975,7 @@ declare const PayoutResourceSchema: z.ZodObject<{
         };
     }>]>;
     amount: z.ZodNumber;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     status: z.ZodUnion<[z.ZodLiteral<"ACCEPTED">, z.ZodLiteral<"PENDING">, z.ZodLiteral<"PROCESSING">, z.ZodLiteral<"COMPLETED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"CANCELLED">, z.ZodLiteral<"REVERSED">]>;
     description: z.ZodOptional<z.ZodString>;
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
@@ -2998,7 +2998,7 @@ declare const PayoutResourceSchema: z.ZodObject<{
     }>>;
 }, "strip", z.ZodTypeAny, {
     status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -3038,7 +3038,7 @@ declare const PayoutResourceSchema: z.ZodObject<{
     estimated_arrival_time?: string | undefined;
 }, {
     status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -3126,14 +3126,14 @@ type CancelPayout = z.infer<typeof CancelPayoutSchema>;
 
 declare const BalanceResourceSchema: z.ZodObject<{
     balance: z.ZodNumber;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     account_type: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     balance: number;
     account_type?: string | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     balance: number;
     account_type?: string | undefined;
 }>;
@@ -3148,7 +3148,7 @@ declare const TransactionResourceSchema: z.ZodObject<{
     type: z.ZodUnion<[z.ZodLiteral<"PAYMENT">, z.ZodLiteral<"PAYOUT">, z.ZodLiteral<"REFUND">, z.ZodLiteral<"FEE">, z.ZodLiteral<"ADJUSTMENT">]>;
     status: z.ZodUnion<[z.ZodLiteral<"PENDING">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"CANCELLED">]>;
     amount: z.ZodNumber;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     created: z.ZodString;
     updated: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
@@ -3156,7 +3156,7 @@ declare const TransactionResourceSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
     type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     id: string;
     created: string;
     updated: string;
@@ -3167,7 +3167,7 @@ declare const TransactionResourceSchema: z.ZodObject<{
 }, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
     type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     id: string;
     created: string;
     updated: string;
@@ -3432,29 +3432,29 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -3521,7 +3521,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3573,7 +3573,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3690,7 +3690,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3788,7 +3788,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4008,29 +4008,29 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -4097,7 +4097,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4149,7 +4149,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4258,7 +4258,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4348,7 +4348,7 @@ declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4611,29 +4611,29 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -4700,7 +4700,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4752,7 +4752,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4874,7 +4874,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -4975,7 +4975,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -5196,29 +5196,29 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -5285,7 +5285,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -5337,7 +5337,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -5451,7 +5451,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -5544,7 +5544,7 @@ declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObje
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -5808,29 +5808,29 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: z.ZodObject<{
                     account_id: z.ZodString;
                     account_holder_name: z.ZodOptional<z.ZodString>;
-                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
                 }, "strip", z.ZodTypeAny, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -5897,7 +5897,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5949,7 +5949,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6071,7 +6071,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6172,7 +6172,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6393,29 +6393,29 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: z.ZodObject<{
                     account_id: z.ZodString;
                     account_holder_name: z.ZodOptional<z.ZodString>;
-                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
                 }, "strip", z.ZodTypeAny, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -6482,7 +6482,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6534,7 +6534,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6648,7 +6648,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6741,7 +6741,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6845,7 +6845,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -6938,7 +6938,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7042,7 +7042,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7135,7 +7135,7 @@ declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7403,29 +7403,29 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: z.ZodObject<{
                     account_id: z.ZodString;
                     account_holder_name: z.ZodOptional<z.ZodString>;
-                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
                 }, "strip", z.ZodTypeAny, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -7492,7 +7492,7 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7544,7 +7544,7 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7663,7 +7663,7 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7763,7 +7763,7 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7866,7 +7866,7 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -7969,7 +7969,7 @@ declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -8003,7 +8003,7 @@ declare const CheckoutMethodSchema: z.ZodUnion<[z.ZodLiteral<"ONE_TIME_PAYMENT">
 type CheckoutMethod = z.infer<typeof CheckoutMethodSchema>;
 declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z.ZodObject<{
     reference_id: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     amount: z.ZodNumber;
     checkout_method: z.ZodLiteral<"ONE_TIME_PAYMENT">;
     channel_code: z.ZodUnion<[z.ZodLiteral<"ID_OVO">, z.ZodLiteral<"ID_DANA">, z.ZodLiteral<"ID_LINKAJA">, z.ZodLiteral<"ID_SHOPEEPAY">, z.ZodLiteral<"ID_ASTRAPAY">, z.ZodLiteral<"ID_JENIUSPAY">, z.ZodLiteral<"ID_SAKUKU">, z.ZodLiteral<"PH_PAYMAYA">, z.ZodLiteral<"PH_GCASH">, z.ZodLiteral<"PH_GRABPAY">, z.ZodLiteral<"PH_SHOPEEPAY">, z.ZodLiteral<"VN_APPOTA">, z.ZodLiteral<"VN_MOMO">, z.ZodLiteral<"VN_SHOPEEPAY">, z.ZodLiteral<"VN_VNPTWALLET">, z.ZodLiteral<"VN_VIETTELPAY">, z.ZodLiteral<"VN_ZALOPAY">, z.ZodLiteral<"TH_WECHATPAY">, z.ZodLiteral<"TH_LINEPAY">, z.ZodLiteral<"TH_TRUEMONEY">, z.ZodLiteral<"TH_SHOPEEPAY">, z.ZodLiteral<"MY_TOUCHNGO">, z.ZodLiteral<"MY_SHOPEEPAY">, z.ZodLiteral<"MY_GRABPAY">]>;
@@ -8035,7 +8035,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
         reference_id: z.ZodString;
         name: z.ZodString;
         category: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         price: z.ZodNumber;
         quantity: z.ZodNumber;
         type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -8046,7 +8046,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }, "strip", z.ZodTypeAny, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8058,7 +8058,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8070,7 +8070,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }>, "many">>;
     metadata: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_code: "ID_OVO" | "ID_DANA" | "ID_LINKAJA" | "ID_SHOPEEPAY" | "ID_ASTRAPAY" | "ID_JENIUSPAY" | "ID_SAKUKU" | "PH_PAYMAYA" | "PH_GCASH" | "PH_GRABPAY" | "PH_SHOPEEPAY" | "VN_APPOTA" | "VN_MOMO" | "VN_SHOPEEPAY" | "VN_VNPTWALLET" | "VN_VIETTELPAY" | "VN_ZALOPAY" | "TH_WECHATPAY" | "TH_LINEPAY" | "TH_TRUEMONEY" | "TH_SHOPEEPAY" | "MY_TOUCHNGO" | "MY_SHOPEEPAY" | "MY_GRABPAY";
     channel_properties: {
@@ -8089,7 +8089,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8100,7 +8100,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
         subcategory?: string | undefined;
     }[] | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_code: "ID_OVO" | "ID_DANA" | "ID_LINKAJA" | "ID_SHOPEEPAY" | "ID_ASTRAPAY" | "ID_JENIUSPAY" | "ID_SAKUKU" | "PH_PAYMAYA" | "PH_GCASH" | "PH_GRABPAY" | "PH_SHOPEEPAY" | "VN_APPOTA" | "VN_MOMO" | "VN_SHOPEEPAY" | "VN_VNPTWALLET" | "VN_VIETTELPAY" | "VN_ZALOPAY" | "TH_WECHATPAY" | "TH_LINEPAY" | "TH_TRUEMONEY" | "TH_SHOPEEPAY" | "MY_TOUCHNGO" | "MY_SHOPEEPAY" | "MY_GRABPAY";
     channel_properties: {
@@ -8119,7 +8119,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8131,7 +8131,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }[] | undefined;
 }>, z.ZodObject<{
     reference_id: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     amount: z.ZodNumber;
     checkout_method: z.ZodLiteral<"TOKENIZED_PAYMENT">;
     channel_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"ID_OVO">, z.ZodLiteral<"ID_DANA">, z.ZodLiteral<"ID_LINKAJA">, z.ZodLiteral<"ID_SHOPEEPAY">, z.ZodLiteral<"ID_ASTRAPAY">, z.ZodLiteral<"ID_JENIUSPAY">, z.ZodLiteral<"ID_SAKUKU">, z.ZodLiteral<"PH_PAYMAYA">, z.ZodLiteral<"PH_GCASH">, z.ZodLiteral<"PH_GRABPAY">, z.ZodLiteral<"PH_SHOPEEPAY">, z.ZodLiteral<"VN_APPOTA">, z.ZodLiteral<"VN_MOMO">, z.ZodLiteral<"VN_SHOPEEPAY">, z.ZodLiteral<"VN_VNPTWALLET">, z.ZodLiteral<"VN_VIETTELPAY">, z.ZodLiteral<"VN_ZALOPAY">, z.ZodLiteral<"TH_WECHATPAY">, z.ZodLiteral<"TH_LINEPAY">, z.ZodLiteral<"TH_TRUEMONEY">, z.ZodLiteral<"TH_SHOPEEPAY">, z.ZodLiteral<"MY_TOUCHNGO">, z.ZodLiteral<"MY_SHOPEEPAY">, z.ZodLiteral<"MY_GRABPAY">]>>;
@@ -8163,7 +8163,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
         reference_id: z.ZodString;
         name: z.ZodString;
         category: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         price: z.ZodNumber;
         quantity: z.ZodNumber;
         type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -8174,7 +8174,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }, "strip", z.ZodTypeAny, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8186,7 +8186,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8198,7 +8198,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     }>, "many">>;
     metadata: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_properties: {
         mobile_number?: string | undefined;
@@ -8217,7 +8217,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8228,7 +8228,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
         subcategory?: string | undefined;
     }[] | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_properties: {
         mobile_number?: string | undefined;
@@ -8247,7 +8247,7 @@ declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8264,7 +8264,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     business_id: z.ZodString;
     reference_id: z.ZodString;
     status: z.ZodUnion<[z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"PENDING">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"VOIDED">, z.ZodLiteral<"REFUNDED">]>;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     charge_amount: z.ZodNumber;
     capture_amount: z.ZodOptional<z.ZodNumber>;
     refunded_amount: z.ZodNullable<z.ZodNumber>;
@@ -8511,7 +8511,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
         reference_id: z.ZodString;
         name: z.ZodString;
         category: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         price: z.ZodNumber;
         quantity: z.ZodNumber;
         type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -8522,7 +8522,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8534,7 +8534,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     }, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8547,7 +8547,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     metadata: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -8612,7 +8612,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8631,7 +8631,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     } | undefined;
 }, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -8696,7 +8696,7 @@ declare const EWalletChargeResourceSchema: z.ZodObject<{
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -8754,7 +8754,7 @@ declare const TokenParamsSchema: z.ZodObject<{
     external_id: z.ZodOptional<z.ZodString>;
     card_cvn: z.ZodOptional<z.ZodString>;
     is_multiple_use: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     should_authenticate: z.ZodDefault<z.ZodBoolean>;
     billing_details: z.ZodOptional<z.ZodObject<{
         street_line1: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -8789,7 +8789,7 @@ declare const TokenParamsSchema: z.ZodObject<{
     mid_label: string;
     is_multiple_use: boolean;
     should_authenticate: boolean;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
     card_data?: {
@@ -8814,7 +8814,7 @@ declare const TokenParamsSchema: z.ZodObject<{
     } | undefined;
 }, {
     mid_label: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
     card_data?: {
@@ -8846,21 +8846,21 @@ declare const CardTypeSchema: z.ZodUnion<[z.ZodLiteral<"CREDIT">, z.ZodLiteral<"
 declare const CardBrandSchema: z.ZodUnion<[z.ZodLiteral<"VISA">, z.ZodLiteral<"MASTERCARD">, z.ZodLiteral<"JCB">, z.ZodLiteral<"AMEX">]>;
 declare const CardInfoSchema: z.ZodObject<{
     bank: z.ZodOptional<z.ZodString>;
-    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+    country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"CREDIT">, z.ZodLiteral<"DEBIT">, z.ZodLiteral<"PREPAID">, z.ZodLiteral<"UNKNOWN">]>>;
     brand: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"VISA">, z.ZodLiteral<"MASTERCARD">, z.ZodLiteral<"JCB">, z.ZodLiteral<"AMEX">]>>;
     fingerprint: z.ZodOptional<z.ZodString>;
     card_art_url: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     bank?: string | undefined;
     brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
     fingerprint?: string | undefined;
     card_art_url?: string | undefined;
 }, {
     type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     bank?: string | undefined;
     brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
     fingerprint?: string | undefined;
@@ -8882,21 +8882,21 @@ declare const TokenResourceSchema: z.ZodObject<{
     failure_reason: z.ZodOptional<z.ZodString>;
     card_info: z.ZodOptional<z.ZodObject<{
         bank: z.ZodOptional<z.ZodString>;
-        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"CREDIT">, z.ZodLiteral<"DEBIT">, z.ZodLiteral<"PREPAID">, z.ZodLiteral<"UNKNOWN">]>>;
         brand: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"VISA">, z.ZodLiteral<"MASTERCARD">, z.ZodLiteral<"JCB">, z.ZodLiteral<"AMEX">]>>;
         fingerprint: z.ZodOptional<z.ZodString>;
         card_art_url: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
         card_art_url?: string | undefined;
     }, {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
@@ -8914,7 +8914,7 @@ declare const TokenResourceSchema: z.ZodObject<{
     payer_authentication_url?: string | undefined;
     card_info?: {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
@@ -8932,7 +8932,7 @@ declare const TokenResourceSchema: z.ZodObject<{
     payer_authentication_url?: string | undefined;
     card_info?: {
         type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-        country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         bank?: string | undefined;
         brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
         fingerprint?: string | undefined;
@@ -8969,10 +8969,10 @@ declare const TokenAuthenticationSchema: z.ZodObject<{
         card_holder_phone_number: string;
     }>>;
     external_id: z.ZodOptional<z.ZodString>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     mid_label: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     token_id?: string | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
@@ -8987,7 +8987,7 @@ declare const TokenAuthenticationSchema: z.ZodObject<{
         card_holder_phone_number: string;
     } | undefined;
 }, {
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     token_id?: string | undefined;
     amount?: string | undefined;
     external_id?: string | undefined;
@@ -9081,7 +9081,7 @@ declare const CreateChargeSchema: z.ZodObject<{
     authentication_id: z.ZodOptional<z.ZodString>;
     capture: z.ZodDefault<z.ZodOptional<z.ZodBoolean>>;
     descriptor: z.ZodOptional<z.ZodString>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     mid_label: z.ZodOptional<z.ZodString>;
     billing_details: z.ZodOptional<z.ZodObject<{
         given_names: z.ZodString;
@@ -9128,7 +9128,7 @@ declare const CreateChargeSchema: z.ZodObject<{
     amount: number;
     external_id: string;
     capture: boolean;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: {} | undefined;
     mid_label?: string | undefined;
     billing_details?: {
@@ -9152,7 +9152,7 @@ declare const CreateChargeSchema: z.ZodObject<{
     token_id: string;
     amount: number;
     external_id: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: {} | undefined;
     mid_label?: string | undefined;
     billing_details?: {
@@ -9274,6 +9274,712 @@ declare const ChargeResourceSchema: z.ZodObject<{
 }>;
 type ChargeResource = z.infer<typeof ChargeResourceSchema>;
 
+declare const SessionTypeSchema: z.ZodUnion<[z.ZodLiteral<"SAVE">, z.ZodLiteral<"PAY">]>;
+type SessionType = z.infer<typeof SessionTypeSchema>;
+declare const AllowSavePaymentMethodSchema: z.ZodUnion<[z.ZodLiteral<"DISABLED">, z.ZodLiteral<"OPTIONAL">, z.ZodLiteral<"FORCED">]>;
+type AllowSavePaymentMethod = z.infer<typeof AllowSavePaymentMethodSchema>;
+declare const SessionModeSchema: z.ZodUnion<[z.ZodLiteral<"PAYMENT_LINK">, z.ZodLiteral<"COMPONENTS">]>;
+type SessionMode = z.infer<typeof SessionModeSchema>;
+declare const CaptureMethodSchema: z.ZodUnion<[z.ZodLiteral<"AUTOMATIC">, z.ZodLiteral<"MANUAL">]>;
+type CaptureMethod = z.infer<typeof CaptureMethodSchema>;
+declare const SessionStatusSchema: z.ZodUnion<[z.ZodLiteral<"ACTIVE">, z.ZodLiteral<"COMPLETED">, z.ZodLiteral<"EXPIRED">, z.ZodLiteral<"CANCELED">]>;
+type SessionStatus = z.infer<typeof SessionStatusSchema>;
+declare const ItemTypeSchema: z.ZodUnion<[z.ZodLiteral<"DIGITAL_PRODUCT">, z.ZodLiteral<"PHYSICAL_PRODUCT">, z.ZodLiteral<"DIGITAL_SERVICE">, z.ZodLiteral<"PHYSICAL_SERVICE">, z.ZodLiteral<"FEE">]>;
+type ItemType = z.infer<typeof ItemTypeSchema>;
+declare const GenderSchema: z.ZodUnion<[z.ZodLiteral<"MALE">, z.ZodLiteral<"FEMALE">, z.ZodLiteral<"OTHER">]>;
+type Gender = z.infer<typeof GenderSchema>;
+declare const IndividualDetailSchema: z.ZodObject<{
+    given_names: z.ZodString;
+    surname: z.ZodOptional<z.ZodString>;
+    nationality: z.ZodOptional<z.ZodString>;
+    place_of_birth: z.ZodOptional<z.ZodString>;
+    date_of_birth: z.ZodOptional<z.ZodString>;
+    gender: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"MALE">, z.ZodLiteral<"FEMALE">, z.ZodLiteral<"OTHER">]>>;
+}, "strip", z.ZodTypeAny, {
+    given_names: string;
+    surname?: string | undefined;
+    nationality?: string | undefined;
+    place_of_birth?: string | undefined;
+    date_of_birth?: string | undefined;
+    gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+}, {
+    given_names: string;
+    surname?: string | undefined;
+    nationality?: string | undefined;
+    place_of_birth?: string | undefined;
+    date_of_birth?: string | undefined;
+    gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+}>;
+type IndividualDetail = z.infer<typeof IndividualDetailSchema>;
+declare const PaymentSessionCustomerDetailsSchema: z.ZodObject<{
+    type: z.ZodLiteral<"INDIVIDUAL">;
+    reference_id: z.ZodString;
+    email: z.ZodOptional<z.ZodString>;
+    mobile_number: z.ZodOptional<z.ZodString>;
+    individual_detail: z.ZodObject<{
+        given_names: z.ZodString;
+        surname: z.ZodOptional<z.ZodString>;
+        nationality: z.ZodOptional<z.ZodString>;
+        place_of_birth: z.ZodOptional<z.ZodString>;
+        date_of_birth: z.ZodOptional<z.ZodString>;
+        gender: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"MALE">, z.ZodLiteral<"FEMALE">, z.ZodLiteral<"OTHER">]>>;
+    }, "strip", z.ZodTypeAny, {
+        given_names: string;
+        surname?: string | undefined;
+        nationality?: string | undefined;
+        place_of_birth?: string | undefined;
+        date_of_birth?: string | undefined;
+        gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+    }, {
+        given_names: string;
+        surname?: string | undefined;
+        nationality?: string | undefined;
+        place_of_birth?: string | undefined;
+        date_of_birth?: string | undefined;
+        gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+    }>;
+}, "strip", z.ZodTypeAny, {
+    type: "INDIVIDUAL";
+    individual_detail: {
+        given_names: string;
+        surname?: string | undefined;
+        nationality?: string | undefined;
+        place_of_birth?: string | undefined;
+        date_of_birth?: string | undefined;
+        gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+    };
+    reference_id: string;
+    email?: string | undefined;
+    mobile_number?: string | undefined;
+}, {
+    type: "INDIVIDUAL";
+    individual_detail: {
+        given_names: string;
+        surname?: string | undefined;
+        nationality?: string | undefined;
+        place_of_birth?: string | undefined;
+        date_of_birth?: string | undefined;
+        gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+    };
+    reference_id: string;
+    email?: string | undefined;
+    mobile_number?: string | undefined;
+}>;
+type PaymentSessionCustomerDetails = z.infer<typeof PaymentSessionCustomerDetailsSchema>;
+declare const PaymentSessionItemSchema: z.ZodObject<{
+    reference_id: z.ZodString;
+    type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"DIGITAL_PRODUCT">, z.ZodLiteral<"PHYSICAL_PRODUCT">, z.ZodLiteral<"DIGITAL_SERVICE">, z.ZodLiteral<"PHYSICAL_SERVICE">, z.ZodLiteral<"FEE">]>>;
+    name: z.ZodString;
+    description: z.ZodOptional<z.ZodString>;
+    net_unit_amount: z.ZodNumber;
+    quantity: z.ZodNumber;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
+    url: z.ZodOptional<z.ZodString>;
+    image_url: z.ZodOptional<z.ZodString>;
+    category: z.ZodString;
+    subcategory: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+}, "strip", z.ZodTypeAny, {
+    category: string;
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    name: string;
+    quantity: number;
+    net_unit_amount: number;
+    url?: string | undefined;
+    type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | undefined;
+    subcategory?: string | undefined;
+    image_url?: string | undefined;
+}, {
+    category: string;
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    name: string;
+    quantity: number;
+    net_unit_amount: number;
+    url?: string | undefined;
+    type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | undefined;
+    subcategory?: string | undefined;
+    image_url?: string | undefined;
+}>;
+type PaymentSessionItem = z.infer<typeof PaymentSessionItemSchema>;
+declare const ChannelPropertiesSchema: z.ZodObject<{
+    allowed_payment_channels: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+}, "strip", z.ZodTypeAny, {
+    allowed_payment_channels?: string[] | undefined;
+}, {
+    allowed_payment_channels?: string[] | undefined;
+}>;
+type ChannelProperties = z.infer<typeof ChannelPropertiesSchema>;
+declare const MerchantMetadataSchema: z.ZodOptional<z.ZodNullable<z.ZodEffects<z.ZodRecord<z.ZodString, z.ZodString>, Record<string, string>, Record<string, string>>>>;
+type MerchantMetadata = z.infer<typeof MerchantMetadataSchema>;
+declare const CreateSessionSchema: z.ZodEffects<z.ZodEffects<z.ZodObject<{
+    reference_id: z.ZodString;
+    customer_id: z.ZodOptional<z.ZodString>;
+    customer: z.ZodOptional<z.ZodObject<{
+        type: z.ZodLiteral<"INDIVIDUAL">;
+        reference_id: z.ZodString;
+        email: z.ZodOptional<z.ZodString>;
+        mobile_number: z.ZodOptional<z.ZodString>;
+        individual_detail: z.ZodObject<{
+            given_names: z.ZodString;
+            surname: z.ZodOptional<z.ZodString>;
+            nationality: z.ZodOptional<z.ZodString>;
+            place_of_birth: z.ZodOptional<z.ZodString>;
+            date_of_birth: z.ZodOptional<z.ZodString>;
+            gender: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"MALE">, z.ZodLiteral<"FEMALE">, z.ZodLiteral<"OTHER">]>>;
+        }, "strip", z.ZodTypeAny, {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        }, {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        }>;
+    }, "strip", z.ZodTypeAny, {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    }, {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    }>>;
+    session_type: z.ZodUnion<[z.ZodLiteral<"SAVE">, z.ZodLiteral<"PAY">]>;
+    allow_save_payment_method: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"DISABLED">, z.ZodLiteral<"OPTIONAL">, z.ZodLiteral<"FORCED">]>>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
+    amount: z.ZodNumber;
+    mode: z.ZodUnion<[z.ZodLiteral<"PAYMENT_LINK">, z.ZodLiteral<"COMPONENTS">]>;
+    capture_method: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"AUTOMATIC">, z.ZodLiteral<"MANUAL">]>>;
+    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+    channel_properties: z.ZodOptional<z.ZodObject<{
+        allowed_payment_channels: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        allowed_payment_channels?: string[] | undefined;
+    }, {
+        allowed_payment_channels?: string[] | undefined;
+    }>>;
+    expires_at: z.ZodOptional<z.ZodString>;
+    locale: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodOptional<z.ZodNullable<z.ZodEffects<z.ZodRecord<z.ZodString, z.ZodString>, Record<string, string>, Record<string, string>>>>;
+    description: z.ZodOptional<z.ZodString>;
+    items: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        reference_id: z.ZodString;
+        type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"DIGITAL_PRODUCT">, z.ZodLiteral<"PHYSICAL_PRODUCT">, z.ZodLiteral<"DIGITAL_SERVICE">, z.ZodLiteral<"PHYSICAL_SERVICE">, z.ZodLiteral<"FEE">]>>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        net_unit_amount: z.ZodNumber;
+        quantity: z.ZodNumber;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
+        url: z.ZodOptional<z.ZodString>;
+        image_url: z.ZodOptional<z.ZodString>;
+        category: z.ZodString;
+        subcategory: z.ZodOptional<z.ZodString>;
+        metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    }, "strip", z.ZodTypeAny, {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }, {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }>, "many">>>;
+    success_return_url: z.ZodOptional<z.ZodString>;
+    cancel_return_url: z.ZodOptional<z.ZodString>;
+}, "strip", z.ZodTypeAny, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    amount: number;
+    session_type: "PAY" | "SAVE";
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    customer?: {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    } | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    amount: number;
+    session_type: "PAY" | "SAVE";
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    customer?: {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    } | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}>, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    amount: number;
+    session_type: "PAY" | "SAVE";
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    customer?: {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    } | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    amount: number;
+    session_type: "PAY" | "SAVE";
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    customer?: {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    } | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}>, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    amount: number;
+    session_type: "PAY" | "SAVE";
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    customer?: {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    } | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    amount: number;
+    session_type: "PAY" | "SAVE";
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    customer?: {
+        type: "INDIVIDUAL";
+        individual_detail: {
+            given_names: string;
+            surname?: string | undefined;
+            nationality?: string | undefined;
+            place_of_birth?: string | undefined;
+            date_of_birth?: string | undefined;
+            gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+        };
+        reference_id: string;
+        email?: string | undefined;
+        mobile_number?: string | undefined;
+    } | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}>;
+type CreateSession = z.infer<typeof CreateSessionSchema>;
+declare const SessionResourceSchema: z.ZodObject<{
+    payment_session_id: z.ZodString;
+    created: z.ZodString;
+    updated: z.ZodString;
+    reference_id: z.ZodString;
+    customer_id: z.ZodOptional<z.ZodString>;
+    session_type: z.ZodUnion<[z.ZodLiteral<"SAVE">, z.ZodLiteral<"PAY">]>;
+    allow_save_payment_method: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"DISABLED">, z.ZodLiteral<"OPTIONAL">, z.ZodLiteral<"FORCED">]>>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
+    amount: z.ZodNumber;
+    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+    mode: z.ZodUnion<[z.ZodLiteral<"PAYMENT_LINK">, z.ZodLiteral<"COMPONENTS">]>;
+    capture_method: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"AUTOMATIC">, z.ZodLiteral<"MANUAL">]>>;
+    channel_properties: z.ZodOptional<z.ZodObject<{
+        allowed_payment_channels: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    }, "strip", z.ZodTypeAny, {
+        allowed_payment_channels?: string[] | undefined;
+    }, {
+        allowed_payment_channels?: string[] | undefined;
+    }>>;
+    allowed_payment_channels: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    expires_at: z.ZodOptional<z.ZodString>;
+    locale: z.ZodOptional<z.ZodString>;
+    metadata: z.ZodOptional<z.ZodNullable<z.ZodEffects<z.ZodRecord<z.ZodString, z.ZodString>, Record<string, string>, Record<string, string>>>>;
+    description: z.ZodOptional<z.ZodString>;
+    items: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        reference_id: z.ZodString;
+        type: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"DIGITAL_PRODUCT">, z.ZodLiteral<"PHYSICAL_PRODUCT">, z.ZodLiteral<"DIGITAL_SERVICE">, z.ZodLiteral<"PHYSICAL_SERVICE">, z.ZodLiteral<"FEE">]>>;
+        name: z.ZodString;
+        description: z.ZodOptional<z.ZodString>;
+        net_unit_amount: z.ZodNumber;
+        quantity: z.ZodNumber;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
+        url: z.ZodOptional<z.ZodString>;
+        image_url: z.ZodOptional<z.ZodString>;
+        category: z.ZodString;
+        subcategory: z.ZodOptional<z.ZodString>;
+        metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodString>>;
+    }, "strip", z.ZodTypeAny, {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }, {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }>, "many">>>;
+    success_return_url: z.ZodOptional<z.ZodString>;
+    cancel_return_url: z.ZodOptional<z.ZodString>;
+    status: z.ZodUnion<[z.ZodLiteral<"ACTIVE">, z.ZodLiteral<"COMPLETED">, z.ZodLiteral<"EXPIRED">, z.ZodLiteral<"CANCELED">]>;
+    payment_link_url: z.ZodNullable<z.ZodString>;
+    payment_token_id: z.ZodNullable<z.ZodString>;
+    payment_id: z.ZodNullable<z.ZodString>;
+    payment_request_id: z.ZodNullable<z.ZodString>;
+    business_id: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    status: "ACTIVE" | "EXPIRED" | "CANCELED" | "COMPLETED";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    created: string;
+    updated: string;
+    amount: number;
+    business_id: string;
+    payment_id: string | null;
+    payment_request_id: string | null;
+    session_type: "PAY" | "SAVE";
+    payment_session_id: string;
+    payment_link_url: string | null;
+    payment_token_id: string | null;
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allowed_payment_channels?: string[] | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}, {
+    mode: "PAYMENT_LINK" | "COMPONENTS";
+    status: "ACTIVE" | "EXPIRED" | "CANCELED" | "COMPLETED";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+    reference_id: string;
+    created: string;
+    updated: string;
+    amount: number;
+    business_id: string;
+    payment_id: string | null;
+    payment_request_id: string | null;
+    session_type: "PAY" | "SAVE";
+    payment_session_id: string;
+    payment_link_url: string | null;
+    payment_token_id: string | null;
+    expires_at?: string | undefined;
+    description?: string | undefined;
+    metadata?: Record<string, string> | null | undefined;
+    channel_properties?: {
+        allowed_payment_channels?: string[] | undefined;
+    } | undefined;
+    customer_id?: string | undefined;
+    success_return_url?: string | undefined;
+    cancel_return_url?: string | undefined;
+    items?: {
+        category: string;
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+        reference_id: string;
+        name: string;
+        quantity: number;
+        net_unit_amount: number;
+        url?: string | undefined;
+        type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+        description?: string | undefined;
+        metadata?: Record<string, string> | undefined;
+        subcategory?: string | undefined;
+        image_url?: string | undefined;
+    }[] | null | undefined;
+    locale?: string | undefined;
+    capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+    allowed_payment_channels?: string[] | undefined;
+    allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+}>;
+type SessionResource = z.infer<typeof SessionResourceSchema>;
+
 interface XenditOptions {
     /**
      * Rate limiting configuration
@@ -9354,7 +10060,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -9444,7 +10150,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -9545,7 +10251,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -9638,7 +10344,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -9742,7 +10448,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -9835,7 +10541,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -9940,7 +10646,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         properties: {
                             account_id: string;
                             account_holder_name?: string | undefined;
-                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                         };
                     } | {
                         type: "SOCIAL_MEDIA";
@@ -10033,7 +10739,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         properties: {
                             account_id: string;
                             account_holder_name?: string | undefined;
-                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                         };
                     } | {
                         type: "SOCIAL_MEDIA";
@@ -10138,7 +10844,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         properties: {
                             account_id: string;
                             account_holder_name?: string | undefined;
-                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                         };
                     } | {
                         type: "SOCIAL_MEDIA";
@@ -10240,7 +10946,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -10333,7 +11039,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -10363,7 +11069,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     };
     ewallet: {
         charge: (data: {
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             channel_code: "ID_OVO" | "ID_DANA" | "ID_LINKAJA" | "ID_SHOPEEPAY" | "ID_ASTRAPAY" | "ID_JENIUSPAY" | "ID_SAKUKU" | "PH_PAYMAYA" | "PH_GCASH" | "PH_GRABPAY" | "PH_SHOPEEPAY" | "VN_APPOTA" | "VN_MOMO" | "VN_SHOPEEPAY" | "VN_VNPTWALLET" | "VN_VIETTELPAY" | "VN_ZALOPAY" | "TH_WECHATPAY" | "TH_LINEPAY" | "TH_TRUEMONEY" | "TH_SHOPEEPAY" | "MY_TOUCHNGO" | "MY_SHOPEEPAY" | "MY_GRABPAY";
             channel_properties: {
@@ -10382,7 +11088,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -10393,7 +11099,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 subcategory?: string | undefined;
             }[] | undefined;
         } | {
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             channel_properties: {
                 mobile_number?: string | undefined;
@@ -10412,7 +11118,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -10424,7 +11130,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             }[] | undefined;
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -10489,7 +11195,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -10511,7 +11217,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             id: string;
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -10576,7 +11282,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -10599,19 +11305,19 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         create: (data: {
             type: "BANK_ACCOUNT" | "EWALLET" | "QR_CODE" | "CARD" | "OVER_THE_COUNTER" | "VIRTUAL_ACCOUNT";
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
             card?: {
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 channel_properties?: {
                     success_return_url?: string | undefined;
                     failure_return_url?: string | undefined;
                 } | undefined;
             } | undefined;
             bank_account?: {
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 channel_properties?: {
                     card_last_four?: string | undefined;
                     card_expiry_month?: string | undefined;
@@ -10636,7 +11342,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             updated: string;
             business_id: string;
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
@@ -10654,20 +11360,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 card_expiry_year: string;
                 network: string;
                 type?: "CREDIT" | "DEBIT" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 issuer?: string | undefined;
             } | undefined;
             bank_account?: {
                 account_number: string;
                 account_holder_name: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 bank_code: string;
                 account_type?: string | undefined;
             } | undefined;
             ewallet?: {
                 account_details: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             } | undefined;
             billing_information?: {
                 street_line1?: string | undefined;
@@ -10675,7 +11381,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 province_state?: string | undefined;
                 postal_code?: string | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>;
         get: (data: {
@@ -10688,7 +11394,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             updated: string;
             business_id: string;
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
@@ -10706,20 +11412,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 card_expiry_year: string;
                 network: string;
                 type?: "CREDIT" | "DEBIT" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 issuer?: string | undefined;
             } | undefined;
             bank_account?: {
                 account_number: string;
                 account_holder_name: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 bank_code: string;
                 account_type?: string | undefined;
             } | undefined;
             ewallet?: {
                 account_details: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             } | undefined;
             billing_information?: {
                 street_line1?: string | undefined;
@@ -10727,7 +11433,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 province_state?: string | undefined;
                 postal_code?: string | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>;
         list: (params?: ListPaymentMethods) => Promise<{
@@ -10739,7 +11445,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 updated: string;
                 business_id: string;
                 reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 description?: string | undefined;
                 metadata?: Record<string, unknown> | undefined;
                 reference_id?: string | undefined;
@@ -10757,20 +11463,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     card_expiry_year: string;
                     network: string;
                     type?: "CREDIT" | "DEBIT" | undefined;
-                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     issuer?: string | undefined;
                 } | undefined;
                 bank_account?: {
                     account_number: string;
                     account_holder_name: string;
-                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                     bank_code: string;
                     account_type?: string | undefined;
                 } | undefined;
                 ewallet?: {
                     account_details: string;
-                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 } | undefined;
                 billing_information?: {
                     street_line1?: string | undefined;
@@ -10778,7 +11484,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     city?: string | undefined;
                     province_state?: string | undefined;
                     postal_code?: string | undefined;
-                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             }[];
             has_more: boolean;
@@ -10804,7 +11510,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             updated: string;
             business_id: string;
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
@@ -10822,20 +11528,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 card_expiry_year: string;
                 network: string;
                 type?: "CREDIT" | "DEBIT" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 issuer?: string | undefined;
             } | undefined;
             bank_account?: {
                 account_number: string;
                 account_holder_name: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 bank_code: string;
                 account_type?: string | undefined;
             } | undefined;
             ewallet?: {
                 account_details: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             } | undefined;
             billing_information?: {
                 street_line1?: string | undefined;
@@ -10843,7 +11549,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 province_state?: string | undefined;
                 postal_code?: string | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>;
     };
@@ -10853,7 +11559,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             amount: number;
             external_id: string;
             payer_email: string;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             metadata?: Record<string, unknown> | undefined;
             success_redirect_url?: string | undefined;
             failure_redirect_url?: string | undefined;
@@ -10875,7 +11581,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -10884,7 +11590,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -10913,7 +11619,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             }[] | undefined;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -10947,7 +11653,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -10956,7 +11662,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -11015,7 +11721,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             invoice_id: string;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -11049,7 +11755,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -11058,7 +11764,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -11116,7 +11822,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         list: (params?: ListInvoices) => Promise<{
             data: {
                 status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 description: string;
                 id: string;
                 created: string;
@@ -11150,7 +11856,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                     shipping_address?: {
                         city?: string | undefined;
@@ -11159,7 +11865,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                 } | undefined;
                 customer_notification_preference?: {
@@ -11236,7 +11942,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                     shipping_address?: {
                         city?: string | undefined;
@@ -11245,7 +11951,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                 } | undefined;
                 customer_notification_preference?: {
@@ -11265,7 +11971,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             invoice_id: string;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -11299,7 +12005,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -11308,7 +12014,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -11367,7 +12073,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             invoice_id: string;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -11401,7 +12107,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -11410,7 +12116,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -11469,8 +12175,8 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     paymentRequest: {
         create: (data: {
             type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-            country: "PH" | "ID" | "MY" | "TH" | "VN";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             payment_method: {
                 type: string;
@@ -11544,15 +12250,15 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 postal_code?: string | undefined;
                 address?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 province?: string | undefined;
             } | undefined;
             capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
             type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-            country: "PH" | "ID" | "MY" | "TH" | "VN";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -11634,7 +12340,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 postal_code?: string | undefined;
                 address?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 province?: string | undefined;
             } | undefined;
             failure_reason?: string | undefined;
@@ -11645,8 +12351,8 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
             type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-            country: "PH" | "ID" | "MY" | "TH" | "VN";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -11728,7 +12434,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 postal_code?: string | undefined;
                 address?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 province?: string | undefined;
             } | undefined;
             failure_reason?: string | undefined;
@@ -11738,8 +12444,8 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             data: {
                 status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
                 type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-                country: "PH" | "ID" | "MY" | "TH" | "VN";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 id: string;
                 created: string;
@@ -11821,7 +12527,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     city?: string | undefined;
                     postal_code?: string | undefined;
                     address?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     province?: string | undefined;
                 } | undefined;
                 failure_reason?: string | undefined;
@@ -11890,7 +12596,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     };
     payout: {
         create: (data: {
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             channel_code: "EWALLET" | "BANK" | "CASH";
             channel_properties: {
@@ -11925,7 +12631,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             } | undefined;
         }) => Promise<{
             status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -11968,7 +12674,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             id: string;
         }) => Promise<{
             status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -12010,7 +12716,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         list: (params?: ListPayouts) => Promise<{
             data: {
                 status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 id: string;
                 created: string;
@@ -12060,7 +12766,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             id: string;
         }) => Promise<{
             status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -12102,7 +12808,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     };
     balance: {
         get: () => Promise<{
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             balance: number;
             account_type?: string | undefined;
         }>;
@@ -12110,7 +12816,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             data: {
                 status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
                 type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 id: string;
                 created: string;
                 updated: string;
@@ -12132,7 +12838,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             mid_label: string;
             is_multiple_use: boolean;
             should_authenticate: boolean;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             amount?: string | undefined;
             external_id?: string | undefined;
             card_data?: {
@@ -12167,7 +12873,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             payer_authentication_url?: string | undefined;
             card_info?: {
                 type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 bank?: string | undefined;
                 brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
                 fingerprint?: string | undefined;
@@ -12188,7 +12894,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             payer_authentication_url?: string | undefined;
             card_info?: {
                 type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 bank?: string | undefined;
                 brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
                 fingerprint?: string | undefined;
@@ -12196,7 +12902,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             } | undefined;
         }>;
         authenticateToken: (data: {
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             token_id?: string | undefined;
             amount?: string | undefined;
             external_id?: string | undefined;
@@ -12324,7 +13030,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             amount: number;
             external_id: string;
             capture: boolean;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             metadata?: {} | undefined;
             mid_label?: string | undefined;
             billing_details?: {
@@ -12405,6 +13111,99 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             cvn_code?: "M" | "N" | "P" | undefined;
         }>;
     };
+    session: {
+        create: (data: {
+            mode: "PAYMENT_LINK" | "COMPONENTS";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+            reference_id: string;
+            amount: number;
+            session_type: "PAY" | "SAVE";
+            expires_at?: string | undefined;
+            description?: string | undefined;
+            metadata?: Record<string, string> | null | undefined;
+            channel_properties?: {
+                allowed_payment_channels?: string[] | undefined;
+            } | undefined;
+            customer_id?: string | undefined;
+            success_return_url?: string | undefined;
+            cancel_return_url?: string | undefined;
+            customer?: {
+                type: "INDIVIDUAL";
+                individual_detail: {
+                    given_names: string;
+                    surname?: string | undefined;
+                    nationality?: string | undefined;
+                    place_of_birth?: string | undefined;
+                    date_of_birth?: string | undefined;
+                    gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+                };
+                reference_id: string;
+                email?: string | undefined;
+                mobile_number?: string | undefined;
+            } | undefined;
+            items?: {
+                category: string;
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+                reference_id: string;
+                name: string;
+                quantity: number;
+                net_unit_amount: number;
+                url?: string | undefined;
+                type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+                description?: string | undefined;
+                metadata?: Record<string, string> | undefined;
+                subcategory?: string | undefined;
+                image_url?: string | undefined;
+            }[] | null | undefined;
+            locale?: string | undefined;
+            capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+            allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+        }) => Promise<{
+            mode: "PAYMENT_LINK" | "COMPONENTS";
+            status: "ACTIVE" | "EXPIRED" | "CANCELED" | "COMPLETED";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+            reference_id: string;
+            created: string;
+            updated: string;
+            amount: number;
+            business_id: string;
+            payment_id: string | null;
+            payment_request_id: string | null;
+            session_type: "PAY" | "SAVE";
+            payment_session_id: string;
+            payment_link_url: string | null;
+            payment_token_id: string | null;
+            expires_at?: string | undefined;
+            description?: string | undefined;
+            metadata?: Record<string, string> | null | undefined;
+            channel_properties?: {
+                allowed_payment_channels?: string[] | undefined;
+            } | undefined;
+            customer_id?: string | undefined;
+            success_return_url?: string | undefined;
+            cancel_return_url?: string | undefined;
+            items?: {
+                category: string;
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+                reference_id: string;
+                name: string;
+                quantity: number;
+                net_unit_amount: number;
+                url?: string | undefined;
+                type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+                description?: string | undefined;
+                metadata?: Record<string, string> | undefined;
+                subcategory?: string | undefined;
+                image_url?: string | undefined;
+            }[] | null | undefined;
+            locale?: string | undefined;
+            capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+            allowed_payment_channels?: string[] | undefined;
+            allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+        }>;
+    };
 };
 
 interface XenditError {
@@ -12465,9 +13264,9 @@ declare const validateInput: <T>(schema: z.ZodSchema<T>, data: unknown, fieldNam
 
 declare const PhoneSchema: z.ZodEffects<z.ZodString, string, string>;
 type Phone = z.infer<typeof PhoneSchema>;
-declare const CountrySchema: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
+declare const CountrySchema: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
 type Country = z.infer<typeof CountrySchema>;
-declare const CurrencySchema: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+declare const CurrencySchema: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
 type Currency = z.infer<typeof CurrencySchema>;
 
 declare function isValidPhone(value: string): value is Phone;
@@ -12712,4 +13511,4 @@ interface SearchPaginationOptions extends PaginationOptions {
 }
 declare function buildSearchParams(options: SearchPaginationOptions): Record<string, string>;
 
-export { AuthenticationError, type AutoPaginationOptions, type BalanceResource, type CancelPayout, type CardBrand, type CardInfo, type CardType, type ChargeResource, type CreateCharge, type CreateInvoice, type CreatePaymentMethod, type CreatePaymentRequest, type CreatePayout, type CreateRefund, type Customer, type CustomerResource, type EWalletChargeParams, type EWalletChargeResource, type ExpireInvoice, type GetCustomer, type GetCustomerByRefId, type GetCustomerByRefIdResource, type GetEWalletChargeParams, type GetInvoice, type GetPaymentMethod, type GetPaymentRequest, type GetPayout, type GetRefund, type InvoiceResource, type ListInvoices, type ListPaymentMethods, type ListPaymentRequests, type ListPayouts, type ListRefunds, type ListTransactions, NotFoundError, type PaginatedResponse, PaginatedResponseSchema, type PaginationMeta, PaginationMetaSchema, type PaginationOptions, type PaymentMethodResource, type PaymentRequestResource, type PaymentRequestStatus, type PaymentRequestType, type PayoutChannelCode, type PayoutResource, type PayoutStatus, type RateLimitConfig, RateLimitError, RateLimiter, type RefundReason, type RefundResource, type RefundStatus, type ReverseAuthorizationParams, type SearchPaginationOptions, type TokenAuthentication, type TokenAuthenticationResource, type TokenAuthorization, type TokenParams, type TokenResource, type TokenStatus, type TransactionResource, type TransactionStatus, type TransactionType, type UpdateInvoice, type UpdateParams, type UpdatePaymentMethod, ValidationError, type WebhookEvent, WebhookEventSchema, type WebhookEventType, WebhookEventTypeSchema, type WebhookHandlers, type WebhookVerificationOptions, Xendit, XenditApiError, type XenditError, XenditErrorSchema, type ZeroAuthorization, buildPaginationParams, buildSearchParams, createPaginator, createRateLimitInterceptor, createRateLimitedAxios, createRetryInterceptor, createWebhookProcessor, fetchAllPages, fetchPaginated, handleAxiosError, handleWebhookEvent, isNotNullOrUndefined, isValidCheckoutMethod, isValidCountry, isValidCurrency, isValidCustomerType, isValidDateString, isValidEmail, isValidPhone, isValidUrl, iterateItems, iteratePages, parseWebhookEvent, setupRateLimit, validateInput, verifyWebhookHmac, verifyWebhookSignature };
+export { type AllowSavePaymentMethod, AuthenticationError, type AutoPaginationOptions, type BalanceResource, type CancelPayout, type CaptureMethod, type CardBrand, type CardInfo, type CardType, type ChannelProperties, type ChargeResource, type CreateCharge, type CreateInvoice, type CreatePaymentMethod, type CreatePaymentRequest, type CreatePayout, type CreateRefund, type CreateSession, type Customer, type CustomerResource, type EWalletChargeParams, type EWalletChargeResource, type ExpireInvoice, type Gender, type GetCustomer, type GetCustomerByRefId, type GetCustomerByRefIdResource, type GetEWalletChargeParams, type GetInvoice, type GetPaymentMethod, type GetPaymentRequest, type GetPayout, type GetRefund, type IndividualDetail, type InvoiceResource, type ItemType, type ListInvoices, type ListPaymentMethods, type ListPaymentRequests, type ListPayouts, type ListRefunds, type ListTransactions, type MerchantMetadata, NotFoundError, type PaginatedResponse, PaginatedResponseSchema, type PaginationMeta, PaginationMetaSchema, type PaginationOptions, type PaymentMethodResource, type PaymentRequestResource, type PaymentRequestStatus, type PaymentRequestType, type PaymentSessionCustomerDetails, type PaymentSessionItem, type PayoutChannelCode, type PayoutResource, type PayoutStatus, type RateLimitConfig, RateLimitError, RateLimiter, type RefundReason, type RefundResource, type RefundStatus, type ReverseAuthorizationParams, type SearchPaginationOptions, type SessionMode, type SessionResource, type SessionStatus, type SessionType, type TokenAuthentication, type TokenAuthenticationResource, type TokenAuthorization, type TokenParams, type TokenResource, type TokenStatus, type TransactionResource, type TransactionStatus, type TransactionType, type UpdateInvoice, type UpdateParams, type UpdatePaymentMethod, ValidationError, type WebhookEvent, WebhookEventSchema, type WebhookEventType, WebhookEventTypeSchema, type WebhookHandlers, type WebhookVerificationOptions, Xendit, XenditApiError, type XenditError, XenditErrorSchema, type ZeroAuthorization, buildPaginationParams, buildSearchParams, createPaginator, createRateLimitInterceptor, createRateLimitedAxios, createRetryInterceptor, createWebhookProcessor, fetchAllPages, fetchPaginated, handleAxiosError, handleWebhookEvent, isNotNullOrUndefined, isValidCheckoutMethod, isValidCountry, isValidCurrency, isValidCustomerType, isValidDateString, isValidEmail, isValidPhone, isValidUrl, iterateItems, iteratePages, parseWebhookEvent, setupRateLimit, validateInput, verifyWebhookHmac, verifyWebhookSignature };

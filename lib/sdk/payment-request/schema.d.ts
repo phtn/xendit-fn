@@ -275,8 +275,8 @@ export type PaymentMethod = z.infer<typeof PaymentMethodSchema>;
 export declare const CreatePaymentRequestSchema: z.ZodObject<{
     reference_id: z.ZodString;
     type: z.ZodUnion<[z.ZodLiteral<"PAY">, z.ZodLiteral<"PAY_AND_SAVE">, z.ZodLiteral<"REUSABLE_PAYMENT_CODE">]>;
-    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     request_amount: z.ZodNumber;
     payment_method: z.ZodObject<{
         type: z.ZodString;
@@ -554,14 +554,14 @@ export declare const CreatePaymentRequestSchema: z.ZodObject<{
         city: z.ZodOptional<z.ZodString>;
         province: z.ZodOptional<z.ZodString>;
         postal_code: z.ZodOptional<z.ZodString>;
-        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         phone_number?: string | undefined;
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }, {
         name: string;
@@ -569,7 +569,7 @@ export declare const CreatePaymentRequestSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }>>;
     items: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -599,8 +599,8 @@ export declare const CreatePaymentRequestSchema: z.ZodObject<{
     failure_redirect_url: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     payment_method: {
         type: string;
@@ -674,14 +674,14 @@ export declare const CreatePaymentRequestSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
 }, {
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     payment_method: {
         type: string;
@@ -755,7 +755,7 @@ export declare const CreatePaymentRequestSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
@@ -765,8 +765,8 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
     id: z.ZodString;
     reference_id: z.ZodString;
     type: z.ZodUnion<[z.ZodLiteral<"PAY">, z.ZodLiteral<"PAY_AND_SAVE">, z.ZodLiteral<"REUSABLE_PAYMENT_CODE">]>;
-    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     request_amount: z.ZodNumber;
     paid_amount: z.ZodOptional<z.ZodNumber>;
     status: z.ZodUnion<[z.ZodLiteral<"PENDING">, z.ZodLiteral<"REQUIRES_ACTION">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"VOIDED">, z.ZodLiteral<"CANCELED">]>;
@@ -1046,14 +1046,14 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
         city: z.ZodOptional<z.ZodString>;
         province: z.ZodOptional<z.ZodString>;
         postal_code: z.ZodOptional<z.ZodString>;
-        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     }, "strip", z.ZodTypeAny, {
         name: string;
         phone_number?: string | undefined;
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }, {
         name: string;
@@ -1061,7 +1061,7 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     }>>;
     items: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -1109,8 +1109,8 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -1192,7 +1192,7 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     failure_reason?: string | undefined;
@@ -1200,8 +1200,8 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
 }, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
     type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-    country: "PH" | "ID" | "MY" | "TH" | "VN";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -1283,7 +1283,7 @@ export declare const PaymentRequestResourceSchema: z.ZodObject<{
         city?: string | undefined;
         postal_code?: string | undefined;
         address?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         province?: string | undefined;
     } | undefined;
     failure_reason?: string | undefined;
@@ -1332,8 +1332,8 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
         id: z.ZodString;
         reference_id: z.ZodString;
         type: z.ZodUnion<[z.ZodLiteral<"PAY">, z.ZodLiteral<"PAY_AND_SAVE">, z.ZodLiteral<"REUSABLE_PAYMENT_CODE">]>;
-        country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        country: z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         request_amount: z.ZodNumber;
         paid_amount: z.ZodOptional<z.ZodNumber>;
         status: z.ZodUnion<[z.ZodLiteral<"PENDING">, z.ZodLiteral<"REQUIRES_ACTION">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"VOIDED">, z.ZodLiteral<"CANCELED">]>;
@@ -1613,14 +1613,14 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             province: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             name: string;
             phone_number?: string | undefined;
             city?: string | undefined;
             postal_code?: string | undefined;
             address?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             province?: string | undefined;
         }, {
             name: string;
@@ -1628,7 +1628,7 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
             city?: string | undefined;
             postal_code?: string | undefined;
             address?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             province?: string | undefined;
         }>>;
         items: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -1676,8 +1676,8 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
         type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-        country: "PH" | "ID" | "MY" | "TH" | "VN";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         id: string;
         created: string;
@@ -1759,7 +1759,7 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
             city?: string | undefined;
             postal_code?: string | undefined;
             address?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             province?: string | undefined;
         } | undefined;
         failure_reason?: string | undefined;
@@ -1767,8 +1767,8 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
     }, {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
         type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-        country: "PH" | "ID" | "MY" | "TH" | "VN";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         id: string;
         created: string;
@@ -1850,7 +1850,7 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
             city?: string | undefined;
             postal_code?: string | undefined;
             address?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             province?: string | undefined;
         } | undefined;
         failure_reason?: string | undefined;
@@ -1874,8 +1874,8 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
     data: {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
         type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-        country: "PH" | "ID" | "MY" | "TH" | "VN";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         id: string;
         created: string;
@@ -1957,7 +1957,7 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
             city?: string | undefined;
             postal_code?: string | undefined;
             address?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             province?: string | undefined;
         } | undefined;
         failure_reason?: string | undefined;
@@ -1973,8 +1973,8 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
     data: {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
         type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-        country: "PH" | "ID" | "MY" | "TH" | "VN";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         id: string;
         created: string;
@@ -2056,7 +2056,7 @@ export declare const ListPaymentRequestsResponseSchema: z.ZodObject<{
             city?: string | undefined;
             postal_code?: string | undefined;
             address?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             province?: string | undefined;
         } | undefined;
         failure_reason?: string | undefined;

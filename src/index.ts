@@ -71,6 +71,21 @@ export type {
   TokenStatus,
   CardType,
   CardBrand,
+  // Session types
+  CreateSession,
+  SessionResource,
+  SessionType,
+  SessionStatus,
+  SessionMode,
+  AllowSavePaymentMethod,
+  CaptureMethod,
+  PaymentSessionCustomerDetails,
+  PaymentSessionItem,
+  ItemType,
+  Gender,
+  IndividualDetail,
+  ChannelProperties,
+  MerchantMetadata,
 } from "./sdk";
 
 // Utility exports for advanced usage

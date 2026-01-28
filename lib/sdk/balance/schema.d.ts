@@ -1,14 +1,14 @@
 import { z } from "zod";
 export declare const BalanceResourceSchema: z.ZodObject<{
     balance: z.ZodNumber;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     account_type: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     balance: number;
     account_type?: string | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     balance: number;
     account_type?: string | undefined;
 }>;
@@ -23,7 +23,7 @@ export declare const TransactionResourceSchema: z.ZodObject<{
     type: z.ZodUnion<[z.ZodLiteral<"PAYMENT">, z.ZodLiteral<"PAYOUT">, z.ZodLiteral<"REFUND">, z.ZodLiteral<"FEE">, z.ZodLiteral<"ADJUSTMENT">]>;
     status: z.ZodUnion<[z.ZodLiteral<"PENDING">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"CANCELLED">]>;
     amount: z.ZodNumber;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     created: z.ZodString;
     updated: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
@@ -31,7 +31,7 @@ export declare const TransactionResourceSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
     type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     id: string;
     created: string;
     updated: string;
@@ -42,7 +42,7 @@ export declare const TransactionResourceSchema: z.ZodObject<{
 }, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
     type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     id: string;
     created: string;
     updated: string;
@@ -85,7 +85,7 @@ export declare const ListTransactionsResponseSchema: z.ZodObject<{
         type: z.ZodUnion<[z.ZodLiteral<"PAYMENT">, z.ZodLiteral<"PAYOUT">, z.ZodLiteral<"REFUND">, z.ZodLiteral<"FEE">, z.ZodLiteral<"ADJUSTMENT">]>;
         status: z.ZodUnion<[z.ZodLiteral<"PENDING">, z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"CANCELLED">]>;
         amount: z.ZodNumber;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         created: z.ZodString;
         updated: z.ZodString;
         description: z.ZodOptional<z.ZodString>;
@@ -93,7 +93,7 @@ export declare const ListTransactionsResponseSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
         type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         id: string;
         created: string;
         updated: string;
@@ -104,7 +104,7 @@ export declare const ListTransactionsResponseSchema: z.ZodObject<{
     }, {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
         type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         id: string;
         created: string;
         updated: string;
@@ -131,7 +131,7 @@ export declare const ListTransactionsResponseSchema: z.ZodObject<{
     data: {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
         type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         id: string;
         created: string;
         updated: string;
@@ -150,7 +150,7 @@ export declare const ListTransactionsResponseSchema: z.ZodObject<{
     data: {
         status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
         type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         id: string;
         created: string;
         updated: string;

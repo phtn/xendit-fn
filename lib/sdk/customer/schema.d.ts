@@ -161,15 +161,15 @@ export type QrAccount = z.infer<typeof QrAccountSchema>;
 export declare const PayLaterAccountSchema: z.ZodObject<{
     account_id: z.ZodString;
     account_holder_name: z.ZodOptional<z.ZodString>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
 }, "strip", z.ZodTypeAny, {
     account_id: string;
     account_holder_name?: string | undefined;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
 }, {
     account_id: string;
     account_holder_name?: string | undefined;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
 }>;
 export type PayLaterAccount = z.infer<typeof PayLaterAccountSchema>;
 export declare const SocialMediaAccountSchema: z.ZodObject<{
@@ -328,29 +328,29 @@ export declare const IdentityAccountSchema: z.ZodObject<{
         properties: z.ZodObject<{
             account_id: z.ZodString;
             account_holder_name: z.ZodOptional<z.ZodString>;
-            currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+            currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
         }, "strip", z.ZodTypeAny, {
             account_id: string;
             account_holder_name?: string | undefined;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         }, {
             account_id: string;
             account_holder_name?: string | undefined;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         type: "PAY_LATER";
         properties: {
             account_id: string;
             account_holder_name?: string | undefined;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         };
     }, {
         type: "PAY_LATER";
         properties: {
             account_id: string;
             account_holder_name?: string | undefined;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         };
     }>, z.ZodObject<{
         type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -417,7 +417,7 @@ export declare const IdentityAccountSchema: z.ZodObject<{
         properties: {
             account_id: string;
             account_holder_name?: string | undefined;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         };
     } | {
         type: "SOCIAL_MEDIA";
@@ -469,7 +469,7 @@ export declare const IdentityAccountSchema: z.ZodObject<{
         properties: {
             account_id: string;
             account_holder_name?: string | undefined;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
         };
     } | {
         type: "SOCIAL_MEDIA";
@@ -748,29 +748,29 @@ declare const CommonCustomerResourceSchema: z.ZodObject<{
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -837,7 +837,7 @@ declare const CommonCustomerResourceSchema: z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -889,7 +889,7 @@ declare const CommonCustomerResourceSchema: z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1008,7 +1008,7 @@ declare const CommonCustomerResourceSchema: z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1108,7 +1108,7 @@ declare const CommonCustomerResourceSchema: z.ZodObject<{
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1362,29 +1362,29 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -1451,7 +1451,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1503,7 +1503,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1620,7 +1620,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1718,7 +1718,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -1938,29 +1938,29 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -2027,7 +2027,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2079,7 +2079,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2188,7 +2188,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2278,7 +2278,7 @@ export declare const CustomerSchema: z.ZodDiscriminatedUnion<"type", [z.ZodObjec
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2541,29 +2541,29 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -2630,7 +2630,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2682,7 +2682,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2804,7 +2804,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -2905,7 +2905,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3126,29 +3126,29 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: z.ZodObject<{
                 account_id: z.ZodString;
                 account_holder_name: z.ZodOptional<z.ZodString>;
-                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
             }, "strip", z.ZodTypeAny, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }, {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             }>;
         }, "strip", z.ZodTypeAny, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }, {
             type: "PAY_LATER";
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         }>, z.ZodObject<{
             type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -3215,7 +3215,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3267,7 +3267,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3381,7 +3381,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3474,7 +3474,7 @@ export declare const CustomerResourceSchema: z.ZodDiscriminatedUnion<"type", [z.
             properties: {
                 account_id: string;
                 account_holder_name?: string | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             };
         } | {
             type: "SOCIAL_MEDIA";
@@ -3738,29 +3738,29 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: z.ZodObject<{
                     account_id: z.ZodString;
                     account_holder_name: z.ZodOptional<z.ZodString>;
-                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
                 }, "strip", z.ZodTypeAny, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -3827,7 +3827,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -3879,7 +3879,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4001,7 +4001,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4102,7 +4102,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4323,29 +4323,29 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: z.ZodObject<{
                     account_id: z.ZodString;
                     account_holder_name: z.ZodOptional<z.ZodString>;
-                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
                 }, "strip", z.ZodTypeAny, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -4412,7 +4412,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4464,7 +4464,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4578,7 +4578,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4671,7 +4671,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4775,7 +4775,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4868,7 +4868,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -4972,7 +4972,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5065,7 +5065,7 @@ export declare const GetCustomerByRefIdResourceSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5334,29 +5334,29 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: z.ZodObject<{
                     account_id: z.ZodString;
                     account_holder_name: z.ZodOptional<z.ZodString>;
-                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+                    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
                 }, "strip", z.ZodTypeAny, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }, {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 }>;
             }, "strip", z.ZodTypeAny, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }, {
                 type: "PAY_LATER";
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             }>, z.ZodObject<{
                 type: z.ZodLiteral<"SOCIAL_MEDIA">;
@@ -5423,7 +5423,7 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5475,7 +5475,7 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5594,7 +5594,7 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5694,7 +5694,7 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5797,7 +5797,7 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";
@@ -5900,7 +5900,7 @@ export declare const UpdateParamsSchema: z.ZodObject<{
                 properties: {
                     account_id: string;
                     account_holder_name?: string | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 };
             } | {
                 type: "SOCIAL_MEDIA";

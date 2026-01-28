@@ -6,7 +6,7 @@ export declare const LineItemSchema: z.ZodObject<{
     reference_id: z.ZodString;
     name: z.ZodString;
     category: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     price: z.ZodNumber;
     quantity: z.ZodNumber;
     type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -17,7 +17,7 @@ export declare const LineItemSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     type: "PRODUCT" | "SERVICE";
     category: string;
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     name: string;
     price: number;
@@ -29,7 +29,7 @@ export declare const LineItemSchema: z.ZodObject<{
 }, {
     type: "PRODUCT" | "SERVICE";
     category: string;
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     name: string;
     price: number;
@@ -42,7 +42,7 @@ export declare const LineItemSchema: z.ZodObject<{
 export type LineItem = z.infer<typeof LineItemSchema>;
 export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_method", [z.ZodObject<{
     reference_id: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     amount: z.ZodNumber;
     checkout_method: z.ZodLiteral<"ONE_TIME_PAYMENT">;
     channel_code: z.ZodUnion<[z.ZodLiteral<"ID_OVO">, z.ZodLiteral<"ID_DANA">, z.ZodLiteral<"ID_LINKAJA">, z.ZodLiteral<"ID_SHOPEEPAY">, z.ZodLiteral<"ID_ASTRAPAY">, z.ZodLiteral<"ID_JENIUSPAY">, z.ZodLiteral<"ID_SAKUKU">, z.ZodLiteral<"PH_PAYMAYA">, z.ZodLiteral<"PH_GCASH">, z.ZodLiteral<"PH_GRABPAY">, z.ZodLiteral<"PH_SHOPEEPAY">, z.ZodLiteral<"VN_APPOTA">, z.ZodLiteral<"VN_MOMO">, z.ZodLiteral<"VN_SHOPEEPAY">, z.ZodLiteral<"VN_VNPTWALLET">, z.ZodLiteral<"VN_VIETTELPAY">, z.ZodLiteral<"VN_ZALOPAY">, z.ZodLiteral<"TH_WECHATPAY">, z.ZodLiteral<"TH_LINEPAY">, z.ZodLiteral<"TH_TRUEMONEY">, z.ZodLiteral<"TH_SHOPEEPAY">, z.ZodLiteral<"MY_TOUCHNGO">, z.ZodLiteral<"MY_SHOPEEPAY">, z.ZodLiteral<"MY_GRABPAY">]>;
@@ -74,7 +74,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
         reference_id: z.ZodString;
         name: z.ZodString;
         category: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         price: z.ZodNumber;
         quantity: z.ZodNumber;
         type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -85,7 +85,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }, "strip", z.ZodTypeAny, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -97,7 +97,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -109,7 +109,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }>, "many">>;
     metadata: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_code: "ID_OVO" | "ID_DANA" | "ID_LINKAJA" | "ID_SHOPEEPAY" | "ID_ASTRAPAY" | "ID_JENIUSPAY" | "ID_SAKUKU" | "PH_PAYMAYA" | "PH_GCASH" | "PH_GRABPAY" | "PH_SHOPEEPAY" | "VN_APPOTA" | "VN_MOMO" | "VN_SHOPEEPAY" | "VN_VNPTWALLET" | "VN_VIETTELPAY" | "VN_ZALOPAY" | "TH_WECHATPAY" | "TH_LINEPAY" | "TH_TRUEMONEY" | "TH_SHOPEEPAY" | "MY_TOUCHNGO" | "MY_SHOPEEPAY" | "MY_GRABPAY";
     channel_properties: {
@@ -128,7 +128,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -139,7 +139,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
         subcategory?: string | undefined;
     }[] | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_code: "ID_OVO" | "ID_DANA" | "ID_LINKAJA" | "ID_SHOPEEPAY" | "ID_ASTRAPAY" | "ID_JENIUSPAY" | "ID_SAKUKU" | "PH_PAYMAYA" | "PH_GCASH" | "PH_GRABPAY" | "PH_SHOPEEPAY" | "VN_APPOTA" | "VN_MOMO" | "VN_SHOPEEPAY" | "VN_VNPTWALLET" | "VN_VIETTELPAY" | "VN_ZALOPAY" | "TH_WECHATPAY" | "TH_LINEPAY" | "TH_TRUEMONEY" | "TH_SHOPEEPAY" | "MY_TOUCHNGO" | "MY_SHOPEEPAY" | "MY_GRABPAY";
     channel_properties: {
@@ -158,7 +158,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -170,7 +170,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }[] | undefined;
 }>, z.ZodObject<{
     reference_id: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     amount: z.ZodNumber;
     checkout_method: z.ZodLiteral<"TOKENIZED_PAYMENT">;
     channel_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"ID_OVO">, z.ZodLiteral<"ID_DANA">, z.ZodLiteral<"ID_LINKAJA">, z.ZodLiteral<"ID_SHOPEEPAY">, z.ZodLiteral<"ID_ASTRAPAY">, z.ZodLiteral<"ID_JENIUSPAY">, z.ZodLiteral<"ID_SAKUKU">, z.ZodLiteral<"PH_PAYMAYA">, z.ZodLiteral<"PH_GCASH">, z.ZodLiteral<"PH_GRABPAY">, z.ZodLiteral<"PH_SHOPEEPAY">, z.ZodLiteral<"VN_APPOTA">, z.ZodLiteral<"VN_MOMO">, z.ZodLiteral<"VN_SHOPEEPAY">, z.ZodLiteral<"VN_VNPTWALLET">, z.ZodLiteral<"VN_VIETTELPAY">, z.ZodLiteral<"VN_ZALOPAY">, z.ZodLiteral<"TH_WECHATPAY">, z.ZodLiteral<"TH_LINEPAY">, z.ZodLiteral<"TH_TRUEMONEY">, z.ZodLiteral<"TH_SHOPEEPAY">, z.ZodLiteral<"MY_TOUCHNGO">, z.ZodLiteral<"MY_SHOPEEPAY">, z.ZodLiteral<"MY_GRABPAY">]>>;
@@ -202,7 +202,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
         reference_id: z.ZodString;
         name: z.ZodString;
         category: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         price: z.ZodNumber;
         quantity: z.ZodNumber;
         type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -213,7 +213,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }, "strip", z.ZodTypeAny, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -225,7 +225,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -237,7 +237,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     }>, "many">>;
     metadata: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_properties: {
         mobile_number?: string | undefined;
@@ -256,7 +256,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -267,7 +267,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
         subcategory?: string | undefined;
     }[] | undefined;
 }, {
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     channel_properties: {
         mobile_number?: string | undefined;
@@ -286,7 +286,7 @@ export declare const EWalletChargeSchema: z.ZodDiscriminatedUnion<"checkout_meth
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -321,7 +321,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     business_id: z.ZodString;
     reference_id: z.ZodString;
     status: z.ZodUnion<[z.ZodLiteral<"SUCCEEDED">, z.ZodLiteral<"PENDING">, z.ZodLiteral<"FAILED">, z.ZodLiteral<"VOIDED">, z.ZodLiteral<"REFUNDED">]>;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     charge_amount: z.ZodNumber;
     capture_amount: z.ZodOptional<z.ZodNumber>;
     refunded_amount: z.ZodNullable<z.ZodNumber>;
@@ -568,7 +568,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
         reference_id: z.ZodString;
         name: z.ZodString;
         category: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         price: z.ZodNumber;
         quantity: z.ZodNumber;
         type: z.ZodUnion<[z.ZodLiteral<"PRODUCT">, z.ZodLiteral<"SERVICE">]>;
@@ -579,7 +579,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     }, "strip", z.ZodTypeAny, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -591,7 +591,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     }, {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -604,7 +604,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     metadata: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
 }, "strip", z.ZodTypeAny, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -669,7 +669,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;
@@ -688,7 +688,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     } | undefined;
 }, {
     status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     reference_id: string;
     id: string;
     created: string;
@@ -753,7 +753,7 @@ export declare const EWalletChargeResourceSchema: z.ZodObject<{
     basket?: {
         type: "PRODUCT" | "SERVICE";
         category: string;
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         reference_id: string;
         name: string;
         price: number;

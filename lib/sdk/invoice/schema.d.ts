@@ -56,7 +56,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         city: z.ZodOptional<z.ZodString>;
         postal_code: z.ZodOptional<z.ZodString>;
         phone: z.ZodOptional<z.ZodString>;
-        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     }, "strip", z.ZodTypeAny, {
         city?: string | undefined;
         postal_code?: string | undefined;
@@ -64,7 +64,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     }, {
         city?: string | undefined;
         postal_code?: string | undefined;
@@ -72,7 +72,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     }>>;
     shipping_address: z.ZodOptional<z.ZodObject<{
         first_name: z.ZodOptional<z.ZodString>;
@@ -81,7 +81,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         city: z.ZodOptional<z.ZodString>;
         postal_code: z.ZodOptional<z.ZodString>;
         phone: z.ZodOptional<z.ZodString>;
-        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+        country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
     }, "strip", z.ZodTypeAny, {
         city?: string | undefined;
         postal_code?: string | undefined;
@@ -89,7 +89,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     }, {
         city?: string | undefined;
         postal_code?: string | undefined;
@@ -97,7 +97,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     customer_name?: string | undefined;
@@ -110,7 +110,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     } | undefined;
     shipping_address?: {
         city?: string | undefined;
@@ -119,7 +119,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     } | undefined;
 }, {
     customer_name?: string | undefined;
@@ -132,7 +132,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     } | undefined;
     shipping_address?: {
         city?: string | undefined;
@@ -141,7 +141,7 @@ export declare const CustomerDetailsSchema: z.ZodObject<{
         last_name?: string | undefined;
         address?: string | undefined;
         phone?: string | undefined;
-        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
     } | undefined;
 }>;
 export type CustomerDetails = z.infer<typeof CustomerDetailsSchema>;
@@ -217,7 +217,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -225,7 +225,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -233,7 +233,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
         shipping_address: z.ZodOptional<z.ZodObject<{
             first_name: z.ZodOptional<z.ZodString>;
@@ -242,7 +242,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -250,7 +250,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -258,7 +258,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         customer_name?: string | undefined;
@@ -271,7 +271,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -280,7 +280,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }, {
         customer_name?: string | undefined;
@@ -293,7 +293,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -302,7 +302,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }>>;
     customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -326,7 +326,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
     payment_methods: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     mid_label: z.ZodOptional<z.ZodString>;
     should_authenticate_credit_card: z.ZodOptional<z.ZodBoolean>;
-    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>>;
+    currency: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>>;
     items: z.ZodOptional<z.ZodArray<z.ZodObject<{
         name: z.ZodString;
         quantity: z.ZodNumber;
@@ -366,7 +366,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
     amount: number;
     external_id: string;
     payer_email: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: Record<string, unknown> | undefined;
     success_redirect_url?: string | undefined;
     failure_redirect_url?: string | undefined;
@@ -388,7 +388,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -397,7 +397,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -429,7 +429,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
     amount: number;
     external_id: string;
     payer_email: string;
-    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
     metadata?: Record<string, unknown> | undefined;
     success_redirect_url?: string | undefined;
     failure_redirect_url?: string | undefined;
@@ -451,7 +451,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -460,7 +460,7 @@ export declare const CreateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -505,7 +505,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -513,7 +513,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -521,7 +521,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
         shipping_address: z.ZodOptional<z.ZodObject<{
             first_name: z.ZodOptional<z.ZodString>;
@@ -530,7 +530,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -538,7 +538,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -546,7 +546,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         customer_name?: string | undefined;
@@ -559,7 +559,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -568,7 +568,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }, {
         customer_name?: string | undefined;
@@ -581,7 +581,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -590,7 +590,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }>>;
     customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -650,7 +650,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -659,7 +659,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -694,7 +694,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -703,7 +703,7 @@ export declare const UpdateInvoiceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -737,7 +737,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
     should_send_email: z.ZodBoolean;
     created: z.ZodString;
     updated: z.ZodString;
-    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+    currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
     paid_amount: z.ZodOptional<z.ZodNumber>;
     credit_card_charge_id: z.ZodOptional<z.ZodString>;
     payment_method: z.ZodOptional<z.ZodString>;
@@ -763,7 +763,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -771,7 +771,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -779,7 +779,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
         shipping_address: z.ZodOptional<z.ZodObject<{
             first_name: z.ZodOptional<z.ZodString>;
@@ -788,7 +788,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             city: z.ZodOptional<z.ZodString>;
             postal_code: z.ZodOptional<z.ZodString>;
             phone: z.ZodOptional<z.ZodString>;
-            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+            country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
         }, "strip", z.ZodTypeAny, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -796,7 +796,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }, {
             city?: string | undefined;
             postal_code?: string | undefined;
@@ -804,7 +804,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         }>>;
     }, "strip", z.ZodTypeAny, {
         customer_name?: string | undefined;
@@ -817,7 +817,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -826,7 +826,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }, {
         customer_name?: string | undefined;
@@ -839,7 +839,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -848,7 +848,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     }>>;
     customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -962,7 +962,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
 }, "strip", z.ZodTypeAny, {
     status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     description: string;
     id: string;
     created: string;
@@ -996,7 +996,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1005,7 +1005,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -1061,7 +1061,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
     }[] | undefined;
 }, {
     status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
     description: string;
     id: string;
     created: string;
@@ -1095,7 +1095,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
         shipping_address?: {
             city?: string | undefined;
@@ -1104,7 +1104,7 @@ export declare const InvoiceResourceSchema: z.ZodObject<{
             last_name?: string | undefined;
             address?: string | undefined;
             phone?: string | undefined;
-            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
         } | undefined;
     } | undefined;
     customer_notification_preference?: {
@@ -1230,7 +1230,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
         should_send_email: z.ZodBoolean;
         created: z.ZodString;
         updated: z.ZodString;
-        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">]>;
+        currency: z.ZodUnion<[z.ZodLiteral<"PHP">, z.ZodLiteral<"IDR">, z.ZodLiteral<"MYR">, z.ZodLiteral<"THB">, z.ZodLiteral<"VND">, z.ZodLiteral<"SGD">, z.ZodLiteral<"USD">]>;
         paid_amount: z.ZodOptional<z.ZodNumber>;
         credit_card_charge_id: z.ZodOptional<z.ZodString>;
         payment_method: z.ZodOptional<z.ZodString>;
@@ -1256,7 +1256,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 city: z.ZodOptional<z.ZodString>;
                 postal_code: z.ZodOptional<z.ZodString>;
                 phone: z.ZodOptional<z.ZodString>;
-                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
             }, "strip", z.ZodTypeAny, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1264,7 +1264,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1272,7 +1272,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }>>;
             shipping_address: z.ZodOptional<z.ZodObject<{
                 first_name: z.ZodOptional<z.ZodString>;
@@ -1281,7 +1281,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 city: z.ZodOptional<z.ZodString>;
                 postal_code: z.ZodOptional<z.ZodString>;
                 phone: z.ZodOptional<z.ZodString>;
-                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
             }, "strip", z.ZodTypeAny, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1289,7 +1289,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1297,7 +1297,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
             customer_name?: string | undefined;
@@ -1310,7 +1310,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1319,7 +1319,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }, {
             customer_name?: string | undefined;
@@ -1332,7 +1332,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1341,7 +1341,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>>;
         customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -1455,7 +1455,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
         metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
     }, "strip", z.ZodTypeAny, {
         status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         description: string;
         id: string;
         created: string;
@@ -1489,7 +1489,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1498,7 +1498,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -1554,7 +1554,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
         }[] | undefined;
     }, {
         status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         description: string;
         id: string;
         created: string;
@@ -1588,7 +1588,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1597,7 +1597,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -1655,7 +1655,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     data: {
         status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         description: string;
         id: string;
         created: string;
@@ -1689,7 +1689,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1698,7 +1698,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -1757,7 +1757,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
 }, {
     data: {
         status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+        currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
         description: string;
         id: string;
         created: string;
@@ -1791,7 +1791,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1800,7 +1800,7 @@ export declare const ListInvoicesResponseSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -1876,7 +1876,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 city: z.ZodOptional<z.ZodString>;
                 postal_code: z.ZodOptional<z.ZodString>;
                 phone: z.ZodOptional<z.ZodString>;
-                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
             }, "strip", z.ZodTypeAny, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1884,7 +1884,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1892,7 +1892,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }>>;
             shipping_address: z.ZodOptional<z.ZodObject<{
                 first_name: z.ZodOptional<z.ZodString>;
@@ -1901,7 +1901,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 city: z.ZodOptional<z.ZodString>;
                 postal_code: z.ZodOptional<z.ZodString>;
                 phone: z.ZodOptional<z.ZodString>;
-                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">]>>;
+                country_code: z.ZodOptional<z.ZodUnion<[z.ZodLiteral<"PH">, z.ZodLiteral<"ID">, z.ZodLiteral<"MY">, z.ZodLiteral<"TH">, z.ZodLiteral<"VN">, z.ZodLiteral<"SG">]>>;
             }, "strip", z.ZodTypeAny, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1909,7 +1909,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }, {
                 city?: string | undefined;
                 postal_code?: string | undefined;
@@ -1917,7 +1917,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
             customer_name?: string | undefined;
@@ -1930,7 +1930,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1939,7 +1939,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }, {
             customer_name?: string | undefined;
@@ -1952,7 +1952,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -1961,7 +1961,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>>;
         customer_notification_preference: z.ZodOptional<z.ZodObject<{
@@ -2021,7 +2021,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -2030,7 +2030,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -2065,7 +2065,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -2074,7 +2074,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -2111,7 +2111,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -2120,7 +2120,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {
@@ -2158,7 +2158,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
             shipping_address?: {
                 city?: string | undefined;
@@ -2167,7 +2167,7 @@ export declare const UpdateInvoiceParamsSchema: z.ZodObject<{
                 last_name?: string | undefined;
                 address?: string | undefined;
                 phone?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         } | undefined;
         customer_notification_preference?: {

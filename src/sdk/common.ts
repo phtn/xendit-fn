@@ -13,6 +13,7 @@ export const CountrySchema = z.union([
   z.literal("MY"),
   z.literal("TH"),
   z.literal("VN"),
+  z.literal("SG"),
 ]);
 export type Country = z.infer<typeof CountrySchema>;
 
@@ -22,6 +23,8 @@ export const CurrencySchema = z.union([
   z.literal("MYR"),
   z.literal("THB"),
   z.literal("VND"),
+  z.literal("SGD"),
+  z.literal("USD"),
 ]);
 export type Currency = z.infer<typeof CurrencySchema>;
 

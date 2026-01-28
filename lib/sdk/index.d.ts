@@ -14,6 +14,7 @@ export type { CreateRefund, GetRefund, ListRefunds, RefundResource, RefundReason
 export type { CreatePayout, GetPayout, ListPayouts, CancelPayout, PayoutResource, PayoutStatus, PayoutChannelCode, } from "./payout/schema";
 export type { BalanceResource, ListTransactions, TransactionResource, TransactionType, TransactionStatus, } from "./balance/schema";
 export type { TokenParams, TokenResource, TokenAuthentication, TokenAuthenticationResource, TokenAuthorization, ZeroAuthorization, ReverseAuthorizationParams, CreateCharge, ChargeResource, CardInfo, TokenStatus, CardType, CardBrand, } from "./card/schema";
+export type { CreateSession, SessionResource, SessionType, SessionStatus, SessionMode, AllowSavePaymentMethod, CaptureMethod, PaymentSessionCustomerDetails, PaymentSessionItem, ItemType, Gender, IndividualDetail, ChannelProperties, MerchantMetadata, } from "./session/schema";
 export type { RateLimitConfig };
 interface XenditOptions {
     /**
@@ -95,7 +96,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -185,7 +186,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -286,7 +287,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -379,7 +380,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -483,7 +484,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -576,7 +577,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -681,7 +682,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         properties: {
                             account_id: string;
                             account_holder_name?: string | undefined;
-                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                         };
                     } | {
                         type: "SOCIAL_MEDIA";
@@ -774,7 +775,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         properties: {
                             account_id: string;
                             account_holder_name?: string | undefined;
-                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                         };
                     } | {
                         type: "SOCIAL_MEDIA";
@@ -879,7 +880,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         properties: {
                             account_id: string;
                             account_holder_name?: string | undefined;
-                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                         };
                     } | {
                         type: "SOCIAL_MEDIA";
@@ -981,7 +982,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -1074,7 +1075,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     properties: {
                         account_id: string;
                         account_holder_name?: string | undefined;
-                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                        currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     };
                 } | {
                     type: "SOCIAL_MEDIA";
@@ -1104,7 +1105,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     };
     ewallet: {
         charge: (data: {
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             channel_code: "ID_OVO" | "ID_DANA" | "ID_LINKAJA" | "ID_SHOPEEPAY" | "ID_ASTRAPAY" | "ID_JENIUSPAY" | "ID_SAKUKU" | "PH_PAYMAYA" | "PH_GCASH" | "PH_GRABPAY" | "PH_SHOPEEPAY" | "VN_APPOTA" | "VN_MOMO" | "VN_SHOPEEPAY" | "VN_VNPTWALLET" | "VN_VIETTELPAY" | "VN_ZALOPAY" | "TH_WECHATPAY" | "TH_LINEPAY" | "TH_TRUEMONEY" | "TH_SHOPEEPAY" | "MY_TOUCHNGO" | "MY_SHOPEEPAY" | "MY_GRABPAY";
             channel_properties: {
@@ -1123,7 +1124,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -1134,7 +1135,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 subcategory?: string | undefined;
             }[] | undefined;
         } | {
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             channel_properties: {
                 mobile_number?: string | undefined;
@@ -1153,7 +1154,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -1165,7 +1166,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             }[] | undefined;
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -1230,7 +1231,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -1252,7 +1253,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             id: string;
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REFUNDED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -1317,7 +1318,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             basket?: {
                 type: "PRODUCT" | "SERVICE";
                 category: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 name: string;
                 price: number;
@@ -1340,19 +1341,19 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         create: (data: {
             type: "BANK_ACCOUNT" | "EWALLET" | "QR_CODE" | "CARD" | "OVER_THE_COUNTER" | "VIRTUAL_ACCOUNT";
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
             card?: {
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 channel_properties?: {
                     success_return_url?: string | undefined;
                     failure_return_url?: string | undefined;
                 } | undefined;
             } | undefined;
             bank_account?: {
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 channel_properties?: {
                     card_last_four?: string | undefined;
                     card_expiry_month?: string | undefined;
@@ -1377,7 +1378,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             updated: string;
             business_id: string;
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
@@ -1395,20 +1396,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 card_expiry_year: string;
                 network: string;
                 type?: "CREDIT" | "DEBIT" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 issuer?: string | undefined;
             } | undefined;
             bank_account?: {
                 account_number: string;
                 account_holder_name: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 bank_code: string;
                 account_type?: string | undefined;
             } | undefined;
             ewallet?: {
                 account_details: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             } | undefined;
             billing_information?: {
                 street_line1?: string | undefined;
@@ -1416,7 +1417,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 province_state?: string | undefined;
                 postal_code?: string | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>;
         get: (data: {
@@ -1429,7 +1430,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             updated: string;
             business_id: string;
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
@@ -1447,20 +1448,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 card_expiry_year: string;
                 network: string;
                 type?: "CREDIT" | "DEBIT" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 issuer?: string | undefined;
             } | undefined;
             bank_account?: {
                 account_number: string;
                 account_holder_name: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 bank_code: string;
                 account_type?: string | undefined;
             } | undefined;
             ewallet?: {
                 account_details: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             } | undefined;
             billing_information?: {
                 street_line1?: string | undefined;
@@ -1468,7 +1469,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 province_state?: string | undefined;
                 postal_code?: string | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>;
         list: (params?: ListPaymentMethods) => Promise<{
@@ -1480,7 +1481,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 updated: string;
                 business_id: string;
                 reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 description?: string | undefined;
                 metadata?: Record<string, unknown> | undefined;
                 reference_id?: string | undefined;
@@ -1498,20 +1499,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     card_expiry_year: string;
                     network: string;
                     type?: "CREDIT" | "DEBIT" | undefined;
-                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                    currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                     issuer?: string | undefined;
                 } | undefined;
                 bank_account?: {
                     account_number: string;
                     account_holder_name: string;
-                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                     bank_code: string;
                     account_type?: string | undefined;
                 } | undefined;
                 ewallet?: {
                     account_details: string;
-                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                    currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 } | undefined;
                 billing_information?: {
                     street_line1?: string | undefined;
@@ -1519,7 +1520,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     city?: string | undefined;
                     province_state?: string | undefined;
                     postal_code?: string | undefined;
-                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             }[];
             has_more: boolean;
@@ -1545,7 +1546,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             updated: string;
             business_id: string;
             reusability: "ONE_TIME_USE" | "MULTIPLE_USE";
-            country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+            country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             description?: string | undefined;
             metadata?: Record<string, unknown> | undefined;
             reference_id?: string | undefined;
@@ -1563,20 +1564,20 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 card_expiry_year: string;
                 network: string;
                 type?: "CREDIT" | "DEBIT" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
-                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
+                currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
                 issuer?: string | undefined;
             } | undefined;
             bank_account?: {
                 account_number: string;
                 account_holder_name: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 bank_code: string;
                 account_type?: string | undefined;
             } | undefined;
             ewallet?: {
                 account_details: string;
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             } | undefined;
             billing_information?: {
                 street_line1?: string | undefined;
@@ -1584,7 +1585,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 province_state?: string | undefined;
                 postal_code?: string | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
             } | undefined;
         }>;
     };
@@ -1594,7 +1595,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             amount: number;
             external_id: string;
             payer_email: string;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             metadata?: Record<string, unknown> | undefined;
             success_redirect_url?: string | undefined;
             failure_redirect_url?: string | undefined;
@@ -1616,7 +1617,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -1625,7 +1626,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -1654,7 +1655,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             }[] | undefined;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -1688,7 +1689,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -1697,7 +1698,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -1756,7 +1757,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             invoice_id: string;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -1790,7 +1791,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -1799,7 +1800,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -1857,7 +1858,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         list: (params?: ListInvoices) => Promise<{
             data: {
                 status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 description: string;
                 id: string;
                 created: string;
@@ -1891,7 +1892,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                     shipping_address?: {
                         city?: string | undefined;
@@ -1900,7 +1901,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                 } | undefined;
                 customer_notification_preference?: {
@@ -1977,7 +1978,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                     shipping_address?: {
                         city?: string | undefined;
@@ -1986,7 +1987,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                         last_name?: string | undefined;
                         address?: string | undefined;
                         phone?: string | undefined;
-                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                        country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     } | undefined;
                 } | undefined;
                 customer_notification_preference?: {
@@ -2006,7 +2007,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             invoice_id: string;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -2040,7 +2041,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -2049,7 +2050,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -2108,7 +2109,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             invoice_id: string;
         }) => Promise<{
             status: "PENDING" | "EXPIRED" | "PAID" | "SETTLED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             description: string;
             id: string;
             created: string;
@@ -2142,7 +2143,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
                 shipping_address?: {
                     city?: string | undefined;
@@ -2151,7 +2152,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     last_name?: string | undefined;
                     address?: string | undefined;
                     phone?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 } | undefined;
             } | undefined;
             customer_notification_preference?: {
@@ -2210,8 +2211,8 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     paymentRequest: {
         create: (data: {
             type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-            country: "PH" | "ID" | "MY" | "TH" | "VN";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             payment_method: {
                 type: string;
@@ -2285,15 +2286,15 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 postal_code?: string | undefined;
                 address?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 province?: string | undefined;
             } | undefined;
             capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
             type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-            country: "PH" | "ID" | "MY" | "TH" | "VN";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -2375,7 +2376,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 postal_code?: string | undefined;
                 address?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 province?: string | undefined;
             } | undefined;
             failure_reason?: string | undefined;
@@ -2386,8 +2387,8 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         }) => Promise<{
             status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
             type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-            country: "PH" | "ID" | "MY" | "TH" | "VN";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -2469,7 +2470,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                 city?: string | undefined;
                 postal_code?: string | undefined;
                 address?: string | undefined;
-                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 province?: string | undefined;
             } | undefined;
             failure_reason?: string | undefined;
@@ -2479,8 +2480,8 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             data: {
                 status: "SUCCEEDED" | "PENDING" | "FAILED" | "VOIDED" | "REQUIRES_ACTION" | "CANCELED";
                 type: "PAY" | "PAY_AND_SAVE" | "REUSABLE_PAYMENT_CODE";
-                country: "PH" | "ID" | "MY" | "TH" | "VN";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 id: string;
                 created: string;
@@ -2562,7 +2563,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
                     city?: string | undefined;
                     postal_code?: string | undefined;
                     address?: string | undefined;
-                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                    country_code?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                     province?: string | undefined;
                 } | undefined;
                 failure_reason?: string | undefined;
@@ -2631,7 +2632,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     };
     payout: {
         create: (data: {
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             channel_code: "EWALLET" | "BANK" | "CASH";
             channel_properties: {
@@ -2666,7 +2667,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             } | undefined;
         }) => Promise<{
             status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -2709,7 +2710,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             id: string;
         }) => Promise<{
             status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -2751,7 +2752,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
         list: (params?: ListPayouts) => Promise<{
             data: {
                 status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 reference_id: string;
                 id: string;
                 created: string;
@@ -2801,7 +2802,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             id: string;
         }) => Promise<{
             status: "PENDING" | "FAILED" | "ACCEPTED" | "PROCESSING" | "COMPLETED" | "CANCELLED" | "REVERSED";
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             reference_id: string;
             id: string;
             created: string;
@@ -2843,7 +2844,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
     };
     balance: {
         get: () => Promise<{
-            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
             balance: number;
             account_type?: string | undefined;
         }>;
@@ -2851,7 +2852,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             data: {
                 status: "SUCCEEDED" | "PENDING" | "FAILED" | "CANCELLED";
                 type: "PAYMENT" | "PAYOUT" | "REFUND" | "FEE" | "ADJUSTMENT";
-                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND";
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
                 id: string;
                 created: string;
                 updated: string;
@@ -2873,7 +2874,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             mid_label: string;
             is_multiple_use: boolean;
             should_authenticate: boolean;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             amount?: string | undefined;
             external_id?: string | undefined;
             card_data?: {
@@ -2908,7 +2909,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             payer_authentication_url?: string | undefined;
             card_info?: {
                 type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 bank?: string | undefined;
                 brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
                 fingerprint?: string | undefined;
@@ -2929,7 +2930,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             payer_authentication_url?: string | undefined;
             card_info?: {
                 type?: "CREDIT" | "DEBIT" | "PREPAID" | "UNKNOWN" | undefined;
-                country?: "PH" | "ID" | "MY" | "TH" | "VN" | undefined;
+                country?: "PH" | "ID" | "MY" | "TH" | "VN" | "SG" | undefined;
                 bank?: string | undefined;
                 brand?: "VISA" | "MASTERCARD" | "JCB" | "AMEX" | undefined;
                 fingerprint?: string | undefined;
@@ -2937,7 +2938,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             } | undefined;
         }>;
         authenticateToken: (data: {
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             token_id?: string | undefined;
             amount?: string | undefined;
             external_id?: string | undefined;
@@ -3065,7 +3066,7 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             amount: number;
             external_id: string;
             capture: boolean;
-            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | undefined;
+            currency?: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD" | undefined;
             metadata?: {} | undefined;
             mid_label?: string | undefined;
             billing_details?: {
@@ -3144,6 +3145,99 @@ declare const Xendit: (key: string, options?: XenditOptions) => {
             } | undefined;
             eci?: "0" | "1" | "2" | "3" | "4" | "5" | undefined;
             cvn_code?: "M" | "N" | "P" | undefined;
+        }>;
+    };
+    session: {
+        create: (data: {
+            mode: "PAYMENT_LINK" | "COMPONENTS";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+            reference_id: string;
+            amount: number;
+            session_type: "PAY" | "SAVE";
+            expires_at?: string | undefined;
+            description?: string | undefined;
+            metadata?: Record<string, string> | null | undefined;
+            channel_properties?: {
+                allowed_payment_channels?: string[] | undefined;
+            } | undefined;
+            customer_id?: string | undefined;
+            success_return_url?: string | undefined;
+            cancel_return_url?: string | undefined;
+            customer?: {
+                type: "INDIVIDUAL";
+                individual_detail: {
+                    given_names: string;
+                    surname?: string | undefined;
+                    nationality?: string | undefined;
+                    place_of_birth?: string | undefined;
+                    date_of_birth?: string | undefined;
+                    gender?: "MALE" | "FEMALE" | "OTHER" | undefined;
+                };
+                reference_id: string;
+                email?: string | undefined;
+                mobile_number?: string | undefined;
+            } | undefined;
+            items?: {
+                category: string;
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+                reference_id: string;
+                name: string;
+                quantity: number;
+                net_unit_amount: number;
+                url?: string | undefined;
+                type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+                description?: string | undefined;
+                metadata?: Record<string, string> | undefined;
+                subcategory?: string | undefined;
+                image_url?: string | undefined;
+            }[] | null | undefined;
+            locale?: string | undefined;
+            capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+            allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
+        }) => Promise<{
+            mode: "PAYMENT_LINK" | "COMPONENTS";
+            status: "ACTIVE" | "EXPIRED" | "CANCELED" | "COMPLETED";
+            country: "PH" | "ID" | "MY" | "TH" | "VN" | "SG";
+            currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+            reference_id: string;
+            created: string;
+            updated: string;
+            amount: number;
+            business_id: string;
+            payment_id: string | null;
+            payment_request_id: string | null;
+            session_type: "PAY" | "SAVE";
+            payment_session_id: string;
+            payment_link_url: string | null;
+            payment_token_id: string | null;
+            expires_at?: string | undefined;
+            description?: string | undefined;
+            metadata?: Record<string, string> | null | undefined;
+            channel_properties?: {
+                allowed_payment_channels?: string[] | undefined;
+            } | undefined;
+            customer_id?: string | undefined;
+            success_return_url?: string | undefined;
+            cancel_return_url?: string | undefined;
+            items?: {
+                category: string;
+                currency: "PHP" | "IDR" | "MYR" | "THB" | "VND" | "SGD" | "USD";
+                reference_id: string;
+                name: string;
+                quantity: number;
+                net_unit_amount: number;
+                url?: string | undefined;
+                type?: "FEE" | "DIGITAL_PRODUCT" | "PHYSICAL_PRODUCT" | "DIGITAL_SERVICE" | "PHYSICAL_SERVICE" | undefined;
+                description?: string | undefined;
+                metadata?: Record<string, string> | undefined;
+                subcategory?: string | undefined;
+                image_url?: string | undefined;
+            }[] | null | undefined;
+            locale?: string | undefined;
+            capture_method?: "AUTOMATIC" | "MANUAL" | undefined;
+            allowed_payment_channels?: string[] | undefined;
+            allow_save_payment_method?: "DISABLED" | "OPTIONAL" | "FORCED" | undefined;
         }>;
     };
 };

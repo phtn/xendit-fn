@@ -44,6 +44,7 @@ import {
   createCharge,
   getCharge,
 } from "./card/index";
+import { createSession } from "./session/index";
 import type { ListPaymentMethods } from "./payment-method/schema";
 import type { ListInvoices } from "./invoice/schema";
 import type { ListPaymentRequests } from "./payment-request/schema";
@@ -144,6 +145,24 @@ export type {
   CardType,
   CardBrand,
 } from "./card/schema";
+
+export type {
+  // Session types
+  CreateSession,
+  SessionResource,
+  SessionType,
+  SessionStatus,
+  SessionMode,
+  AllowSavePaymentMethod,
+  CaptureMethod,
+  PaymentSessionCustomerDetails,
+  PaymentSessionItem,
+  ItemType,
+  Gender,
+  IndividualDetail,
+  ChannelProperties,
+  MerchantMetadata,
+} from "./session/schema";
 
 export type { RateLimitConfig };
 
@@ -246,6 +265,9 @@ const Xendit = (key: string, options: XenditOptions = {}) => {
       reverseAuthorization: createFn(reverseAuthorization, axiosInstance),
       createCharge: createFn(createCharge, axiosInstance),
       getCharge: createFn(getCharge, axiosInstance),
+    },
+    session: {
+      create: createFn(createSession, axiosInstance),
     },
   };
 };
